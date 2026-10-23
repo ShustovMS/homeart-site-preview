@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HOMEART Academy — встречи, эфиры и поездки на фабрики</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+<style>
+/* первый экран: ролик с вечера Molteni&C Outdoor виден только сквозь слово ACADEMY;
+   при прокрутке камера пролетает внутрь буквы и открывается весь кадр */
+:root{--out:cubic-bezier(.23,1,.32,1)}
+.vb{height:260vh;position:relative;background:var(--ink)}
+.vb-stage{position:sticky;top:0;height:100vh;overflow:hidden;isolation:isolate;background:var(--ink)}
+.vb-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.vb-mask{position:absolute;inset:0;background:var(--ink);color:#fff;mix-blend-mode:multiply;display:grid;place-items:center;will-change:transform,opacity}
+.vb-word{font-family:var(--display);font-weight:500;text-transform:uppercase;line-height:1;letter-spacing:0;white-space:nowrap;font-size:18vw}
+.vb-copy{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:calc(var(--hh) + clamp(18px,2.6vw,36px)) var(--gutter) clamp(22px,3.4vw,48px);color:#fff;pointer-events:none}
+.vb-copy > *{pointer-events:auto}
+.vb-copy .eyebrow{color:var(--sand)}
+.vb-low{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.vb-low p{color:#cfcfcf;max-width:58ch;font-weight:300;font-size:clamp(15px,1.2vw,18px);line-height:1.55}
+.vb-low .btns{display:flex;gap:10px;flex-wrap:wrap}
+.vb-low .btn--line{color:#fff;border-color:rgba(255,255,255,.5)}
+.vb-low .btn--line:hover{background:#fff;color:var(--ink)}
+.vb-end{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(22px,3.4vw,48px);z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:#fff;opacity:0;transform:translateY(10px)}
+.vb-end .eyebrow{color:var(--sand);margin-bottom:10px}
+.vb-end h2{color:#fff;font-size:clamp(20px,2.2vw,34px)}
+.vb-stage::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(33,33,33,.65),rgba(33,33,33,0) 40%);opacity:var(--shade,0);pointer-events:none}
+
+/* «смотреть со звуком» */
+.play{display:inline-flex;align-items:center;gap:12px;font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.play i{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.55);display:grid;place-items:center;transition:background .25s var(--out),border-color .25s var(--out),transform .2s var(--out)}
+.play i::before{content:"";margin-left:3px;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.play:hover i{background:#fff;border-color:#fff;color:var(--ink)}
+.play:active i{transform:scale(.95)}
+.film{position:fixed;inset:0;z-index:120;background:rgba(18,18,18,.94);display:grid;place-items:center;padding:clamp(12px,4vw,64px);opacity:0;transition:opacity .3s var(--out)}
+.film.on{opacity:1}
+.film[hidden]{display:none}
+.film video{width:min(100%,calc((100vh - 120px) * 16 / 9));aspect-ratio:16/9;background:#000;border-radius:var(--r)}
+.film__x{position:absolute;top:18px;right:18px;color:#fff;font-family:var(--display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:10px 14px;border:1px solid rgba(255,255,255,.35);border-radius:999px}
+.film__x:hover{background:#fff;color:var(--ink)}
+
+@media (max-width:760px){
+  .vb-mask{place-items:start center;padding-top:calc(var(--hh) + max(72px,14vh))}   /* на телефоне слово выше — внизу длинная подпись и кнопки */
+  .vb-end{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  .vb{height:auto}
+  .vb-stage{position:relative;top:0;height:100vh}
+}
+</style>
+</head>
+<body data-page="events" data-root="">
+<div id="hdr"></div>
+<main style="padding-bottom:80px">
+  <section class="vb" id="vb" data-hdr-over>
+    <div class="vb-stage">
+      <video muted loop playsinline preload="none" poster="img/academy/yauza-poster.jpg"></video>
+      <div class="vb-mask" aria-hidden="true"><span class="vb-word">Academy</span></div>
+      <div class="vb-copy">
+        <div class="eyebrow">HOMEART Academy</div>
+        <h1 class="sr">HOMEART Academy — встречи, эфиры и поездки на фабрики</h1>
+        <div class="vb-low">
+          <p>HOMEART Academy — профессиональное сообщество для дизайнеров и архитекторов. Онлайн-лекции, камерные встречи в шоуруме, презентации новых коллекций, разговоры об искусстве и материалах, знакомство с фабриками и поездки на производства.</p>
+          <div class="btns">
+            <a href="https://t.me/homeart_interior_bot" class="btn btn--light" target="_blank" rel="noopener">Стать участником</a>
+            <button type="button" class="btn btn--line" data-call="HOMEART Academy">Задать вопрос</button>
+          </div>
+        </div>
+      </div>
+      <div class="vb-end">
+        <div><div class="eyebrow">Как это проходит</div><h2>Molteni&amp;C Outdoor · Yauza, 2023</h2></div>
+        <button type="button" class="play" data-film><i></i>Смотреть со звуком</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="sec--tight">
+      <div class="sec__h"><div><div class="eyebrow">Как попасть</div><h2>Три шага до анонсов</h2></div></div>
+      <ol class="proc proc--cols" style="--rows:2">
+        <li><span class="no">01</span><div><b>Откройте бота</b><p>HOMEART Community в Telegram — <a href="https://t.me/homeart_interior_bot" target="_blank" rel="noopener" style="border-bottom:1px solid">@homeart_interior_bot</a>.</p></div></li>
+        <li><span class="no">02</span><div><b>Заполните короткую анкету</b><p>Пара вопросов о вас и вашей практике — без данных о ваших заказчиках.</p></div></li>
+        <li><span class="no">03</span><div><b>Получите доступ в группу</b><p>Там анонсы эфиров онлайн-академии, встреч в шоуруме и поездок на фабрики.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="sec--tight">
+      <div class="sec__h"><div><div class="eyebrow">Как это проходит</div><h2>Встречи в шоуруме HOMEART</h2></div></div>
+      <div class="acad">
+        <img src="img/photo/academy-04.jpg" alt="Встреча HOMEART Academy в шоуруме" loading="lazy">
+        <img src="img/photo/academy-03.jpg" alt="Выступление на встрече HOMEART Academy" loading="lazy">
+        <img src="img/photo/academy-02.jpg" alt="Участницы встречи HOMEART Academy" loading="lazy">
+        <img src="img/photo/academy-05.jpg" alt="Зал шоурума во время встречи" loading="lazy">
+      </div>
+    </section>
+  </div>
+</main>
+<div id="ftr"></div>
+
+<div class="film" id="film" hidden role="dialog" aria-modal="true" aria-label="Ролик Molteni&amp;C Outdoor · Yauza">
+  <button type="button" class="film__x">Закрыть</button>
+  <video controls playsinline preload="none"></video>
+</div>
+
+<script src="data/data.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script>
+(() => {
+  const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LOOP = matchMedia('(max-width:760px)').matches ? 'img/academy/yauza-loop-m.mp4' : 'img/academy/yauza-loop.mp4';
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const sec = document.getElementById('vb'), stage = sec.querySelector('.vb-stage'), video = stage.querySelector('video'),
+        mask = sec.querySelector('.vb-mask'), word = sec.querySelector('.vb-word'), copy = sec.querySelector('.vb-copy'), end = sec.querySelector('.vb-end');
+  let held = false;
+
+  // фоновый ролик грузится, только когда виден, и встаёт на паузу вне экрана
+  const io = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !REDUCE && !held) { if (!video.src) video.src = LOOP; video.play().catch(() => {}); } else video.pause();
+  }, { threshold: .15 });
+  io.observe(video);
+
+  // слово подгоняем под ширину экрана; точка увеличения — середина самого толстого вертикального штриха (ищем по отрисовке в canvas)
+  function fitWord() {
+    word.style.fontSize = '100px';
+    const fs = Math.min(100 * stage.clientWidth * .9 / word.offsetWidth, stage.clientHeight * .42);
+    word.style.fontSize = fs + 'px';
+    const cs = getComputedStyle(word), w = Math.ceil(word.offsetWidth), h = Math.ceil(fs * 1.4);
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d'); x.font = `${cs.fontWeight} ${fs}px ${cs.fontFamily}`; x.textBaseline = 'middle'; x.fillText(word.textContent.toUpperCase(), 0, h / 2);
+    const d = x.getImageData(0, 0, w, h).data, col = new Array(w).fill(0);
+    for (let i = 0; i < w; i++) for (let j = 0; j < h; j++) if (d[(j * w + i) * 4 + 3] > 200) col[i]++;
+    const max = Math.max(...col); let best = 0, bestLen = 0, run = 0;
+    for (let i = 0; i <= w; i++) { if (i < w && col[i] > max * .9) run++; else { if (run > bestLen) { bestLen = run; best = i - run / 2; } run = 0; } }
+    const wr = word.getBoundingClientRect(), mr = mask.getBoundingClientRect();
+    mask.style.transformOrigin = `${wr.left - mr.left + best}px ${wr.top - mr.top + wr.height / 2}px`;
+  }
+
+  function draw() {
+    // прогресс считаем от того места, где сцена прилипает (под шапкой или от самого верха экрана)
+    const top = parseFloat(getComputedStyle(stage).top) || 0, r = sec.getBoundingClientRect(), run = sec.offsetHeight - stage.offsetHeight;
+    const p = REDUCE || run <= 0 ? 0 : clamp((top - r.top) / run), q = clamp(p / .8);
+    mask.style.transform = `scale(${Math.pow(70, q * q)})`;
+    mask.style.opacity = 1 - clamp((q - .72) / .28);
+    copy.style.opacity = 1 - clamp(p / .14);
+    copy.style.transform = `translateY(${-24 * clamp(p / .14)}px)`;
+    const e = clamp((p - .82) / .12);
+    end.style.opacity = e; end.style.transform = `translateY(${10 * (1 - e)}px)`;
+    copy.style.visibility = p > .14 ? 'hidden' : '';
+    end.style.visibility = e > 0 ? '' : 'hidden';
+    stage.style.setProperty('--shade', e);
+  }
+  let ticking = false;
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { draw(); ticking = false; }); } };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', () => { fitWord(); draw(); });
+
+  // просмотр со звуком
+  const film = document.getElementById('film'), filmV = film.querySelector('video');
+  function openFilm() {
+    held = true; video.pause();
+    film.hidden = false; requestAnimationFrame(() => film.classList.add('on'));
+    filmV.src = 'img/academy/yauza-film.mp4'; filmV.play().catch(() => {});
+    film.querySelector('.film__x').focus();
+  }
+  function closeFilm() {
+    filmV.pause(); filmV.removeAttribute('src'); filmV.load();
+    film.classList.remove('on'); setTimeout(() => { film.hidden = true; }, 300);
+    held = false; io.unobserve(video); io.observe(video);
+  }
+  document.querySelectorAll('[data-film]').forEach(b => b.addEventListener('click', openFilm));
+  film.querySelector('.film__x').addEventListener('click', closeFilm);
+  film.addEventListener('click', e => { if (e.target === film) closeFilm(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !film.hidden) closeFilm(); });
+
+  fitWord(); draw();
+  document.fonts.ready.then(() => { fitWord(); draw(); });
+})();
+</script>
+</body>
+</html>

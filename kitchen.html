@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kitchen Division — HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+<style>
+.kdsec{padding:clamp(40px,5vw,72px) 0;border-top:.5px solid var(--line);scroll-margin-top:90px}
+.kdsub{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--graphite-2);margin:26px 0 12px}
+.kdrow{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:18px;align-items:center;padding:14px 0;border-top:.5px solid var(--line-soft)}
+.kdrow__l{height:48px;display:flex;align-items:center}
+.kdrow__l img{max-height:44px;max-width:130px;object-fit:contain;filter:grayscale(1)}
+.kdrow b{font-weight:500;letter-spacing:.04em}
+.kdrow p{font-size:14px;color:var(--graphite)}
+.kdrow .st{font-size:12px;color:var(--graphite-2)}
+.check li{list-style:none;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:12px 0;border-top:.5px solid var(--line);font-size:15px}
+.check li::before{content:"";width:16px;height:16px;border:1px solid var(--brass-deep);border-radius:3px;margin-top:3px}
+@media(max-width:640px){.kdrow{grid-template-columns:90px minmax(0,1fr)}.kdrow>div:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main>
+  <section class="hero" style="min-height:calc(min(72vh,680px) + var(--hh))" data-hdr-over>
+    <img src="img/photo/hero-kitchen-division.jpg" alt="Кухня в экспозиции HOMEART">
+    <div class="wrap hero__in">
+      <div class="eyebrow eyebrow--light">Kitchen Division HOMEART</div>
+      <h1>Кухни · Гардеробные · Двери · Техника</h1>
+      <p class="hero__sub">Отдельное направление внутри HOMEART: свои эксперты, свои фабрики и один просчёт на кухню, хранение, двери и технику.</p>
+      <div class="hero__cta">
+        <button type="button" class="btn btn--light" data-call="Консультация по кухне">Запросить консультацию по кухне</button>
+        <a href="#check" class="btn btn--ghost-light">Чек-лист «Кухня до КП»</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="tabs" style="margin-top:28px" aria-label="Разделы Kitchen Division">
+      <a href="#kuhni">Кухни</a><a href="#garderobnye">Гардеробные и хранение</a><a href="#dveri">Двери и перегородки</a><a href="#tehnika">Техника</a><a href="#service">Сервис</a>
+    </div>
+    <div id="secs"></div>
+
+    <section class="kdsec" id="check">
+      <div class="grid2" style="align-items:start">
+        <div>
+          <div class="eyebrow">Лид-магнит</div>
+          <h2 style="margin:12px 0 14px">Кухня до КП: что проверить до просчёта</h2>
+          <p class="lead" style="font-size:17px">Вентиляция, подводы, ниши под технику — узлы, которые чаще всего сдвигают сроки, если не решены заранее. Полный чек-лист в PDF пришлём по запросу.</p>
+          <button type="button" class="btn btn--line" style="margin-top:20px" data-call="Чек-лист «Кухня до КП»">Получить чек-лист</button>
+        </div>
+        <div>
+          <ol class="check">
+            <li>Вытяжка: тип, диаметр воздуховода и точка выхода</li>
+            <li>Подводы воды и канализации под мойку и остров</li>
+          </ol>
+          <div data-need="member" data-gate="Ещё 9 пунктов и PDF для прораба">
+            <ol class="check">
+              <li>Розетки и выводы под встроенную технику — по спецификации производителя</li>
+              <li>Ниши под холодильник и винный шкаф: вентиляционные зазоры</li>
+              <li>Ровность стен и пола под высокие колонны</li>
+              <li>Допуск по высоте столешницы относительно окна</li>
+            </ol>
+            <button type="button" class="btn btn--sm" style="margin-top:14px" data-act="save" data-what="PDF «Кухня до КП»">Скачать PDF</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kdsec" id="service">
+      <div class="sec__h"><div><div class="eyebrow">Сервис</div><h2>Что делает отдел кухонь</h2>
+        <p>Перечень показан как пример. До публикации его подтверждает руководитель направления — сайт не обещает больше, чем выдерживает сервис.</p></div></div>
+      <ol class="proc proc--cols" style="--rows:2">
+        <li><span class="no">01</span><div><b>Проектирование</b><p>Раскладка кухни по вашему проекту, согласование с фабрикой.</p></div></li>
+        <li><span class="no">02</span><div><b>Узлы и технички</b><p>Узлы примыкания, встройка техники, технические листы для прораба.</p></div></li>
+        <li><span class="no">03</span><div><b>Замеры</b><p>Контрольный замер перед размещением заказа.</p></div></li>
+        <li><span class="no">04</span><div><b>Монтаж</b><p>Установка кухни и подключение техники силами обученных монтажников.</p></div></li>
+      </ol>
+      <div style="display:flex;gap:10px;margin-top:30px;flex-wrap:wrap">
+        <button type="button" class="btn" data-call="Консультация по кухне">Запросить консультацию по кухне</button>
+        <button type="button" class="btn btn--line" data-need="member" data-act="enroll" data-what="Камерное обучение по кухням для бюро">Записаться на камерное обучение для бюро</button>
+      </div>
+    </section>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script>
+(function () {
+  const { esc, tier } = HA;
+  const SEC = [['kuhni', 'Кухни'], ['garderobnye', 'Гардеробные'], ['dveri', 'Двери'], ['tehnika', 'Техника']];
+  const TITLE = { 'Кухни': 'Кухни', 'Гардеробные': 'Гардеробные и хранение', 'Двери': 'Двери и перегородки', 'Техника': 'Техника' };
+  const rows = [];
+  FACTORIES.forEach(f => (f.kdNotes || []).forEach(n => rows.push({ f, ...n })));
+  const row = r => `<div class="kdrow">
+      <div class="kdrow__l">${r.f.logo ? `<img loading="lazy" src="${r.f.logo}" alt="${esc(r.f.name)}">` : `<b>${esc(r.f.name)}</b>`}</div>
+      <div><a href="factory.html?id=${r.f.id}"><b>${esc(r.f.name)}</b></a> <span class="st">· ${esc(r.f.country)}${r.f.style ? ' · ' + esc(r.f.style) : ''}</span><p>${esc(r.note)}</p></div>
+      <div>${tier(r.f.level, r.f.levelSrc)}</div></div>`;
+  document.getElementById('secs').innerHTML = SEC.map(([id, s]) => {
+    const list = rows.filter(r => r.section === s);
+    const subs = [...new Set(list.map(r => r.subgroup).filter(Boolean))];
+    const body = subs.length
+      ? subs.map(g => `<div class="kdsub">${esc(g)}</div>` + list.filter(r => r.subgroup === g).map(row).join('')).join('')
+      : list.map(row).join('');
+    return `<section class="kdsec" id="${id}"><div class="sec__h"><div><div class="eyebrow">${list.length} фабрик</div><h2>${TITLE[s]}</h2></div>
+      <a class="link" href="factories.html?tab=kd">В каталоге фабрик →</a></div>${body}</section>`;
+  }).join('');
+  HA.applyLocks();
+})();
+</script>
+</body>
+</html>

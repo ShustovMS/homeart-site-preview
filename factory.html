@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Фабрика — HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main class="wrap" id="main"></main>
+<div id="ftr"></div>
+<script src="data/stock.js?v=1792770868"></script>
+<script src="data/data.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script>
+(function () {
+  const { esc, tier, qs } = HA;
+  const f = FACTORIES.find(x => x.id === qs.get('id')) || FACTORIES.find(x => x.id === 'molteni-c');
+  document.title = `${f.name} — HOMEART`;
+  const prods = STOCK.filter(p => HA.brandFactory(p.brand) === f);
+  const LV = ['Средний', 'Выше среднего', 'Высокий', 'Люкс'];
+  const alt = FACTORIES.filter(x => x.id !== f.id && x.cats[0] === f.cats[0] && x.level !== f.level)
+    .sort((a, b) => Math.abs(LV.indexOf(a.level) - LV.indexOf(f.level)) - Math.abs(LV.indexOf(b.level) - LV.indexOf(f.level)) || (b.full - a.full))
+    .slice(0, 4);
+  const what = f.name;
+
+  const why = f.why
+    ? `<ol class="why">${f.why.map(w => `<li><p>${esc(w)}</p></li>`).join('')}</ol>`
+    : `<p class="lead" style="font-size:17px;max-width:72ch">${esc(f.desc)}</p>`;
+
+  const galImgs = (f.collections || prods.filter(p => p.imgs[0]).map(p => ({ src: p.imgs[0], pack: p.pack })))
+    .map(g => typeof g === 'string' ? { src: g, pack: false } : g).slice(0, 6);
+  const gallery = galImgs.length
+    ? `<div class="gallery">${galImgs.map(g => `<figure class="${g.pack ? 'pack' : ''}"><img loading="lazy" src="${g.src}" alt=""></figure>`).join('')}</div>`
+    : `<div class="gallery">${[1, 2, 3].map(() => '<figure><div class="ph"><b>фото шоурума</b><span>коллекции фабрики</span></div></figure>').join('')}</div>`;
+
+  document.getElementById('main').innerHTML = `
+    <div class="crumbs"><a href="index.html">Главная</a><span>/</span><a href="factories.html">Каталог фабрик</a><span>/</span><span>${esc(f.name)}</span></div>
+
+    <section class="fhead">
+      <div class="fhead__logo">${f.logo ? `<img src="${f.logo}" alt="${esc(f.name)}">` : `<b>${esc(f.name)}</b>`}</div>
+      <div style="min-width:0">
+        <div class="eyebrow">${esc(f.cats.join(' · '))}</div>
+        <h1 style="margin:10px 0 0">${esc(f.name)}</h1>
+        <div class="fhead__meta"><span>${esc(f.country)}${f.city ? ', ' + esc(f.city) : ''}</span>${f.founded ? `<span>с ${f.founded} года</span>` : ''}${tier(f.level, f.levelSrc)}
+          ${f.site ? `<a href="${esc(f.site)}" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">Официальный сайт ↗</a>` : ''}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button type="button" class="btn" data-need="member" data-act="3d" data-what="${esc(what)}">Запросить 3D-модель</button>
+        <button type="button" class="btn btn--line" data-call="${esc(what)}">Заказать звонок</button>
+      </div>
+    </section>
+
+    <section class="sec--tight">
+      <div class="sec__h"><div><div class="eyebrow">Для разговора с клиентом</div><h2>Почему это стоит своих денег</h2></div></div>
+      ${why}
+    </section>
+
+    <section class="sec--tight sec--line">
+      <div class="sec__h"><div><div class="eyebrow">Коллекции</div><h2>Сильные позиции</h2></div>
+        ${prods.length ? `<a class="link" href="catalog.html?brand=${encodeURIComponent(prods[0].brand)}">В наличии · ${prods.length} →</a>` : ''}</div>
+      ${gallery}
+    </section>
+
+    <section class="sec--tight sec--line">
+      <div class="sec__h"><div><div class="eyebrow">Для проекта</div><h2>Сроки, заказ, материалы</h2></div></div>
+      <div class="forproj">
+        <div><div class="k">Срок поставки</div><div class="v">${esc(f.lead)}</div><p class="small muted" style="margin-top:6px">ориентир, фиксируется в просчёте</p></div>
+        <div><div class="k">Особенности заказа</div><div class="v small">${esc(f.orderNotes || 'Конфигурация и отделки подтверждаются фабрикой после просчёта. Нестандартные размеры — по запросу.')}</div></div>
+        <div><div class="k">3D и технички</div><div class="v">${f.has3d ? '3D-модели есть' : '3D-модели — по запросу, не у всех позиций'} · ${f.hasTech ? 'технички есть' : 'технички по запросу'}</div>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <button type="button" class="btn btn--sm" data-need="member" data-act="3d" data-what="${esc(what)}">Запросить 3D</button>
+            <button type="button" class="btn btn--sm btn--line" data-need="member" data-act="tech" data-what="${esc(what)}">Запросить техничку</button></div></div>
+      </div>
+      ${f.kdNotes ? `<p class="small muted" style="margin-top:14px">Kitchen Division: ${f.kdNotes.map(n => esc(n.section) + ' — ' + esc(n.note)).join(' · ')}</p>` : ''}
+    </section>
+
+    <section class="sec--tight sec--line">
+      <div class="grid2" style="align-items:start">
+        <div>
+          <div class="eyebrow">Вопрос по фабрике</div><h2 style="margin:12px 0 18px">Поможем с ${esc(f.name)}</h2>
+          <p>Сроки, отделки, конфигурации, 3D и технички — ответит менеджер направления, который работает с фабрикой.</p>
+          <button type="button" class="btn" style="margin-top:16px" data-call="Вопрос по фабрике ${esc(f.name)}">Задать вопрос</button>
+        </div>
+        <div>
+          <div class="eyebrow">Шоурум</div><h2 style="margin:12px 0 18px">Образцы</h2>
+          <p>${f.samples ? 'Образцы отделок фабрики есть в шоуруме на 3-й Фрунзенской.' : 'Постоянных образцов в шоуруме нет — привезём к встрече по запросу.'}</p>
+          <button type="button" class="btn btn--line" style="margin-top:16px" data-need="member" data-act="samples" data-what="${esc(f.name)} — к встрече">Привезти к встрече</button>
+        </div>
+      </div>
+    </section>
+
+    ${alt.length ? `<section class="sec--tight sec--line">
+      <div class="sec__h"><div><div class="eyebrow">Альтернативы</div><h2>Похожие фабрики в другом ценовом уровне</h2></div></div>
+      <div class="grid4">${alt.map(x => `<a class="card fac" href="factory.html?id=${x.id}"><div class="card__img">${x.logo ? `<img loading="lazy" src="${x.logo}" alt="${esc(x.name)}">` : `<div class="ph"><b>${esc(x.name)}</b></div>`}</div>
+        <div class="card__b"><span class="card__t">${esc(x.name)}</span><span class="card__m">${esc(x.country)}</span><div class="card__f">${tier(x.level, x.levelSrc)}</div></div></a>`).join('')}</div>
+    </section>` : ''}`;
+  document.getElementById('main').lastElementChild.style.paddingBottom = '80px';
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Шоурум — HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+<style>
+/* о шоуруме: заголовок, три колонки «фото + абзац» (средняя ниже — журнальный ритм), финал — фото и фраза */
+.sr-about{padding:clamp(48px,6vw,96px) 0 0}
+.sr-about h2{margin-top:14px;font-size:clamp(28px,3vw,46px);line-height:1.12;max-width:20ch}
+.sr-story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(28px,3.4vw,48px);align-items:start}
+.sr-story figure{aspect-ratio:4/5;overflow:hidden;border-radius:var(--r-lg);background:var(--sand)}
+.sr-story img{width:100%;height:100%;object-fit:cover}
+.sr-story p{margin-top:20px;font-size:16px;line-height:1.62;color:var(--slate);font-weight:300;max-width:42ch}
+.sr-story>div:nth-child(2){margin-top:clamp(0px,6vw,96px)}
+/* финал: портрет по центру, тонкое бежевое кольцо, под ним фраза и кнопка */
+.sr-host{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(72px,9vw,144px) 0}
+.sr-host img{width:clamp(168px,15vw,232px);height:clamp(168px,15vw,232px);border-radius:50%;object-fit:cover;
+  box-shadow:0 0 0 6px var(--mist),0 0 0 7px var(--sand)}
+.sr-host p{margin-top:28px;font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:clamp(19px,1.9vw,28px);line-height:1.28;letter-spacing:.01em}
+.sr-host .btn{margin-top:24px}
+
+
+/* к визиту: карточки-действия */
+.sr-acts{margin-top:clamp(56px,7vw,112px)}
+.sr-acts .sec__h{margin-bottom:24px}
+/* как добраться: пауза после финала с портретом, фото компактнее */
+.sr-visit{padding-top:clamp(48px,6vw,88px)}
+.sr-visit.split{grid-template-columns:minmax(0,.85fr) minmax(0,1fr)}
+.sr-visit .split__img{aspect-ratio:3/2}
+.sr-card{background:var(--white);border-radius:var(--r-lg);padding:28px 26px 26px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.sr-card .no{font-size:12px;letter-spacing:.1em;color:var(--stone)}
+.sr-card h3{margin:2px 0 2px}
+.sr-card p{color:var(--graphite);font-size:14.5px;line-height:1.55;flex:1}
+.sr-card .btn{align-self:flex-start;margin-top:12px}
+
+@media (max-width:980px){
+  .sr-story{grid-template-columns:1fr 1fr}
+  .sr-story>div:nth-child(2){margin-top:0}
+    .sr-visit.split{grid-template-columns:1fr}
+  }
+@media (max-width:640px){
+  .sr-story{grid-template-columns:1fr}
+  .sr-story figure{aspect-ratio:4/3}
+  .sr-host p br{display:none}
+    }
+</style>
+</head>
+<body data-page="showroom" data-root="">
+<div id="hdr"></div>
+<main>
+  <section class="hero" style="min-height:calc(min(70vh,640px) + var(--hh))" data-hdr-over>
+    <img src="img/photo/showroom-lounge.jpg" alt="Шоурум HOMEART: зона отдыха с креслом, диванами и зелёным каменным столиком, за ней обеденная зона и арт-объект на стене" style="object-position:50% 55%">
+    <div class="wrap hero__in">
+      <div class="eyebrow eyebrow--light">Москва · 3-я Фрунзенская, 1</div>
+      <h1>Шоурум как представительский центр</h1>
+      <p class="hero__sub">Законченные жилые зоны, где проект можно увидеть вживую и обсудить с клиентом.</p>
+    </div>
+  </section>
+  <div class="wrap" style="padding-bottom:clamp(88px,10vw,160px)">
+    <section class="sr-about">
+      <div class="eyebrow">О шоуруме</div><h2>Пространство для ваших встреч</h2>
+      <div class="sr-story">
+        <div><figure><img src="img/photo/about-meeting.jpg" alt="Дизайнеры обсуждают образцы отделок в шоуруме HOMEART" loading="lazy"></figure>
+          <p>Шоурум HOMEART на 3-й Фрунзенской — пространство, которым дизайнеры и архитекторы могут пользоваться для встреч с клиентами и партнёрами, презентации проектов и обсуждения важных решений.</p></div>
+        <div><figure><img src="img/photo/about-interior.jpg" alt="Сотрудница HOMEART открывает фасад высокого шкафа в интерьере шоурума" loading="lazy"></figure>
+          <p>Здесь интерьер раскрывается как жилая среда: гостиная, кухня, столовая и библиотека позволяют увидеть, как материалы, свет, мебель и пропорции работают вместе. Домашняя атмосфера располагает к диалогу и помогает спокойно обсуждать детали проекта, выбирать решения и представлять будущий интерьер.</p></div>
+        <div><figure><img src="img/photo/about-samples.jpg" alt="Эксперт HOMEART показывает клиенту образцы на стеллаже шоурума" loading="lazy"></figure>
+          <p>Команда HOMEART поможет подготовить встречу, подобрать образцы и подключится к обсуждению, чтобы поделиться экспертизой и ответить на вопросы по проекту.</p></div>
+      </div>
+    </section>
+    <section class="sec--tight sr-acts">
+      <div class="sec__h"><div><div class="eyebrow">К вашему визиту</div><h2>Приходите с клиентом — остальное подготовим</h2></div></div>
+      <div class="grid3">
+        <div class="sr-card"><span class="no">01</span><h3>Встреча с клиентом</h3>
+          <p>Выберите время: подготовим зону и образцы, подключим экспертов по нужным фабрикам. Для обсуждения деталей есть отдельная переговорная.</p>
+          <button type="button" class="btn btn--sm" data-call="Шоурум: встреча с клиентом">Забронировать встречу</button></div>
+        <div class="sr-card"><span class="no">02</span><h3>Вопрос по проекту</h3>
+          <p>Расскажите о задаче — подскажем фабрики и решения ещё до визита, чтобы встреча прошла предметно.</p>
+          <button type="button" class="btn btn--sm btn--line" data-call="Шоурум: вопрос по проекту">Задать вопрос</button></div>
+        <div class="sr-card"><span class="no">03</span><h3>Образцы к встрече</h3>
+          <p>Привезём отделки, ткани и материалы нужных фабрик к вашему визиту.</p>
+          <button type="button" class="btn btn--sm btn--line" data-need="member" data-act="samples" data-what="к визиту в шоурум">Подготовить образцы</button></div>
+      </div>
+    </section>
+    <section class="sr-host">
+      <img src="img/photo/about-host.jpg" alt="Сотрудница шоурума HOMEART" loading="lazy">
+      <p>Будем рады увидеть вас <br>в шоуруме HOMEART</p>
+      <button type="button" class="btn" data-call="Шоурум: встреча с клиентом">Забронировать встречу</button>
+    </section>
+
+
+
+    <section class="sec--line split sr-visit">
+      <div class="split__img"><img src="img/photo/showroom-2.jpg" alt=""></div>
+      <div>
+        <div class="eyebrow">Как добраться</div><h2 style="margin:12px 0 10px">3-я Фрунзенская, 1</h2>
+        <div class="facts">
+          <div><span class="k">Часы</span><span>Пн–Пт 10:00–19:00, Сб 12:00–18:00</span></div>
+          <div><span class="k">Метро</span><span>Фрунзенская, 7 минут пешком</span></div>
+          <div><span class="k">Парковка</span><span>Гостевые места у входа — предупредите заранее</span></div>
+          <div><span class="k">Телефон</span><span><a href="tel:+79256021443">+7 925 602-14-43</a></span></div>
+        </div>
+        <button type="button" class="btn btn--line" style="margin-top:22px" data-call="Шоурум">Заказать звонок</button>
+      </div>
+    </section>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+</body>
+</html>

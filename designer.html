@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дизайнер — HOMEART</title>
+<meta name="description" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+<link rel="stylesheet" href="assets/projects.css?v=1792770868">
+</head>
+<body data-page="projects" data-root="">
+<div id="hdr"></div>
+<main class="wrap" id="main"></main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1792770868"></script>
+<script src="data/projects.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script src="assets/projects.js?v=1792770868"></script>
+<script>
+(function () {
+  const { esc, qs } = HA;
+  const d = DESIGNERS.find(x => x.id === qs.get('id')) || DESIGNERS[0];
+  const list = d.projects.map(id => PROJECTS.find(x => x.id === id)).filter(Boolean);
+  PJ.meta(d.meta.title, d.meta.description, d.portrait || (list[0] && list[0].photos[0]));
+  document.getElementById('main').innerHTML = `
+    <div class="crumbs"><a href="index.html">Главная</a><span>/</span><a href="projects.html?tab=designers">Дизайнеры</a><span>/</span><span>${esc(d.name)}</span></div>
+    <div class="dhead">
+      ${d.portrait ? `<div class="dhead__p"><img src="${d.portrait}" alt="${esc(d.name)}"></div>` : '<div></div>'}
+      <div><div class="eyebrow">${list.length > 1 ? 'Дизайнеры и архитекторы' : 'Дизайнер'}</div><h1>${esc(d.name)}</h1>
+        ${d.role ? `<p class="lead">${esc(d.role)}</p>` : ''}
+        <p class="small muted" style="margin-top:14px">${HA.fmt.plural(list.length, 'проект', 'проекта', 'проектов')} с HOMEART</p></div>
+    </div>
+    <section class="pmore" style="padding-bottom:clamp(64px,7vw,110px)"><div class="sec__h"><h2>Проекты</h2><a class="link" href="projects.html">Все проекты →</a></div>
+      <div class="ptiles">${PJ.tiles(list)}</div></section>`;
+})();
+</script>
+</body>
+</html>

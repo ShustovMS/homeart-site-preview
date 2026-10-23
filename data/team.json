@@ -1,0 +1,67 @@
+[
+ {
+  "id": "m1",
+  "name": "Екатерина Белова",
+  "role": "Менеджер проектов",
+  "dir": "Мебель",
+  "brands": [
+   "molteni-c",
+   "poliform",
+   "porro",
+   "lema"
+  ],
+  "tg": "@homeart_ebelova",
+  "phone": "+7 900 000-00-01"
+ },
+ {
+  "id": "m2",
+  "name": "Дмитрий Орлов",
+  "role": "Эксперт направления",
+  "dir": "Kitchen Division",
+  "brands": [
+   "modulnova",
+   "tm-italia",
+   "rimadesio",
+   "gaggenau"
+  ],
+  "tg": "@homeart_dorlov",
+  "phone": "+7 900 000-00-02"
+ },
+ {
+  "id": "m3",
+  "name": "Мария Кузнецова",
+  "role": "Эксперт направления",
+  "dir": "Свет",
+  "brands": [
+   "flos",
+   "artemide",
+   "davide-groppi",
+   "vibia"
+  ],
+  "tg": "@homeart_mkuznetsova",
+  "phone": "+7 900 000-00-03"
+ },
+ {
+  "id": "m4",
+  "name": "Алексей Морозов",
+  "role": "Менеджер проектов",
+  "dir": "Средний сегмент",
+  "brands": [
+   "calligaris",
+   "bonaldo",
+   "cattelan-italia",
+   "midj"
+  ],
+  "tg": "@homeart_amorozov",
+  "phone": "+7 900 000-00-04"
+ },
+ {
+  "id": "m5",
+  "name": "Ольга Соловьёва",
+  "role": "Отдел привлечения",
+  "dir": "Первый контакт",
+  "brands": [],
+  "tg": "@homeart_osolovyova",
+  "phone": "+7 900 000-00-05"
+ }
+]

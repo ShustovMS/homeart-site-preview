@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Каталог фабрик — HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Главная</a><span>/</span><span>Каталог фабрик</span></div>
+  <div class="pagehead">
+    <div class="eyebrow">Каталог</div>
+    <h1>348 фабрик — справочник на момент, когда вещь нужна в проекте</h1>
+    <p class="lead">Ищите по названию или по задаче: «уличная мебель», «трековый свет», «гардеробная». Фильтр по ценовому уровню помогает найти альтернативу.</p>
+  </div>
+  <div class="tabs" id="tabs">
+    <a href="catalog.html">Позиции</a>
+    <button type="button" data-tab="all">Все фабрики<span id="tAll"></span></button>
+    <button type="button" data-tab="kd">Kitchen Division<span id="tKd"></span></button>
+    <button type="button" data-tab="decor">Аксессуары и декор<span id="tDecor"></span></button>
+  </div>
+  <div class="search" style="margin-bottom:16px;max-width:620px">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+    <input id="q" placeholder="Название фабрики или задача: уличная мебель, трековый свет…" aria-label="Поиск по фабрикам">
+  </div>
+  <div class="quick" id="quick" aria-label="Быстрые подборки"></div>
+
+  <div class="cat">
+    <aside class="filters" id="filters" aria-label="Фильтры">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-weight:500">Фильтры</b>
+        <button type="button" class="btn btn--sm btn--line fbtn" onclick="document.getElementById('filters').classList.remove('on')">Показать</button>
+      </div>
+      <div class="fg"><h4>Ценовой уровень</h4><div id="fLevel"></div></div>
+      <div class="fg"><h4>Категория</h4><div id="fCat"></div></div>
+      <div class="fg"><h4>Для проекта</h4>
+        <label><input type="checkbox" id="f3d"> Есть 3D-модели</label>
+        <label><input type="checkbox" id="fShort"> Короткий срок поставки</label>
+        <label><input type="checkbox" id="fSamples"> Образцы в шоуруме</label>
+      </div>
+      <div class="fg"><h4>Страна</h4><div id="fCountry"></div></div>
+      <div class="fg"><h4>Стиль</h4><div id="fStyle"></div><p class="small muted" style="margin-top:6px">Стиль пока указан у фабрик Kitchen Division.</p></div>
+      <button type="button" class="link" id="reset" style="align-self:flex-start">Сбросить фильтры</button>
+    </aside>
+    <section>
+      <div class="bar">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button type="button" class="btn btn--sm btn--line fbtn" onclick="document.getElementById('filters').classList.add('on')">Фильтры</button>
+          <span class="cnt" id="cnt"></span>
+        </div>
+      </div>
+      <div class="grid3" id="grid"></div>
+      <div class="empty" id="empty" hidden>Ничего не нашлось. Попробуйте другую формулировку или <button type="button" class="link" onclick="document.getElementById('reset').click()">сбросьте фильтры</button>.</div>
+    </section>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script>
+(function () {
+  const { esc, tier, qs } = HA;
+  const F = FACTORIES;
+  const LEVELS = ['Средний', 'Выше среднего', 'Высокий', 'Люкс'];
+  const S = { tab: qs.get('tab') || 'all', q: '', level: new Set(), cat: new Set(), country: new Set(), style: new Set(), d3: false, short: false, samples: false, quick: null };
+  if (qs.get('cat')) S.cat.add(qs.get('cat'));
+  if (qs.get('level')) S.level.add(qs.get('level'));
+
+  // поиск по задаче: слова дизайнера → категории каталога
+  const TASK = [[/улиц|террас|сад/i, 'Уличная мебель'], [/трек|свет|светил|люстр|лампа/i, 'Свет'], [/кухн/i, 'Кухни'],
+    [/гардероб|шкаф|хранен/i, 'Гардеробные'], [/двер|перегород/i, 'Двери'], [/смесит|ванн|сантех|раковин/i, 'Сантехника'],
+    [/техник|духов|холодил|варочн/i, 'Техника'], [/ковр|ковёр|ковер|декор|аксессуар/i, 'Аксессуары']];
+  const QUICK = [
+    { k: 'mid-it', t: 'Средний сегмент Италии', f: x => ['Средний', 'Выше среднего'].includes(x.level) && x.country === 'Италия' },
+    { k: 'alt-lux', t: 'Альтернативы люксу', f: x => ['Высокий', 'Выше среднего'].includes(x.level) && x.cats.includes('Мебель') },
+    { k: 'light', t: 'Свет для проекта', f: x => x.cats.includes('Свет') },
+    { k: 'kitchen', t: 'Кухни до КП', f: x => x.cats.includes('Кухни'), href: 'kitchen.html#check' },
+    { k: 'outdoor', t: 'Уличная мебель', f: x => x.cats.includes('Уличная мебель') },
+  ];
+  document.getElementById('quick').innerHTML = QUICK.map(q => `<button type="button" class="chip" data-q="${q.k}">${q.t}</button>`).join('');
+  document.getElementById('quick').onclick = e => {
+    const b = e.target.closest('[data-q]'); if (!b) return;
+    S.quick = S.quick === b.dataset.q ? null : b.dataset.q;
+    if (S.quick === 'kitchen') S.tab = 'kd';
+    draw();
+  };
+
+  const inTab = x => S.tab === 'kd' ? x.kd.length > 0 : S.tab === 'decor' ? x.decor : true;
+  const cnt = (fn) => F.filter(x => inTab(x) && fn(x)).length;
+  function boxes(id, vals, set, keyFn) {
+    const el = document.getElementById(id);
+    el.innerHTML = vals.map(v => `<label><input type="checkbox" value="${esc(v)}" ${set.has(v) ? 'checked' : ''}> ${esc(v)}<span>${cnt(x => keyFn(x, v))}</span></label>`).join('');
+    el.onchange = e => { e.target.checked ? set.add(e.target.value) : set.delete(e.target.value); draw() };
+  }
+  const countries = [...new Set(F.map(x => x.country))].sort((a, b) => F.filter(x => x.country === b).length - F.filter(x => x.country === a).length);
+  const cats = ['Мебель', 'Свет', 'Кухни', 'Гардеробные', 'Двери', 'Техника', 'Сантехника', 'Уличная мебель', 'Аксессуары'];
+  const styles = [...new Set(F.map(x => x.style).filter(Boolean).flatMap(s => s.split(' / ')))].sort();
+
+  function renderFilters() {
+    boxes('fLevel', LEVELS, S.level, (x, v) => x.level === v);
+    boxes('fCat', cats.filter(c => cnt(x => x.cats.includes(c))), S.cat, (x, v) => x.cats.includes(v));
+    boxes('fCountry', countries.filter(c => cnt(x => x.country === c)), S.country, (x, v) => x.country === v);
+    boxes('fStyle', styles.filter(s => cnt(x => (x.style || '').includes(s))), S.style, (x, v) => (x.style || '').includes(v));
+  }
+  document.getElementById('f3d').onchange = e => { S.d3 = e.target.checked; draw() };
+  document.getElementById('fShort').onchange = e => { S.short = e.target.checked; draw() };
+  document.getElementById('fSamples').onchange = e => { S.samples = e.target.checked; draw() };
+  document.getElementById('q').oninput = e => { S.q = e.target.value.trim(); draw() };
+  document.getElementById('tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (b) { S.tab = b.dataset.tab; S.quick = null; draw() } };
+  document.getElementById('reset').onclick = () => {
+    ['level', 'cat', 'country', 'style'].forEach(k => S[k].clear()); S.d3 = S.short = S.samples = false; S.q = ''; S.quick = null;
+    document.getElementById('q').value = ''; ['f3d', 'fShort', 'fSamples'].forEach(i => document.getElementById(i).checked = false); draw();
+  };
+
+  function match(x) {
+    if (!inTab(x)) return false;
+    if (S.level.size && !S.level.has(x.level)) return false;
+    if (S.cat.size && ![...S.cat].some(c => x.cats.includes(c))) return false;
+    if (S.country.size && !S.country.has(x.country)) return false;
+    if (S.style.size && ![...S.style].some(s => (x.style || '').includes(s))) return false;
+    if (S.d3 && !x.has3d) return false;
+    if (S.short && !x.short) return false;
+    if (S.samples && !x.samples) return false;
+    if (S.quick && !QUICK.find(q => q.k === S.quick).f(x)) return false;
+    if (S.q) {
+      const task = TASK.find(([re]) => re.test(S.q));
+      const hay = [x.name, x.country, x.style, x.desc, ...x.cats, ...x.tags].join(' ').toLowerCase();
+      if (!(hay.includes(S.q.toLowerCase()) || (task && x.cats.includes(task[1])))) return false;
+    }
+    return true;
+  }
+  function card(x) {
+    const logo = x.logo ? `<img loading="lazy" src="${x.logo}" alt="${esc(x.name)}">` : `<div class="ph"><b>${esc(x.name)}</b></div>`;
+    return `<a class="card fac" href="factory.html?id=${x.id}"><div class="card__img">${logo}</div>
+      <div class="card__b"><span class="card__t">${esc(x.name)}</span>
+        <span class="card__m">${esc(x.country)}${x.style ? ' · ' + esc(x.style) : ''}</span>
+        <span class="cats">${esc(x.cats.join(' · '))}</span>
+        <div class="card__f">${tier(x.level, x.levelSrc)}<span class="ico">${x.has3d ? '<span>3D</span>' : ''}${x.hasTech ? '<span>Технички</span>' : ''}</span></div></div></a>`;
+  }
+  function draw() {
+    document.querySelectorAll('#tabs [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === S.tab));
+    document.querySelectorAll('#quick [data-q]').forEach(b => b.classList.toggle('on', b.dataset.q === S.quick));
+    document.getElementById('tAll').textContent = F.length;
+    document.getElementById('tKd').textContent = F.filter(x => x.kd.length).length;
+    document.getElementById('tDecor').textContent = F.filter(x => x.decor).length;
+    renderFilters();
+    const list = F.filter(match).sort((a, b) => (b.full - a.full) || a.name.localeCompare(b.name));
+    document.getElementById('grid').innerHTML = list.map(card).join('');
+    document.getElementById('empty').hidden = list.length > 0;
+    document.getElementById('cnt').textContent = HA.fmt.plural(list.length, 'фабрика', 'фабрики', 'фабрик');
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

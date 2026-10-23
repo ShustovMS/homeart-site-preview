@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Наличие — мебель и свет · HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Главная</a><span>/</span><span>Наличие</span></div>
+  <div class="pagehead">
+    <div class="eyebrow">Наличие</div>
+    <h1>Мебель и свет в наличии</h1>
+    <p class="lead">Позиции из экспозиции шоурума и со склада в Москве и Санкт-Петербурге — без ожидания поставки с фабрики. Цены — как в каталоге наличия HOMEART.</p>
+  </div>
+  <div class="tabs"><a href="catalog.html" class="on">Наличие<span id="tabCnt"></span></a><a href="factories.html">Фабрики<span>348</span></a>
+    <a href="kitchen.html">Kitchen Division</a><a href="factories.html?tab=decor">Аксессуары и декор</a></div>
+
+  <div class="cat">
+    <aside class="filters" id="filters" aria-label="Фильтры">
+      <div style="display:flex;justify-content:space-between;align-items:center" class="fbtn-close">
+        <b style="font-weight:500">Фильтры</b>
+        <button type="button" class="btn btn--sm btn--line fbtn" onclick="document.getElementById('filters').classList.remove('on')">Показать</button>
+      </div>
+      <div class="fg"><h4>Цена</h4>
+        <label><input type="checkbox" id="fDisc"> Со скидкой<span id="nDisc"></span></label></div>
+      <div class="fg"><h4>Раздел</h4><div id="fGroup"></div></div>
+      <div class="fg"><h4>Где посмотреть</h4><div id="fLoc"></div></div>
+      <div class="fg"><h4>Цена, €</h4>
+        <div class="range"><input id="pMin" inputmode="numeric" placeholder="от"><input id="pMax" inputmode="numeric" placeholder="до"></div></div>
+      <div class="fg"><h4>Бренд</h4><div id="fBrand"></div></div>
+      <button type="button" class="link" id="reset" style="align-self:flex-start">Сбросить фильтры</button>
+    </aside>
+
+    <section>
+      <div class="bar">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button type="button" class="btn btn--sm btn--line fbtn" onclick="document.getElementById('filters').classList.add('on')">Фильтры</button>
+          <span class="cnt" id="cnt"></span>
+        </div>
+        <select id="sort" aria-label="Сортировка" style="border:.5px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--white);font-size:13px">
+          <option value="def">По разделам</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option><option value="disc">Сначала со скидкой</option>
+        </select>
+      </div>
+      <div class="grid3" id="grid"></div>
+      <div class="empty" id="empty" hidden>По этим фильтрам ничего нет. <button type="button" class="link" onclick="document.getElementById('reset').click()">Сбросить</button></div>
+    </section>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1792770868"></script>
+<script src="data/stock.js?v=1792770868"></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script>
+(function () {
+  const { fmt, esc, qs } = HA;
+  const P = STOCK;
+  const GROUPS = ['Мягкая мебель', 'Столы и стулья', 'Хранение', 'Спальня', 'Декор', 'Свет'];
+  const S = { groups: new Set(), locs: new Set(), brands: new Set(), disc: false, min: null, max: null };
+  if (qs.get('cat')) S.groups.add(qs.get('cat'));
+  if (qs.get('brand')) S.brands.add(qs.get('brand'));
+
+  const uniq = arr => [...new Set(arr)];
+  const box = (id, key, vals, set) => {
+    document.getElementById(id).innerHTML = vals.map(v =>
+      `<label><input type="checkbox" value="${esc(v)}" ${set.has(v) ? 'checked' : ''}> ${esc(v)}<span>${P.filter(p => p[key] === v).length}</span></label>`).join('');
+    document.getElementById(id).addEventListener('change', e => { e.target.checked ? set.add(e.target.value) : set.delete(e.target.value); draw() });
+  };
+  box('fGroup', 'group', GROUPS.filter(g => P.some(p => p.group === g)), S.groups);
+  box('fLoc', 'loc', uniq(P.map(p => p.loc)).sort(), S.locs);
+  box('fBrand', 'brand', uniq(P.map(p => p.brand)).sort(), S.brands);
+  document.getElementById('nDisc').textContent = P.filter(p => p.discount).length;
+  document.getElementById('fDisc').onchange = e => { S.disc = e.target.checked; draw() };
+  const num = v => { const n = parseInt(String(v).replace(/\D/g, ''), 10); return isNaN(n) ? null : n };
+  document.getElementById('pMin').oninput = e => { S.min = num(e.target.value); draw() };
+  document.getElementById('pMax').oninput = e => { S.max = num(e.target.value); draw() };
+  document.getElementById('sort').onchange = draw;
+  document.getElementById('reset').onclick = () => {
+    S.groups.clear(); S.locs.clear(); S.brands.clear(); S.disc = false; S.min = S.max = null;
+    document.querySelectorAll('#filters input').forEach(i => { i.type === 'checkbox' ? i.checked = false : i.value = '' }); draw();
+  };
+
+  function card(p) {
+    const img = p.imgs[0] ? `<img loading="lazy" src="${p.imgs[0]}" alt="${esc(p.brand)} ${esc(p.name)}">` : `<div class="ph"><b>${esc(p.brand)}</b></div>`;
+    const badges = (p.discount ? `<span class="badge badge--disc">${esc(p.discount)}</span>` : '')
+      + (p.loc !== 'Москва' ? `<span class="badge badge--city">${esc(p.loc)}</span>` : '');
+    return `<a class="card" href="product.html?id=${encodeURIComponent(p.id)}">
+      <div class="card__img ${p.pack ? 'card__img--pack' : ''}">${img}<div class="badges">${badges}</div></div>
+      <div class="card__b"><span class="card__k">${esc(p.brand)}</span><span class="card__t">${esc(p.name)}</span>
+        ${p.dims ? `<span class="card__m">${esc(p.dims)}</span>` : ''}
+        <div class="card__f"><span class="price">${fmt.eur(p.price)}${p.base ? `<s>${fmt.eur(p.base)}</s>` : ''}</span>${p.qty > 1 ? `<span class="small muted">${p.qty} ${p.unit === 'компл.' ? 'компл.' : 'шт.'}</span>` : ''}</div></div></a>`;
+  }
+  function draw() {
+    const list = P.filter(p => (!S.groups.size || S.groups.has(p.group)) && (!S.locs.size || S.locs.has(p.loc)) &&
+      (!S.brands.size || S.brands.has(p.brand)) && (!S.disc || p.discount) &&
+      (S.min == null || p.price >= S.min) && (S.max == null || p.price <= S.max));
+    const s = document.getElementById('sort').value;
+    if (s === 'asc') list.sort((a, b) => a.price - b.price);
+    else if (s === 'desc') list.sort((a, b) => b.price - a.price);
+    else if (s === 'disc') list.sort((a, b) => (!!b.discount - !!a.discount) || a.price - b.price);
+    else list.sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group));
+    document.getElementById('grid').innerHTML = list.map(card).join('');
+    document.getElementById('empty').hidden = list.length > 0;
+    document.getElementById('cnt').textContent = fmt.plural(list.length, 'позиция', 'позиции', 'позиций');
+    document.getElementById('tabCnt').textContent = P.length;
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

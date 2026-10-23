@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HOMEART — портал для дизайнеров</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1792770868">
+<link rel="stylesheet" href="assets/site.css?v=1792770868">
+<link rel="stylesheet" href="assets/home.css?v=1792770868">
+</head>
+<body data-page="home" data-root="">
+<div id="hdr"></div>
+
+<main>
+  <!-- 1. Первый экран: дизайн-проект собирается от чертежа до готового интерьера (ролик, кадр = прокрутка) -->
+  <section class="hx" id="hx" aria-label="Как собирается дизайн-проект с HOMEART" data-hdr-over>
+    <div class="hx__stage">
+      <div class="hx__view">
+        <img class="hx__poster" src="img/hero/poster-start.jpg?v=1792598304" alt="Шоурум HOMEART собирается от чертежа до готового интерьера: стены, материалы, кухня и стеллаж, мебель, декор" width="1600" height="900">
+        <video class="hx__vid" muted playsinline preload="auto" aria-hidden="true"></video>
+        <canvas class="hx__cv" aria-hidden="true"></canvas>
+      </div>
+      <div class="hx__scrim" aria-hidden="true"></div>
+      <!-- этапы вверху: тихая строка; кольцо — ход ролика; клик по этапу — собрать проект прокруткой -->
+      <div class="hxst" role="group" aria-label="Этапы проекта">
+        <button class="hxst__play" type="button" aria-label="Пауза">
+          <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="r0" cx="18" cy="18" r="16"/><circle class="r1" cx="18" cy="18" r="16" pathLength="100"/></svg>
+          <i aria-hidden="true"></i></button>
+        <div class="hxst__segs">
+          <button type="button" class="seg" title="Собрать проект прокруткой"><span>01 Проект</span><i></i></button>
+          <button type="button" class="seg" title="Собрать проект прокруткой"><span>02 Кухня</span><i></i></button>
+          <button type="button" class="seg" title="Собрать проект прокруткой"><span>03 Мебель</span><i></i></button>
+          <button type="button" class="seg" title="Собрать проект прокруткой"><span>04 Готово</span><i></i></button>
+        </div>
+        <p class="hxst__hint" aria-live="polite" hidden>Листайте — проект собирается и разбирается</p>
+      </div>
+      <div class="cap">
+        <div class="cap__stack" aria-live="polite">
+        <div class="cap__b on">
+          <div class="eyebrow">HOMEART · с 2009 года</div>
+          <h1>Всё, что нужно для дизайн-проекта — в одном месте</h1>
+        </div>
+        <div class="cap__b">
+          <div class="eyebrow">Кухни</div>
+          <h2>Кухни с экспертами Kitchen Division</h2>
+          <p>Индивидуальные решения под задачи проекта, проработка технических нюансов на этапе проектирования и 3D-модели по каждой фабрике.</p>
+        </div>
+        <div class="cap__b">
+          <div class="eyebrow">Мебель</div>
+          <h2>Весь процесс — от подбора до реализации</h2>
+          <p>Подбор предметов и альтернатив, техническая документация, 3D-модели, расчёты, доставка, проверка, рекламации и организация сборки — берём на себя.</p>
+        </div>
+        <div class="cap__b">
+          <h2>HOMEART — ваша платформа для ведения дизайн-проекта</h2>
+          <div class="cap__cta"><button type="button" class="btn btn--light" data-call="Финал сцены на главной">Обсудить проект</button><a href="factories.html" class="btn btn--ghost-light">Каталог фабрик</a></div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="hx__list">
+      <ol>
+        <li><b>01 Проект</b><p>Чертёж становится отделанной квартирой: штукатурка, дуб, свет из окон.</p></li>
+        <li><b>02 Кухня</b><p>Кухни с экспертами Kitchen Division: решения под задачи проекта и 3D-модели по каждой фабрике.</p></li>
+        <li><b>03 Мебель</b><p>Весь процесс — от подбора до реализации: документация, расчёты, доставка и сборка.</p></li>
+        <li><b>04 Готово</b><p>Подбор, просчёт, поставка и сборка — один менеджер на весь проект.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 1а. Нам доверяют: на прокрутке стопка отпечатков с именами раскладывается в стену (home.js); подписанные — страницы дизайнеров из «Проектов» -->
+  <section class="trust" id="trust" aria-labelledby="trustTitle">
+    <div class="trust__stage">
+      <div class="trust__in">
+        <div class="trust__wall"><div class="trust__cols">
+          <a class="face" href="designer.html?id=mila-uzikova"><span class="face__ph"><img src="img/faces/p-mila-uzikova.jpg" width="541" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Мила Узикова</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-brkic.jpg" width="1280" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Ведран и Златан Бркич</span></figure>
+          <a class="face" href="designer.html?id=igor-kovalenko"><span class="face__ph"><img src="img/faces/p-igor-kovalenko.jpg" width="720" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Игорь Коваленко</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-ze-workroom.jpg" width="835" height="577" alt="" loading="lazy" decoding="async"></span><span class="face__name">ZE|WORKROOM studio</span></figure>
+          <a class="face" href="designer.html?id=olesya-golova"><span class="face__ph"><img src="img/faces/p-olesya-golova.jpg" width="506" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Олеся Голова</span></a>
+          <a class="face" href="designer.html?id=artur-mitroshkin"><span class="face__ph"><img src="img/faces/p-artur-mitroshkin.jpg" width="480" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Артур Митрошкин</span></a>
+          <a class="face" href="designer.html?id=vopshinov-design"><span class="face__ph"><img src="img/faces/p-vopshinov-design.jpg" width="960" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Юрий и Ирина Вопшиновы</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-kirill-sokolov.jpg" width="583" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Кирилл Соколов</span></figure>
+          <a class="face" href="designer.html?id=ekaterina-bocharova"><span class="face__ph"><img src="img/faces/p-ekaterina-bocharova.jpg" width="722" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Екатерина Бочарова</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-ar-architects.jpg" width="540" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Азат Ханов и Руслан Айбушев</span></figure>
+          <a class="face" href="designer.html?id=svetlana-pozdeeva"><span class="face__ph"><img src="img/faces/p-svetlana-pozdeeva.jpg" width="788" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Светлана Поздеева</span></a>
+          <a class="face" href="designer.html?id=svetlana-li"><span class="face__ph"><img src="img/faces/p-svetlana-li.jpg" width="540" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Светлана Ли</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-aleksandra-fedorova.jpg" width="480" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Александра Федорова</span></figure>
+          <a class="face" href="designer.html?id=maria-timofeeva"><span class="face__ph"><img src="img/faces/p-maria-timofeeva.jpg" width="480" height="803" alt="" loading="lazy" decoding="async"></span><span class="face__name">Мария Тимофеева</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-osome.jpg" width="645" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Бюро OSOME</span></figure>
+          <a class="face" href="designer.html?id=valeriya-maslova"><span class="face__ph"><img src="img/faces/p-valeriya-maslova.jpg" width="480" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Валерия Маслова</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-evgeniya-shilova.jpg" width="481" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Евгения Шилова</span></figure>
+          <a class="face" href="designer.html?id=babayants-architects"><span class="face__ph"><img src="img/faces/p-babayants-architects.jpg" width="482" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Babayants Architects</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/p-olga-solnyshkova.jpg" width="541" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Ольга Солнышкова</span></figure>
+          <a class="face" href="designer.html?id=quatrobasae"><span class="face__ph"><img src="img/faces/p-quatrobase.jpg" width="540" height="720" alt="" loading="lazy" decoding="async"></span><span class="face__name">Quatrobase</span></a>
+          <figure class="face"><span class="face__ph"><img src="img/faces/d12p.jpg" width="256" height="504" alt="" loading="lazy" decoding="async"></span></figure>
+        </div></div>
+        <div class="trust__title">
+          <div class="eyebrow">Сообщество HOMEART</div>
+          <h2 id="trustTitle">HOMEART — нам доверяют</h2>
+          <p>Дизайнеры и бюро, с которыми мы реализуем проекты, проводим встречи HOMEART Academy и ездим на фабрики.</p>
+        </div>
+      </div>
+      <div class="trust__hint" aria-hidden="true">Листайте — снимки разложатся</div>
+      <div class="trust__foot"><span>Встречи, эфиры и поездки на фабрики — для участников HOMEART Academy.</span><a href="https://t.me/homeart_interior_bot" class="link" target="_blank" rel="noopener">Стать участником →</a></div>
+    </div>
+  </section>
+
+  <!-- 2. Полоса широты -->
+  <section aria-label="Что есть в каталоге">
+    <div class="wrap"><div class="breadth" id="breadth"></div></div>
+  </section>
+
+  <!-- 3. HOMEART Academy: вместо афиши, пока нет мероприятий с датами -->
+  <section class="sec sec--line">
+    <div class="wrap split">
+      <div>
+        <div class="eyebrow">HOMEART Academy</div>
+        <h2 style="margin:14px 0 16px">Встречи, эфиры и поездки на фабрики</h2>
+        <p class="lead">Анонсы мероприятий онлайн-академии, показы новинок и закрытые встречи — в нашей группе. Вход через бота: короткая анкета, и вы в группе.</p>
+        <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+          <a href="https://t.me/homeart_interior_bot" class="btn" target="_blank" rel="noopener">Стать участником</a>
+          <a href="events.html" class="btn btn--line">Подробнее об Academy</a>
+        </div>
+      </div>
+      <div class="split__img"><img src="img/photo/academy-01.jpg" alt="Встреча HOMEART Academy в шоуруме"></div>
+    </div>
+  </section>
+
+  <!-- 5. Kitchen Division -->
+  <section class="sec--tight">
+    <div class="wrap">
+      <div class="kd">
+        <div class="kd__img"><img src="img/photo/showroom-kitchen.jpg" alt="Кухня в шоуруме HOMEART: открытый высокий шкаф с подсветкой, остров и барные стулья" loading="lazy"></div>
+        <div class="kd__body">
+          <div class="eyebrow">Kitchen Division</div>
+          <h2>Кухни и системы хранения — отдельное направление</h2>
+          <p>Корпусная мебель — наша специализация. Кухни, гардеробные и системы хранения, двери и перегородки, встраиваемая техника.</p>
+          <p>Выделенная команда экспертов Kitchen Division сопровождает проект на всех этапах — от выбора фабрики и проработки технических решений до монтажа.</p>
+          <ul>
+            <li>Подберём фабрику под задачу и бюджет</li>
+            <li>Проработаем технические параметры кухни и гардеробной</li>
+            <li>Проконсультируем вас и клиента прямо в шоуруме</li>
+            <li>Доведём проект от идеи до монтажа</li>
+          </ul>
+          <div class="btns">
+            <button type="button" class="btn btn--light" data-call="Главная: консультация Kitchen Division">Записаться на консультацию</button>
+            <a href="kitchen.html" class="btn btn--line">О Kitchen Division</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Доверие -->
+  <section class="sec sec--ink">
+    <div class="wrap">
+      <div class="sec__h"><div><div class="eyebrow eyebrow--light">Обязательства</div><h2>Что мы берём на себя</h2>
+        <p>Без обещаний сверх того, что выдерживает сервис.</p></div></div>
+      <ol class="proc proc--cols" style="--rows:4">
+        <li><span class="no">01</span><div><b>Срок фиксируется в просчёте</b><p>Называем срок поставки по каждой позиции до оплаты и сообщаем, если фабрика его сдвигает.</p></div></li>
+        <li><span class="no">02</span><div><b>Импорт и логистика</b><p>Ведём поставку от фабрики до склада в Москве, включая позиции, которые сложно ввезти.</p></div></li>
+        <li><span class="no">03</span><div><b>Приёмка на складе</b><p>Проверяем комплектность и целостность до отгрузки, а не на объекте.</p></div></li>
+        <li><span class="no">04</span><div><b>Доставка и сборка</b><p>Доставляем на объект и собираем силами профессиональных сборщиков.</p></div></li>
+        <li><span class="no">05</span><div><b>Рекламации решаем сами</b><p>Если что-то пришло не так, разговор с фабрикой ведём мы. Вы не остаётесь с проблемой один на один.</p></div></li>
+        <li><span class="no">06</span><div><b>Сервис после оплаты</b><p>Сообщаем об этапах заказа, а на вопросы по нему отвечает ваш менеджер.</p></div></li>
+        <li><span class="no">07</span><div><b>Техническая экспертиза</b><p>Технички, узлы и 3D-модели готовим по запросу — с честным сроком ответа.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 9. Шоурум -->
+  <section class="sec">
+    <div class="wrap split">
+      <div class="split__img"><img src="img/photo/showroom-1.jpg" alt="Шоурум HOMEART, переговорная зона"></div>
+      <div>
+        <div class="eyebrow">Шоурум</div>
+        <h2 style="margin:14px 0 16px">Приходите с клиентом</h2>
+        <p class="lead">Не просто экспозиция, а готовые интерьерные решения. Здесь можно вместе с клиентом оценить материалы, свет и пропорции вживую, обсудить детали и найти решения для проекта.</p>
+        <div class="facts">
+          <div><span class="k">Адрес</span><span>Москва, 3-я Фрунзенская, 1</span></div>
+          <div><span class="k">Часы</span><span>Пн–Пт 10:00–19:00, Сб 12:00–18:00</span></div>
+          <div><span class="k">Для встреч</span><span>Комфортное пространство для встреч, образцы отделок и поддержка экспертов HOMEART</span></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+          <a href="showroom.html" class="btn">Записаться на визит</a>
+          <button type="button" class="btn btn--line" data-need="member" data-act="samples" data-what="к визиту в шоурум">Образцы к встрече</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="ftr"></div>
+<script src="data/stock.js?v=1792770868"></script>
+<script src="data/data.js?v=1792770868"></script>
+<script src="img/hero/frames.js?v=1792770868"></script>
+<script src="assets/home.js?v=1792770868" defer></script>
+<script src="assets/site.js?v=1792770868"></script>
+<script>
+(function () {
+  const { esc } = HA;
+  const F = FACTORIES;
+  const cnt = c => F.filter(f => f.cats.includes(c)).length;
+
+  document.getElementById('breadth').innerHTML = [
+    [STOCK.length, 'позиций в наличии', 'catalog.html'],
+    ['348', 'фабрик в каталоге', 'factories.html'],
+    [F.filter(f => f.kd.length).length, 'фабрик Kitchen Division', 'kitchen.html'],
+    [cnt('Свет'), 'фабрик света', 'factories.html?cat=Свет'],
+    ['ADH', 'искусство и предметы', '#art'],
+    [cnt('Сантехника'), 'фабрики сантехники', 'factories.html?cat=Сантехника'],
+    [F.filter(f => f.decor).length, 'аксессуары и декор', 'factories.html?tab=decor'],
+  ].map(([n, l, h]) => `<a href="${h}"><div class="n num">${n}</div><div class="l">${l}</div><span class="go">Смотреть →</span></a>`).join('');
+
+})();
+</script>
+</body>
+</html>

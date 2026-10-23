@@ -1,0 +1,173 @@
+/* Главная: сцена «дизайн-проект собирается» (ролик в canvas, кадр = прокрутка)
+   и блок «Нам доверяют». Двигаем только transform и opacity. */
+
+:root{
+  --hx-ease:cubic-bezier(.77,0,.175,1);
+  --hx-out:cubic-bezier(.23,1,.32,1);
+}
+
+/* ── сцена ─────────────────────────────────────────────── */
+/* режим «ролик»: обычный первый экран; режим «сборка» (.hx--scrub): секция вытягивается, сцена прилипает */
+.hx{position:relative;background:#e7e6e6}
+.hx{--hdr:0px}   /* сцена заходит под шапку (data-hdr-over), шапка лежит на ролике дымкой */
+.hx__stage{position:relative;top:var(--hdr);height:calc(100vh - var(--hdr));height:calc(100svh - var(--hdr));overflow:hidden;isolation:isolate;background:#e7e6e6}
+.hx:not(.hx--scrub) .hx__stage{top:0}
+.hx--scrub{height:480vh}
+.hx--scrub .hx__stage{position:sticky}
+/* окно ролика: на компьютере — весь экран сцены */
+.hx__view{position:absolute;inset:0}
+.hx__poster,.hx__vid,.hx__cv{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hx__poster,.hx__vid{object-fit:cover}
+.hx__poster{z-index:1;transition:opacity .4s ease}
+.hx--live .hx__poster{opacity:0;pointer-events:none}   /* видео пошло — заставку убираем */
+.hx__cv{display:none;z-index:2}
+.hx--scrub.hx--cv .hx__cv{display:block}
+/* затемнение снизу — под титрами текст читается на любом кадре */
+.hx__scrim{position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;z-index:1;
+  background:linear-gradient(0deg,rgba(33,33,33,.66) 0%,rgba(33,33,33,.3) 45%,rgba(33,33,33,0) 100%)}
+
+/* подписи — как титры в кино: по центру внизу, тонкий крупный шрифт, без плашек */
+.cap{position:absolute;left:0;right:0;bottom:clamp(24px,7vh,64px);z-index:5;padding:0 8%;text-align:center}
+.cap__stack{position:relative;max-width:1100px;margin:0 auto}
+.cap__b{position:absolute;left:0;right:0;bottom:0;opacity:0;filter:blur(8px);transform:translateY(12px);
+  transition:opacity .7s var(--hx-out),filter .7s var(--hx-out),transform .9s var(--hx-out);pointer-events:none}
+.cap__b.on{position:relative;opacity:1;filter:none;transform:none;pointer-events:auto}
+.cap .eyebrow{color:var(--brass-pale);letter-spacing:.2em}
+.cap h1,.cap h2{font-weight:200;font-size:clamp(26px,3.3vw,50px);line-height:1.1;letter-spacing:-.01em;margin:12px 0 0;color:#fff}
+.cap p{color:rgba(255,255,255,.8);font-size:14px;font-weight:300;line-height:1.55;max-width:62ch;margin:12px auto 0}
+.cap__cta{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+.cap__soon{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:rgba(255,255,255,.82)}
+.cap__soon i{width:18px;height:18px;border-radius:50%;background:#2aabee;color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:10px}
+
+/* этапы вверху сцены — тихо: мелкий шрифт, тонкие линии; ярче при наведении */
+.hxst{position:absolute;z-index:5;left:clamp(16px,3vw,48px);right:clamp(16px,3vw,48px);top:calc(var(--hh) + clamp(14px,3vh,30px));display:flex;align-items:center;gap:16px}
+.hxst__segs{flex:1;min-width:0;display:flex;gap:6px;opacity:.72;transition:opacity .3s ease}
+.hxst:hover .hxst__segs,.hx--scrub .hxst__segs{opacity:1}
+.seg{flex:var(--w,1) 1 0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:4px 0;text-align:left;cursor:pointer}
+.seg:nth-child(1){--w:17}.seg:nth-child(2){--w:19}.seg:nth-child(3){--w:44}.seg:nth-child(4){--w:20}
+.seg span{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;transition:color .25s ease}
+.seg.on span,.seg:hover span{color:var(--ink)}
+.seg i{position:relative;display:block;width:100%;height:1px;background:rgba(33,33,33,.15);overflow:hidden}
+.seg i::after{content:"";position:absolute;inset:0;background:rgba(33,33,33,.75);transform-origin:0 50%;transform:scaleX(var(--f,0))}
+.hxst__hint{position:absolute;right:0;top:100%;margin-top:6px;font-size:11px;color:var(--graphite)}
+
+/* кнопка: кольцо = ход ролика, внутри пауза или play.
+   При открытии мягко вспыхивает и тускнеет; после конца ролика несколько раз «дышит» — приглашает посмотреть снова */
+.hxst__play{position:relative;flex:none;width:32px;height:32px;display:grid;place-items:center;opacity:.55;
+  transition:opacity .3s ease,transform .16s ease-out;animation:hxGlow 1.8s var(--hx-ease) .5s 1}
+.hxst__play:hover,.hxst__play:focus-visible{opacity:1}
+.hxst__play:active{transform:scale(.92)}
+.hxst__play svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.hxst__play .r0{fill:rgba(255,255,255,.4);stroke:rgba(33,33,33,.2);stroke-width:1.2}
+.hxst__play .r1{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0))}
+.hxst__play i{position:relative;width:0;height:0;border-style:solid;border-width:4px 0 4px 7px;border-color:transparent transparent transparent var(--ink);margin-left:2px}
+.hxst__play.is-playing i{width:7px;height:9px;border:0;margin:0;border-left:2px solid var(--ink);border-right:2px solid var(--ink)}
+.hxst__play.is-ended{animation:hxBreathe 2.6s ease-in-out .4s 3}
+@keyframes hxGlow{0%{opacity:.55;transform:scale(1)}35%{opacity:1;transform:scale(1.1)}100%{opacity:.55;transform:scale(1)}}
+@keyframes hxBreathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
+.hx__list{display:none}
+
+/* статичный режим: «меньше движения» — финальный кадр без закрепления и прокрутки */
+.hx--static{height:auto}
+.hx--static .hx__stage{position:relative}
+.hx--static .hx__cv,.hx--static .hx__vid,.hx--static .hxst,.hx--static .hxst__hint{display:none}
+.hx--static .hx__list{display:block;position:relative;z-index:5;max-width:var(--maxw);margin:0 auto;padding:28px var(--gutter) 40px}
+.hx--static .hx__list ol{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-top:.5px solid var(--line);padding-top:20px}
+.hx--static .hx__list b{display:block;font-weight:500;margin-bottom:4px}
+.hx--static .hx__list p{font-size:14px;color:var(--graphite)}
+
+/* телефон: ролик — окно 4:3 сверху, подпись — под ним на светлом фоне */
+@media (max-width:860px){
+  .hx--scrub{height:400vh}
+  .hx__view{inset:0 0 auto 0;aspect-ratio:4/3}
+  .hx__scrim{display:none}
+  .cap{left:16px;right:16px;width:auto;top:calc(75vw + 18px);bottom:auto;padding:0}   /* сразу под окном ролика */
+  .cap__b{top:0;bottom:auto}
+  .cap .eyebrow{color:var(--amber)}
+  .cap h1,.cap h2{font-size:clamp(25px,7vw,32px);font-weight:300;margin:8px 0 0;color:var(--ink)}
+  .cap p,.cap__soon{font-size:13.5px;color:var(--graphite)}
+  .cap .btn--light{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .cap .btn--ghost-light{color:var(--ink);border-color:var(--ink)}
+  .hx:not(.hx--scrub) .hx__stage{height:calc(75vw + 330px)}   /* ролик + подпись, без пустоты снизу */
+  .hxst{top:calc(var(--hh) + 10px);left:12px;right:12px;gap:10px}
+  .hxst__segs{gap:4px}
+  .seg{flex:1 1 0}
+  .seg span{font-size:8.5px;letter-spacing:.08em}
+  .hxst__hint{display:none}
+  .hx--static .hx__stage{height:auto;min-height:0;padding-bottom:0}
+  .hx--static .hx__view{position:relative;top:0}
+  .hx--static .cap{position:relative;inset:auto;margin:20px 16px 0}
+  .hx--static .hx__list ol{grid-template-columns:1fr 1fr}
+}
+@media (min-width:861px){
+  .hx--static .hx__stage{height:calc(100vh - var(--hdr))}
+}
+
+/* ── «Нам доверяют»: на прокрутке стопка снимков раскладывается в стену, затем появляется заголовок ── */
+.trust{position:relative;height:280vh;background:var(--ink);color:#e7e6e6}
+.trust__stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+.trust__in{position:relative;width:100%}
+.trust__wall{padding:0 clamp(6px,.7vw,10px)}
+/* ровные ряды: снимки в своих пропорциях, целиком; место и размер каждого считает home.js */
+.trust__cols{position:relative;isolation:isolate}   /* порядок стопки (z-index) — внутри стены, заголовок всегда сверху */
+.face{position:absolute;display:block;margin:0;will-change:transform}
+.face__ph{display:block;height:100%;overflow:hidden;border-radius:4px;background:var(--ink-soft)}
+/* в стопке и в полёте снимок — отпечаток: белая рамка и имя на нижнем поле; к месту в стене растворяются (--pk, home.js) */
+.face::before{content:"";position:absolute;inset:-7px -7px -36px;z-index:-1;border-radius:3px;background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.45);opacity:var(--pk,0);pointer-events:none}
+.face__name{position:absolute;left:0;right:0;bottom:-36px;height:36px;display:flex;align-items:center;justify-content:center;padding:0 4px;text-align:center;
+  font-family:var(--display);font-weight:500;font-size:12px;line-height:1.15;text-transform:uppercase;color:var(--ink);opacity:var(--pk,0);pointer-events:none}
+/* вместе с заголовком (--tp) стена притухает, чтобы надпись читалась; снимок под курсором — в полную яркость */
+.face img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04) brightness(.92);opacity:calc(1 - .58 * var(--tp,0));
+  transition:filter .7s var(--hx-out),opacity .5s var(--hx-out),transform 1s var(--hx-out)}
+/* в стене снимок «зажигается» цветом: наведение на компьютере; на телефоне собранные снимки по очереди сами (is-color) */
+.face.is-color img{filter:none;transform:scale(1.035);opacity:1}
+@media (hover:hover) and (pointer:fine){
+  .face:hover img{filter:none;transform:scale(1.035);opacity:1;transition-duration:.6s}
+}
+.face:not(.is-set),.trust:not(.done) .trust__foot{pointer-events:none}   /* снимок откликается, как только встал на место */
+.trust__title{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;
+  opacity:var(--tp,0);background:radial-gradient(42% 40% at 50% 50%,rgba(33,33,33,.93) 0%,rgba(33,33,33,.72) 50%,rgba(33,33,33,0) 100%)}
+.trust__title>*{transform:translateY(calc((1 - var(--tp,0)) * 16px))}
+.trust__title .eyebrow{color:var(--brass-pale)}
+.trust__title h2{font-weight:300;font-size:clamp(30px,4.4vw,68px);margin:14px 0 12px;color:#fff;text-transform:uppercase}
+.trust__title p{max-width:44ch;color:var(--sand);font-size:15px;padding:0 16px}
+.trust__hint{position:absolute;left:0;right:0;bottom:clamp(20px,5vh,44px);text-align:center;font-family:var(--display);font-weight:500;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:var(--hp,1);pointer-events:none}
+.trust__foot{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(16px,4vh,36px);display:flex;justify-content:space-between;align-items:center;
+  gap:8px 20px;flex-wrap:wrap;color:#a6a29a;font-size:14px;opacity:var(--tp,0)}
+.trust__foot .link{color:#e7e6e6}
+
+@media (max-width:760px){
+  .trust__title{background:radial-gradient(70% 30% at 50% 50%,rgba(33,33,33,.9) 0%,rgba(33,33,33,.6) 60%,rgba(33,33,33,0) 100%)}
+  .trust__title h2{font-size:clamp(26px,7vw,34px)}
+  .trust__foot{font-size:13px}
+  .face::before{inset:-5px -5px -32px}
+  .face__name{bottom:-32px;height:32px;font-size:10px;padding:0 2px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .trust{height:auto}.trust__stage{position:relative;height:auto;padding:clamp(70px,9vw,130px) 0}
+  .face{transform:none!important}.face img{opacity:.42}.trust__title{opacity:1}.trust__hint{display:none}
+  .trust__foot{position:static;opacity:1;margin:28px var(--gutter) 0}
+  .trust .face,.trust .trust__foot{pointer-events:auto}
+  .cap__b{transition:none}
+  .hxst__play,.hxst__play.is-ended{animation:none}
+}
+
+/* служебная плашка прототипа на главной не закрывает подпись справа */
+body[data-page="home"] .proto{right:auto;left:12px}
+@media (max-width:640px){body[data-page="home"] .proto{right:8px;left:8px}}
+
+/* подписи первого экрана — как заголовок первого экрана текущего сайта: Museo 500, прописные */
+.cap h1,.cap h2{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(22px,2.5vw,38px);line-height:1.18}
+.trust__title h2{font-family:var(--sans);font-weight:300}
+
+/* ══ вариант «темнее» (brand-v2): первый экран на графите ══ */
+.hx,.hx__stage{background:var(--ink-soft)}
+@media (max-width:860px){
+  .cap .eyebrow{color:var(--sand)}
+  .cap h1,.cap h2{color:#fff}
+  .cap p,.cap__soon{color:#bdbdbd}
+  .cap .btn--light{background:#fff;color:var(--ink);border-color:#fff}
+  .cap .btn--ghost-light{color:#fff;border-color:rgba(255,255,255,.6)}
+}
