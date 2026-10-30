@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>«Нам доверяют» — варианты</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="../assets/site.css?v=1793390595">
+<link rel="stylesheet" href="../assets/home.css?v=1793390595">
+<style>
+/* Служебная страница: варианты блока «HOMEART — нам доверяют» с главной. На боевой сайт не выкладывается. */
+:root{--out:cubic-bezier(.23,1,.32,1);--bw:grayscale(1) contrast(1.04) brightness(.92)}
+.only-0,.only-a,.only-b,.only-c{display:none}
+body[data-v="0"] .only-0,body[data-v=a] .only-a,body[data-v=b] .only-b,body[data-v=c] .only-c{display:block}
+
+.intro{min-height:62vh;display:flex;align-items:flex-end;padding:calc(var(--hh) + 60px) 0 60px}
+.intro p{max-width:60ch;color:var(--graphite);margin-top:12px}
+.after{height:40vh}
+
+/* ── общая стена портретов: колонки со сдвигом, края растворяются ── */
+.dark{position:relative;background:var(--ink);color:#e7e6e6}
+.wall{container-type:inline-size;padding:0 var(--gap)}
+.wall__in{--tw:calc((100cqw - (var(--cols) - 1) * var(--gap)) / var(--cols));--th:calc(var(--tw) * 3 / 2);
+  display:flex;gap:var(--gap);height:calc((var(--rows) - .7) * var(--th) + (var(--rows) - 1) * var(--gap));overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent)}
+.wall,.vc{--gap:clamp(6px,.7vw,10px)}
+.col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:var(--gap);margin-top:calc(var(--o) * var(--th) * -1)}
+.tile{position:relative;flex:none;height:var(--th);overflow:hidden;border-radius:4px;background:var(--ink-soft);margin:0}
+.tile img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:var(--bw);
+  transition:filter .7s var(--out),opacity .5s var(--out),transform 1s var(--out)}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 11px;color:#fff;pointer-events:none;
+  background:linear-gradient(0deg,rgba(33,33,33,.85),rgba(33,33,33,0));opacity:0;transform:translateY(8px);transition:opacity .4s var(--out),transform .5s var(--out)}
+.tile figcaption b{display:block;font-family:var(--display);font-weight:500;font-size:12px;line-height:1.25;text-transform:uppercase}
+.tile figcaption span{display:block;font-size:11px;line-height:1.3;color:var(--sand);margin-top:3px}
+/* цвет и имя: наведение на компьютере, на телефоне — по очереди сами (класс is-color) или касанием */
+.tile.is-color img{filter:none;transform:scale(1.035)}
+.tile.is-color figcaption{opacity:1;transform:none}
+@media (hover:hover) and (pointer:fine){
+  .tile:hover img{filter:none;transform:scale(1.035);transition-duration:.6s}
+  .tile:hover figcaption{opacity:1;transform:none}
+  .lit:has(.tile:hover) .tile:not(:hover) img{opacity:.42}
+}
+
+/* заголовок поверх стены */
+.ttl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;z-index:2;
+  background:radial-gradient(42% 40% at 50% 50%,rgba(33,33,33,.93) 0%,rgba(33,33,33,.72) 50%,rgba(33,33,33,0) 100%)}
+.ttl .eyebrow{color:var(--brass-pale)}
+.ttl h2{font-family:var(--sans);font-weight:300;font-size:clamp(30px,4.4vw,68px);margin:14px 0 12px;color:#fff;text-transform:uppercase}
+.ttl p{max-width:44ch;color:var(--sand);font-size:15px;padding:0 16px}
+.tfoot{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:28px;flex-wrap:wrap;color:#a6a29a;font-size:14px}
+.tfoot .link{color:#e7e6e6}
+
+/* ── A · Проявка: портреты проявляются, как отпечатки в ванночке — с чистого листа до чёрно-белого снимка ── */
+.va{padding:clamp(70px,9vw,130px) 0}
+.va__in,.vb__in{position:relative;width:100%}
+.va .tile{background:var(--linen);transition:background 1.8s var(--out)}
+.va .tile img{opacity:0;filter:grayscale(1) brightness(2.5) contrast(.22) blur(5px);
+  transition:opacity .5s var(--out),filter 2.4s cubic-bezier(.33,0,.2,1),transform 1s var(--out)}
+.va .tile.is-dev{background:var(--ink-soft)}
+.va .tile.is-dev img{opacity:1;filter:var(--bw)}
+.va .tile.is-dev.is-color img{filter:none;transition-duration:.5s,.7s,1s}
+@media (hover:hover) and (pointer:fine){.va .tile.is-dev:hover img{filter:none;transition-duration:.5s,.6s,1s}}
+.va .ttl>*{opacity:0;transform:translateY(14px);transition:opacity 1.2s var(--out),transform 1.4s var(--out)}
+.va.ttl-in .ttl>*{opacity:1;transform:none}
+.va .ttl>:nth-child(2){transition-delay:.12s}.va .ttl>:nth-child(3){transition-delay:.24s}
+
+/* ── B · Сборка: стопка снимков на прокрутке раскладывается в стену, потом появляется заголовок ── */
+.vb{height:280vh;position:relative}
+.vb__stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+.vb .wall__in{overflow:visible;-webkit-mask-image:none;mask-image:none}
+.vb .wall{position:relative;-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(180deg,transparent,#000 8%,#000 92%,transparent)}
+.vb .tile{will-change:transform;box-shadow:0 14px 34px rgba(0,0,0,calc(var(--sh,0) * .45))}
+.vb:not(.done) .tile{pointer-events:none}
+.vb .ttl{opacity:var(--tp,0)}
+.vb .ttl>*{transform:translateY(calc((1 - var(--tp,0)) * 16px))}
+.vb__hint{position:absolute;left:0;right:0;bottom:clamp(20px,5vh,44px);text-align:center;font-family:var(--display);font-weight:500;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:var(--hp,1);pointer-events:none}
+.vb .tfoot{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(16px,4vh,36px);opacity:var(--tp,0)}
+
+/* ── C · Лента: два ряда портретов медленно плывут навстречу друг другу ── */
+.vc{padding:clamp(70px,9vw,130px) 0;overflow:hidden}
+.vc__head{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(30px,4vw,56px)}
+.vc__head .eyebrow{color:var(--brass-pale)}
+.vc__head h2{font-family:var(--sans);font-weight:300;font-size:clamp(30px,4.4vw,68px);margin-top:14px;color:#fff;text-transform:uppercase;line-height:1.05}
+.vc__head p{color:var(--sand);max-width:44ch}
+.vc__rows{display:flex;flex-direction:column;gap:var(--gap)}
+.row{display:flex;gap:var(--gap);width:max-content;animation:mq var(--dur,90s) linear infinite}
+.row--r{animation-direction:reverse}
+.vc .tile{height:clamp(210px,23vw,330px);aspect-ratio:3/4}
+.vc__rows:hover .row{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.vc .tfoot{margin-top:36px}
+
+@media (max-width:760px){
+  .ttl{position:relative;inset:auto;background:none;margin-bottom:26px}
+  .ttl h2{font-size:clamp(26px,7vw,34px)}
+  .vb .ttl{position:absolute;inset:0;margin:0;background:radial-gradient(70% 30% at 50% 50%,rgba(33,33,33,.9) 0%,rgba(33,33,33,.6) 60%,rgba(33,33,33,0) 100%)}
+  .va__in{display:flex;flex-direction:column}.va .ttl{order:-1}
+  .vc__head{grid-template-columns:1fr}
+  .vc .tile{height:200px}
+  .tile figcaption{padding:26px 8px 8px}
+  .tile figcaption b{font-size:10.5px}.tile figcaption span{font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .va .tile img{opacity:1;filter:var(--bw);transition:none}
+  .va .ttl>*{opacity:1;transform:none}
+  .vb{height:auto}.vb__stage{position:relative;height:auto;padding:90px 0}
+  .vb .tile{transform:none!important}.vb .ttl{opacity:1}.vb__hint{display:none}.vb .tfoot{position:static;opacity:1}
+  .row{animation:none}
+}
+
+/* переключатель вариантов — как на других служебных страницах */
+.vbar{position:fixed;right:16px;bottom:16px;z-index:110;background:rgba(33,33,33,.94);color:#fff;border-radius:16px;padding:10px 12px;
+  display:flex;flex-direction:column;width:max-content;max-width:calc(100vw - 24px);box-shadow:0 14px 34px rgba(0,0,0,.25);backdrop-filter:blur(10px)}
+.vbar__tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.vbar__t{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-right:6px}
+.vbar button{padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.22);font-size:12px;color:#fff}
+.vbar button.on{background:#fff;color:var(--ink);border-color:#fff}
+.vbar__d{font-size:12px;color:#bdbdbd;padding:0 4px;max-width:520px;max-height:60px;overflow:hidden;transition:max-height .4s var(--out),opacity .3s var(--out)}
+.vbar__d:not(.off){margin-top:8px}
+.vbar__d.off{max-height:0;opacity:0}
+@media (max-width:760px){.vbar{left:8px;right:8px;width:auto}.vbar__t{display:none}.vbar button{padding:7px 10px;font-size:11px}}
+</style>
+</head>
+<body data-page="home" data-root="../" data-v="a">
+<div id="hdr"></div>
+<main>
+  <section class="wrap intro">
+    <div>
+      <div class="eyebrow">Служебная страница</div>
+      <h1>«Нам доверяют» — варианты блока</h1>
+      <p>Прокрутите вниз: блок срабатывает, когда входит в экран. 24 портрета — 14 с главной и 10 новых с homeart.pro/projects. Наведите на фото — оно станет цветным, у дизайнеров с подписью на текущем сайте появится имя.</p>
+    </div>
+  </section>
+
+  <!-- 0 · как сейчас на главной -->
+  <section class="trust only-0" id="trust" aria-labelledby="t0">
+    <div class="wrap trust__in">
+      <div class="trust__mosaic">
+        <figure class="face" style="--ga:1/1/3/2"><img src="../img/faces/d01.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:1/2/2/4"><img src="../img/faces/d08.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:1/4/3/5"><img src="../img/faces/d02.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:1/5/2/6"><img src="../img/faces/d04.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:1/6/3/7"><img src="../img/faces/d03.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:2/2/4/3"><img src="../img/faces/d06.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:2/3/3/4"><img src="../img/faces/d07.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:2/5/4/6"><img src="../img/faces/d05.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:3/1/5/2"><img src="../img/faces/d12p.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:3/3/5/4"><img src="../img/faces/d10.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:3/4/4/5"><img src="../img/faces/d09.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:3/6/5/7"><img src="../img/faces/d13.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:4/2/5/3"><img src="../img/faces/d11.jpg" alt="" loading="lazy"></figure>
+        <figure class="face" style="--ga:4/4/5/6"><img src="../img/faces/d14.jpg" alt="" loading="lazy"></figure>
+      </div>
+      <div class="trust__title">
+        <div class="eyebrow">Сообщество HOMEART</div>
+        <h2 id="t0">HOMEART — нам доверяют</h2>
+        <p>Дизайнеры и бюро, с которыми мы реализуем проекты, проводим встречи HOMEART Academy и ездим на фабрики.</p>
+      </div>
+    </div>
+    <div class="wrap trust__foot"><span>Встречи, эфиры и поездки на фабрики — для участников HOMEART Academy.</span><a href="https://t.me/homeart_interior_bot" class="link" target="_blank" rel="noopener">Стать участником →</a></div>
+  </section>
+
+  <!-- A · Проявка -->
+  <section class="dark va only-a" id="va" aria-labelledby="ta">
+    <div class="va__in">
+      <div class="wall lit"><div class="wall__in" data-wall></div></div>
+      <div class="ttl" data-ttl><div class="eyebrow">Сообщество HOMEART</div><h2 id="ta">HOMEART — нам доверяют</h2><p>Дизайнеры и бюро, с которыми мы реализуем проекты, проводим встречи HOMEART Academy и ездим на фабрики.</p></div>
+    </div>
+    <div class="wrap tfoot"><span>Встречи, эфиры и поездки на фабрики — для участников HOMEART Academy.</span><a href="https://t.me/homeart_interior_bot" class="link" target="_blank" rel="noopener">Стать участником →</a></div>
+  </section>
+
+  <!-- B · Сборка -->
+  <section class="dark vb only-b" id="vb" aria-labelledby="tb">
+    <div class="vb__stage">
+      <div class="vb__in">
+        <div class="wall lit"><div class="wall__in" data-wall></div></div>
+        <div class="ttl" data-ttl><div class="eyebrow">Сообщество HOMEART</div><h2 id="tb">HOMEART — нам доверяют</h2><p>Дизайнеры и бюро, с которыми мы реализуем проекты, проводим встречи HOMEART Academy и ездим на фабрики.</p></div>
+      </div>
+      <div class="vb__hint">Листайте — снимки разложатся</div>
+      <div class="tfoot"><span>Встречи, эфиры и поездки на фабрики — для участников HOMEART Academy.</span><a href="https://t.me/homeart_interior_bot" class="link" target="_blank" rel="noopener">Стать участником →</a></div>
+    </div>
+  </section>
+
+  <!-- C · Лента -->
+  <section class="dark vc only-c" id="vc" aria-labelledby="tc">
+    <div class="wrap vc__head">
+      <div><div class="eyebrow">Сообщество HOMEART</div><h2 id="tc">HOMEART — нам доверяют</h2></div>
+      <p>Дизайнеры и бюро, с которыми мы реализуем проекты, проводим встречи HOMEART Academy и ездим на фабрики.</p>
+    </div>
+    <div class="vc__rows lit"><div class="row" style="--dur:110s"></div><div class="row row--r" style="--dur:95s"></div></div>
+    <div class="wrap tfoot"><span>Встречи, эфиры и поездки на фабрики — для участников HOMEART Academy.</span><a href="https://t.me/homeart_interior_bot" class="link" target="_blank" rel="noopener">Стать участником →</a></div>
+  </section>
+
+  <div class="after"></div>
+</main>
+<div id="ftr"></div>
+
+<nav class="vbar" aria-label="Варианты">
+  <div class="vbar__tabs"><span class="vbar__t">Нам доверяют</span>
+    <button type="button" data-k="0">Сейчас</button><button type="button" data-k="a">A · Проявка</button><button type="button" data-k="b">B · Сборка</button><button type="button" data-k="c">C · Лента</button></div>
+  <div class="vbar__d off" id="vdesc"></div>
+</nav>
+
+<script src="../data/data.js?v=1793390595"></script>
+<script src="../assets/site.js?v=1793390595"></script>
+<script>
+(() => {
+// портреты: файл, имя и бюро — как подписаны на homeart.pro/projects; без имени — фото с главной (из презентации Molteni)
+const P = [
+  ['d01'], ['t03', 'Мила Узикова'], ['d08'], ['t06', 'Игорь Коваленко', 'Kovalenko Architects'], ['d02'], ['t07', 'Олеся Голова', 'Point Design'],
+  ['d03', 'Артур Митрошкин', 'ARTIMITRO'], ['t10', 'Юрий и Ирина Вопшиновы', 'Vopshinov Design'], ['d06'], ['t05', 'Екатерина Бочарова'], ['d13'], ['t12', 'Светлана Поздеева'],
+  ['d05', 'Светлана Ли', 'Attic Studio'], ['d07'], ['t02', 'Мария Тимофеева'], ['d14'], ['t09', 'Валерия Маслова'], ['d10'],
+  ['t04', 'Babayants Architects'], ['d11'], ['t11', 'Quatrobase'], ['d12p'], ['d04'], ['d09'],
+];
+const OFF = [.15, .55, .3, .7, .05, .45, .25, .6];          // сдвиг колонок вверх, доля высоты снимка
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const tile = ([f, name, studio], lazy = true) => {
+  const el = document.createElement('figure'); el.className = 'tile';
+  el.innerHTML = `<img src="../img/faces/${f}.jpg" alt="${name || ''}"${lazy ? ' loading="lazy"' : ''} decoding="async">` +
+    (name ? `<figcaption><b>${name}</b>${studio ? `<span>${studio}</span>` : ''}</figcaption>` : '');
+  return el;
+};
+const grid = () => innerWidth <= 760 ? [3, 4] : innerWidth <= 1100 ? [6, 4] : [8, 3];
+
+function buildWall(box, lazy = true) {
+  const [cols, rows] = grid();
+  box.innerHTML = ''; box.style.setProperty('--cols', cols); box.style.setProperty('--rows', rows);
+  const cs = Array.from({ length: cols }, (_, j) => {
+    const c = document.createElement('div'); c.className = 'col'; c.style.setProperty('--o', OFF[j % OFF.length]); box.append(c); return c;
+  });
+  P.slice(0, cols * rows).forEach((p, k) => cs[k % cols].append(tile(p, lazy)));
+  return [...box.querySelectorAll('.tile')];
+}
+
+// на телефоне наведения нет: снимки по очереди сами становятся цветными, касание — тоже
+function autoColor(root) {
+  root.addEventListener('click', e => {
+    const t = e.target.closest('.tile'); if (!t || fine) return;
+    root.querySelectorAll('.tile.is-color').forEach(x => x !== t && x.classList.remove('is-color'));
+    t.classList.toggle('is-color'); root._hold = Date.now();
+  });
+  if (fine || still) return;
+  let prev = null;
+  setInterval(() => {
+    if (!root.offsetParent || Date.now() - (root._hold || 0) < 6000 || root.dataset.ready === '0') return;
+    const r0 = root.getBoundingClientRect(); if (r0.bottom < 0 || r0.top > innerHeight) return;
+    const vis = [...root.querySelectorAll('.tile')].filter(t => {
+      const r = t.getBoundingClientRect();
+      return r.left >= 0 && r.right <= innerWidth && r.top >= innerHeight * .12 && r.bottom <= innerHeight * .9 && t !== prev;
+    });
+    if (prev) prev.classList.remove('is-color');
+    prev = vis[Math.floor(Math.random() * vis.length)] || null;
+    if (prev) prev.classList.add('is-color');
+  }, 2600);
+}
+
+/* ── A · Проявка ── */
+const A = document.getElementById('va');
+let aTiles = [];
+function devA(run) {
+  aTiles = buildWall(A.querySelector('[data-wall]'));
+  A.classList.remove('ttl-in');
+  if (still || !run) { aTiles.forEach(t => t.classList.add('is-dev')); A.classList.add('ttl-in'); return }
+  const order = aTiles.map((t, i) => [t, (i * 7 + 3) % aTiles.length]).sort((a, b) => a[1] - b[1]);
+  order.forEach(([t], n) => setTimeout(() => t.classList.add('is-dev'), 120 + n * 105 + (n * 37 % 5) * 30));
+  setTimeout(() => A.classList.add('ttl-in'), 120 + order.length * 60);
+}
+let aSeen = false;
+const ioA = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting && !aSeen) { aSeen = true; devA(true) }
+}), { threshold: .2 });
+devA(false); aTiles.forEach(t => t.classList.remove('is-dev')); A.classList.remove('ttl-in');
+ioA.observe(A);
+autoColor(A);
+
+/* ── B · Сборка ── */
+const B = document.getElementById('vb'), Bst = B.querySelector('.vb__stage');
+let bTiles = [];
+function measureB() {
+  bTiles = buildWall(B.querySelector('[data-wall]'), false);   // снимки нужны сразу — они видны уже в стопке
+  const w = B.querySelector('.wall__in').getBoundingClientRect(), cx = w.left + w.width / 2, cy = w.top + w.height / 2, N = bTiles.length;
+  bTiles.forEach((t, i) => {
+    const r = t.getBoundingClientRect(), o = (i * 11 + 5) % N;   // порядок раскладки — вразброс
+    Object.assign(t, { _dx: cx - (r.left + r.width / 2), _dy: cy - (r.top + r.height / 2), _rot: ((i * 53) % 21 - 10) * 1.1,
+      _jx: ((i * 29) % 17 - 8) * 2, _jy: ((i * 41) % 13 - 6) * 2, _s: o / N * .58 });
+    t.style.zIndex = N - o;
+  });
+  paintB();
+}
+const clamp = v => Math.max(0, Math.min(1, v)), ease = x => 1 - Math.pow(1 - x, 3);
+function paintB() {
+  if (still || document.body.dataset.v !== 'b') return;
+  const span = B.offsetHeight - Bst.offsetHeight, p = clamp(-B.getBoundingClientRect().top / span);
+  bTiles.forEach(t => {
+    const e = ease(clamp((p - .04 - t._s) / .3)), k = 1 - e;
+    t.style.transform = `translate(${(t._dx + t._jx) * k}px,${(t._dy + t._jy) * k}px) rotate(${t._rot * k}deg) scale(${.56 + .44 * e})`;
+    t.style.setProperty('--sh', (k > .001 && k < .999) ? 1 : k ? .6 : 0);
+  });
+  B.style.setProperty('--tp', clamp((p - .74) / .16).toFixed(3));
+  B.style.setProperty('--hp', (1 - clamp(p / .12)).toFixed(3));
+  B.classList.toggle('done', p > .92);
+  B.dataset.ready = p > .92 ? '1' : '0';
+}
+let rq = 0;
+addEventListener('scroll', () => { if (!rq) rq = requestAnimationFrame(() => { rq = 0; paintB() }) }, { passive: true });
+autoColor(B);
+
+/* ── C · Лента ── */
+const C = document.getElementById('vc'), rowsC = C.querySelectorAll('.row');
+[P.slice(0, 12), P.slice(12)].forEach((set, j) => [...set, ...set].forEach(p => rowsC[j].append(tile(p, false))));
+rowsC.forEach(r => r.querySelectorAll('.tile').forEach((t, i) => i >= 12 && t.setAttribute('aria-hidden', 'true')));
+autoColor(C);
+
+// «Сейчас» — как в home.js
+const T0 = document.getElementById('trust');
+T0.querySelectorAll('.face').forEach((f, i) => {
+  f.style.setProperty('--rv', (i * .07).toFixed(2) + 's');
+  f.style.setProperty('--d', (9 + (i * 37 % 7)) + 's');
+  f.style.setProperty('--dl', (1.4 + (i * 53 % 9) * .9).toFixed(1) + 's');
+});
+new IntersectionObserver((es, ob) => es.forEach(e => { if (e.isIntersecting) { T0.classList.add('in'); ob.disconnect() } }), { threshold: .15 }).observe(T0);
+
+// переключатель вариантов
+const DESC = {
+  '0': 'Как сейчас на главной: 14 портретов мозаикой, медленно «дышат», цвет при наведении.',
+  a: 'Проявка: снимки по одному проявляются, как отпечатки в ванночке, — с чистого листа до чёрно-белого. Наведение — цвет и имя, остальные притухают.',
+  b: 'Сборка: при прокрутке стопка снимков раскладывается в стену, затем появляется заголовок. После сборки — цвет и имя при наведении.',
+  c: 'Лента: два ряда портретов плывут навстречу друг другу, наведение останавливает ленту и раскрашивает снимок.',
+};
+function setVar(k) {
+  document.body.dataset.v = k;
+  document.querySelectorAll('.vbar button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+  const d = document.getElementById('vdesc'); d.textContent = DESC[k]; d.classList.remove('off');
+  clearTimeout(setVar.t); setVar.t = setTimeout(() => d.classList.add('off'), 6000);
+  history.replaceState(null, '', '?v=' + k);
+  scrollTo(0, 0);
+  if (k === 'a') { aSeen = false; devA(false); aTiles.forEach(t => t.classList.remove('is-dev')); A.classList.remove('ttl-in'); ioA.unobserve(A); ioA.observe(A) }
+  if (k === 'b') measureB();
+}
+document.querySelectorAll('.vbar button').forEach(b => b.addEventListener('click', () => setVar(b.dataset.k)));
+let lastW = innerWidth;
+addEventListener('resize', () => {
+  if (innerWidth === lastW) return; lastW = innerWidth;
+  if (document.body.dataset.v === 'a') { devA(false); if (!aSeen) { aTiles.forEach(t => t.classList.remove('is-dev')); A.classList.remove('ttl-in') } }
+  if (document.body.dataset.v === 'b') measureB();
+});
+setVar(new URLSearchParams(location.search).get('v') || 'a');
+})();
+</script>
+</body>
+</html>

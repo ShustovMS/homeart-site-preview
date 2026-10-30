@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Каталог фабрик · HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="assets/site.css?v=1793390595">
+<link rel="stylesheet" href="assets/catalog.css?v=1793390595">
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main>
+  <!-- Каталог фабрик — как brands.homeart.pro: данные оттуда (_build/brands_import.py → data/brands.js) -->
+  <section class="cx-head br-head" data-hdr-over><div class="cx-head__bg" aria-hidden="true"><img src="img/photo/factories-head.jpg" alt=""></div><div class="wrap">
+    <div class="crumbs"><a href="index.html">Главная</a><span>/</span><a href="catalog.html">Каталог</a><span>/</span><span>Фабрики</span></div>
+    <div class="cx-head__row">
+      <div><h1>Каталог фабрик</h1>
+        <p class="cx-head__lead">Мы сотрудничаем с ведущими европейскими и мировыми производителями мебели, кухонь, освещения, сантехники, отделочных материалов и предметов интерьера. Найдите нужный бренд через поиск или откройте соответствующий раздел.</p>
+        <p class="cx-head__lead">Если интересующей фабрики нет в каталоге, сообщите нам — мы проверим возможность поставки и подготовим индивидуальные условия сотрудничества.</p>
+        <div class="br-cta"><button type="button" class="btn btn--light" data-call="Каталог фабрик: связаться с менеджером">Связаться с менеджером</button></div>
+        <div class="br-stats" id="stats"></div>
+      </div>
+    </div>
+  </div></section>
+
+  <div class="wrap br-dirs">
+    <nav class="cx-dirs" aria-label="Разделы каталога">
+          <a href="catalog.html" class="cx-dir"><b>Каталог предметов</b><span>Отдельно стоящая мебель, свет, декор и другие изделия с конкретными моделями и артикулами.</span><i><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i></a>
+          <a href="kitchen.html" class="cx-dir"><b>Кухни и системы хранения</b><span>Кухни, гардеробные, двери, перегородки и встраиваемая техника.</span><i><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i></a>
+          <a href="factories.html" class="cx-dir on" aria-current="page"><b>Список фабрик</b><span>Все 348 фабрик, с которыми работает HOMEART. Можно изучить бренды, их стилистику и ассортимент.</span><i><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i><em>Вы здесь</em></a>
+        </nav>
+  </div>
+
+  <div class="br-bar"><div class="br-bar__in wrap" style="padding-left:var(--gutter);padding-right:var(--gutter)">
+    <div class="br-q">
+      <div class="cx-search__f">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Бренд, категория, страна…" autocomplete="off" aria-label="Поиск по фабрикам">
+        <button type="button" class="cx-search__x" id="qx" aria-label="Очистить поиск" hidden><svg width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2l6 6M8 2l-6 6"/></svg></button>
+      </div>
+      <div class="br-info"><button type="button" class="br-info__b" id="infoB" aria-expanded="false" aria-controls="infoP" aria-label="Как искать">i</button>
+        <div class="br-info__p" id="infoP"><b>Как искать</b>Введите тип изделия — например, «пуф», «стол», «стул», — название бренда или страну, и список отфильтруется сам. Категории пошире доступны кнопками ниже.</div></div>
+    </div>
+    <div class="br-chips" id="chips" role="tablist" aria-label="Разделы"></div>
+  </div></div>
+
+  <div class="wrap">
+    <div class="br-list" id="list"></div>
+    <div class="br-ask"><div><b>Нет нужной фабрики?</b><p>Сообщите название — проверим возможность поставки и подготовим условия.</p></div>
+      <button type="button" class="btn btn--light" data-call="Каталог фабрик: запросить фабрику">Запросить фабрику</button></div>
+  </div>
+  <div style="height:clamp(60px,7vw,100px)"></div>
+</main>
+<div id="ftr"></div>
+
+<div class="br-dlg" id="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgT"><div class="br-dlg__c" id="dlgC"></div></div>
+
+<script src="data/stock.js?v=1793390595"></script>
+<script src="data/brands.js?v=1793390595"></script>
+<script src="assets/site.js?v=1793390595"></script>
+<script>
+(function () {
+  const { qs, fmt, esc } = HA;
+  const norm = s => String(s || '').toLowerCase().replace(/ё/g, 'е');
+  const ALL = BRANDS, MAIN = ALL.filter(b => !b.only);          // в «Все разделы» и разделах — только общий каталог (как на brands.homeart.pro)
+  const GROUPS = BRAND_GROUPS;
+  const DEC = ALL.filter(b => b.decor);
+  // Кухни и системы хранения — отдельная страница (kitchen.html); здесь 348 фабрик и «Аксессуары и декор»
+  const S = { tab: qs.get('tab') === 'decor' ? 'decor' : GROUPS.includes(qs.get('g')) ? qs.get('g') : 'all', q: qs.get('q') || '' };
+
+    document.getElementById('stats').innerHTML = [[MAIN.length, 'фабрик'], [GROUPS.length, 'категорий'], [new Set(MAIN.map(b => b.country).filter(Boolean)).size, 'стран']]
+    .map(([n, t]) => `<div><b class="num">${n}</b><span>${t}</span></div>`).join('');
+
+  const inGroup = (b, g) => (b.groups || []).includes(g);
+  const pool = () => S.tab === 'decor' ? DEC : S.tab === 'all' ? MAIN : MAIN.filter(b => inGroup(b, S.tab));
+  // поиск: тип изделия, бренд или страна — по названию, стране, категориям и тегам
+  const hit = b => { if (!S.q) return true; const h = norm([b.name, b.country, b.cats, ...(b.tags || []), ...(b.groups || [])].join(' ')); return norm(S.q).split(/\s+/).every(w => h.includes(w)) };
+
+  function drawChips() {
+    const c = (k, t, n) => `<button type="button" role="tab" data-k="${esc(k)}" class="${S.tab === k ? 'on' : ''}" aria-selected="${S.tab === k}">${esc(t)}<span>${n}</span></button>`;
+    document.getElementById('chips').innerHTML = c('all', 'Все разделы', MAIN.length) + GROUPS.map(g => c(g, g, MAIN.filter(b => inGroup(b, g)).length)).join('')
+      + '<i></i>' + c('decor', 'Аксессуары и декор', DEC.length);
+  }
+  const CHEV = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg>';
+  const logo = b => b.logo ? `<img src="${b.logo}" alt="" loading="lazy" onerror="this.outerHTML='<span class=&quot;br-mono&quot;>${esc(b.name[0])}</span>'">` : `<span class="br-mono">${esc(b.name[0])}</span>`;
+  const sub = b => [b.country, b.cats || b.desc].filter(Boolean).join(' · ');
+  const row = b => `<button type="button" class="br-row" data-id="${esc(b.id)}">${logo(b)}<span class="br-row__t"><b>${esc(b.name)}</b><span>${esc(sub(b))}</span></span>${CHEV}</button>`;
+  const rows = list => `<div class="br-rows">${list.map(row).join('')}</div>`;
+
+  function draw() {
+    const list = pool().filter(hit), el = document.getElementById('list');
+    if (S.q || S.tab !== 'all') {
+      el.innerHTML = `<p class="br-n"><b>${list.length}</b> из ${pool().length}</p>` + (list.length ? rows(list) : `<p class="br-n">Ничего не нашлось. Попробуйте тип изделия, бренд или страну — или <button type="button" class="link" data-call="Каталог фабрик: найти «${esc(S.q)}»">спросите менеджера</button>.</p>`);
+    } else {
+      el.innerHTML = GROUPS.map(g => { const ls = list.filter(b => inGroup(b, g)); return `<section class="br-sec"><h2>${esc(g)}<span>${ls.length}</span></h2>${rows(ls)}</section>` }).join('');
+    }
+    drawChips();
+    const u = new URLSearchParams();
+    if (S.tab === 'decor') u.set('tab', S.tab); else if (S.tab !== 'all') u.set('g', S.tab);
+    if (S.q) u.set('q', S.q);
+    history.replaceState(null, '', location.pathname + (u.toString() ? '?' + u : ''));
+  }
+
+  const qEl = document.getElementById('q'), qx = document.getElementById('qx');
+  qEl.value = S.q; qx.hidden = !S.q;
+  qEl.addEventListener('input', () => { S.q = qEl.value.trim(); qx.hidden = !qEl.value; draw() });
+  qx.onclick = () => { qEl.value = ''; S.q = ''; qx.hidden = true; draw(); qEl.focus() };
+  document.getElementById('chips').onclick = e => { const b = e.target.closest('[data-k]'); if (!b) return; S.tab = b.dataset.k; draw();
+    const top = document.querySelector('.br-bar').offsetTop - 0; if (scrollY > top) scrollTo({ top, behavior: 'smooth' }) };
+  const infoB = document.getElementById('infoB'), infoP = document.getElementById('infoP');
+  infoB.onclick = () => { const on = !infoP.classList.contains('on'); infoP.classList.toggle('on', on); infoB.setAttribute('aria-expanded', on) };
+  document.addEventListener('click', e => { if (!e.target.closest('.br-info')) { infoP.classList.remove('on'); infoB.setAttribute('aria-expanded', 'false') } });
+
+  /* карточка фабрики */
+  const dlg = document.getElementById('dlg'), dlgC = document.getElementById('dlgC');
+  let back = null;
+  function open(id) {
+    const b = ALL.find(x => x.id === id); if (!b) return;
+    back = document.activeElement;
+    const tags = (b.tags || []).slice(0, 10);
+    dlgC.innerHTML = `<button type="button" class="br-dlg__x" data-x aria-label="Закрыть"><svg width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2l6 6M8 2l-6 6"/></svg></button>
+      <div class="br-dlg__h">${logo(b)}<div><b id="dlgT">${esc(b.name)}</b><span>${esc([b.country, (b.groups || []).join(', ')].filter(Boolean).join(' · '))}</span></div></div>
+      ${b.desc ? `<p>${esc(b.desc)}</p>` : ''}
+      ${b.kd ? `<p class="br-dlg__kd">Кухни и системы хранения · ${esc([b.kd.section, b.kd.subgroup, b.kd.tier, b.kd.style].filter(Boolean).join(' · '))}</p>` : ''}
+      ${tags.length ? `<div class="br-dlg__tags">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>` : '<div style="height:20px"></div>'}
+      <div class="br-dlg__a">${b.site ? `<a class="btn" href="${esc(b.site)}" target="_blank" rel="noopener">Официальный сайт ↗</a>` : ''}</div>`;
+    dlg.classList.add('on'); document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => dlgC.querySelector('[data-x]').focus(), 60);
+  }
+  function close() { dlg.classList.remove('on'); document.documentElement.style.overflow = ''; if (back) back.focus({ preventScroll: true }) }
+  document.getElementById('list').addEventListener('click', e => { const r = e.target.closest('.br-row'); if (r) open(r.dataset.id) });
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-x]')) close(); if (e.target.closest('[data-call]')) close() });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && dlg.classList.contains('on')) close() });
+
+  draw();
+})();
+</script>
+</body>
+</html>

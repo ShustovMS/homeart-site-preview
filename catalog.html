@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Каталог — мебель и свет · HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="assets/site.css?v=1793390595">
+<link rel="stylesheet" href="assets/catalog.css?v=1793390595">
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main>
+  <!-- Каталог предметов: вход — живые плитки категорий; внутри — карточки одного размера, фильтры раскрываются вниз, поиск под рукой всегда -->
+  <section class="cx-hero" id="head" data-hdr-over>
+    <div class="cx-hero__bg" aria-hidden="true"><img src="img/photo/cat-all.jpg" alt="" class="on" data-k="cat-all"><img alt=""></div>
+    <div class="wrap cx-hero__in">
+      <div class="crumbs" id="crumbs"></div>
+      <div class="cx-hero__row">
+        <div><h1 id="ttl">Каталог</h1>
+          <p class="cx-hero__lead cx-hero__lead--home">Более 15 лет помогаем дизайнерам и архитекторам реализовывать проекты в премиальном сегменте. Работаем с 348 фабриками и подбираем решения для комплексного оснащения интерьера: от отдельно стоящей мебели, света и декора до предметов искусства и сантехники.</p>
+          <p class="cx-hero__lead cx-hero__lead--list">Мебель и другие предметы доступны как из наличия, так и под заказ. Сроки поставки заказных позиций — ориентировочно от 90 до 120 рабочих дней, в зависимости от фабрики и конкретного изделия.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap cx-body">
+    <div class="cx-search cx-find" id="srch" role="search">
+      <div class="cx-search__f">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Предмет, бренд или тип: диван, Molteni&amp;C, торшер" autocomplete="off" aria-label="Поиск по каталогу" aria-controls="sug">
+        <button type="button" class="cx-search__x" aria-label="Очистить поиск" hidden><svg width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2l6 6M8 2l-6 6"/></svg></button>
+      </div>
+      <div class="cx-sug" id="sug" role="listbox"></div>
+    </div>
+    <div class="cx-search-ph"></div>
+    <div class="ls-tabs" id="lsTabs" role="tablist" aria-label="Категории" hidden></div>
+    <div id="home">
+      <nav class="cx-dirs" aria-label="Разделы каталога">
+          <a href="catalog.html" class="cx-dir on" aria-current="page"><b>Каталог предметов</b><span>Отдельно стоящая мебель, свет, декор и другие изделия с конкретными моделями и артикулами.</span><i><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i><em>Вы здесь</em></a>
+          <a href="kitchen.html" class="cx-dir"><b>Кухни и системы хранения</b><span>Кухни, гардеробные, двери, перегородки и встраиваемая техника.</span><i><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i></a>
+          <a href="factories.html" class="cx-dir"><b>Список фабрик</b><span>Все 348 фабрик, с которыми работает HOMEART. Можно изучить бренды, их стилистику и ассортимент.</span><i><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i></a>
+        </nav>
+      <div class="lt-grid" id="tiles"></div>
+    </div>
+
+    <div id="list" hidden>
+      <div class="ls-bar" id="tools">
+        <button type="button" class="ls-fbtn" id="fBtn" aria-expanded="false" aria-controls="fp"><i><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4h7M13 4h1M2 12h1M7 12h7"/><circle cx="11" cy="4" r="2"/><circle cx="5" cy="12" r="2"/></svg></i>Фильтры <span class="n" id="fN"></span></button>
+        <span class="ls-bar__sp"></span>
+        <span class="ls-cnt" id="cnt" aria-live="polite"></span>
+        <label class="ls-sort"><span class="ls-sort__t">Сортировка</span>
+          <select id="sort"><option value="def">по категориям</option><option value="asc">сначала дешевле</option><option value="desc">сначала дороже</option><option value="disc">сначала со скидкой</option></select></label>
+      </div>
+      <div class="cx-active" id="active"></div>
+      <div class="fp" id="fp"><div><div class="fp__card" role="region" aria-label="Фильтры">
+        <div class="fp__g" id="fpBody"></div>
+        <div class="fp__f"><button type="button" class="cx-clear" id="fpReset">Сбросить фильтры</button><button type="button" class="btn" id="fpShow">Показать</button></div>
+      </div></div></div>
+      <div class="gx" id="grid"></div>
+      <div class="cx-empty" id="empty" hidden>
+        <h3>По этим условиям ничего нет</h3>
+        <p>Попробуйте убрать часть фильтров — или менеджер найдёт предмет у фабрик под заказ.</p>
+        <button type="button" class="btn btn--line" id="reset2">Сбросить фильтры</button>
+        <button type="button" class="btn" data-call="Каталог: подобрать предмет">Спросить менеджера</button>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="ftr"></div>
+
+<div class="gx-dock" id="dock" aria-hidden="true">
+  <button type="button" id="dSearch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Поиск</button>
+  <span class="sep" data-l></span><button type="button" id="dFilt" data-l>Фильтры <span class="n" id="dN"></span></button><em id="dCnt" data-l></em>
+  <button type="button" id="toTop" aria-label="Наверх"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 10V2M2.5 5.5L6 2l3.5 3.5"/></svg></button>
+</div>
+
+<script src="data/data.js?v=1793390595"></script>
+<script src="data/stock.js?v=1793390595"></script>
+<script src="data/stock-clean.js?v=1793390595"></script>
+<script src="data/cards.js?v=1793390595"></script>
+<script src="assets/site.js?v=1793390595"></script>
+<script src="assets/catalog.js?v=1793390595"></script>
+<script>
+(function () {
+  const { fmt, qs } = HA, { esc, norm, hl, suggest, X } = CX;
+  const ART = 'https://adh.homeart.pro/';     // «Искусство» — арт-сайт HOMEART × ADH
+  // clean — номер снимка «предмет на белом» (_build/stock_clean.py); без него снимок — страница каталога или интерьер
+  const CL = window.STOCK_CLEAN || {};
+  // дубли одного предмета (cards.js: hide) не показываем — остаётся вариант дороже (Павел 27.10, 29.10)
+  const P = STOCK.filter(p => !((window.CARDS || {})[p.id] || {}).hide).map(p => ({ ...p, inStock: !!p.loc, type: p.type || p.group, clean: CL[p.id] ?? -1 }));
+  const GROUPS = ['Мягкая мебель', 'Столы и стулья', 'Хранение', 'Спальня', 'Свет', 'Декор'];
+  const LOCS = ['Москва', 'Санкт-Петербург'];
+  const THUMB = { 'Мягкая мебель': 'm-p003', 'Столы и стулья': 'm-p035', 'Хранение': 'm-p067', 'Спальня': 'm-p074', 'Свет': 's-p026', 'Декор': 'm-p101' };
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const img = p => p.clean >= 0 ? p.imgs[p.clean] : p.imgs[0];
+  const sortEl = document.getElementById('sort'), qEl = document.getElementById('q');
+
+  /* состояние живёт в адресе: без параметров — плитки категорий, иначе — список */
+  const S = { view: 'home', q: '', group: null, types: new Set(), brands: new Set(), locs: new Set(), disc: false, stock: false, min: null, max: null };
+  function parse() {
+    const u = new URLSearchParams(location.search);
+    S.group = GROUPS.includes(u.get('cat')) ? u.get('cat') : null;
+    S.q = u.get('q') || ''; S.disc = u.get('disc') === '1'; S.stock = u.get('stock') === '1';
+    S.types = new Set((u.get('type') || '').split(',').filter(Boolean)); S.brands = new Set((u.get('brand') || '').split(',').filter(Boolean)); S.locs = new Set((u.get('loc') || '').split(',').filter(Boolean));
+    S.min = u.get('min') ? +u.get('min') : null; S.max = u.get('max') ? +u.get('max') : null;
+    sortEl.value = u.get('sort') || 'def';
+    S.view = u.get('view') === 'all' || [...u.keys()].length ? 'list' : 'home';
+    qEl.value = S.q;
+  }
+  function url() {
+    if (S.view === 'home') return location.pathname;
+    const u = new URLSearchParams();
+    if (S.group) u.set('cat', S.group); else u.set('view', 'all');
+    if (S.types.size) u.set('type', [...S.types].join(',')); if (S.brands.size) u.set('brand', [...S.brands].join(',')); if (S.locs.size) u.set('loc', [...S.locs].join(','));
+    if (S.stock) u.set('stock', '1'); if (S.disc) u.set('disc', '1'); if (S.q) u.set('q', S.q);
+    if (S.min != null) u.set('min', S.min); if (S.max != null) u.set('max', S.max);
+    if (sortEl.value !== 'def') u.set('sort', sortEl.value);
+    return location.pathname + '?' + u;
+  }
+  // переход между плитками и списком — новая запись в истории (кнопка «Назад» возвращает к плиткам)
+  function go(view, group) {
+    S.view = view; if (view === 'home') clearFilters(); else if (group !== undefined) { S.group = group; S.types.clear() }
+    history.pushState(null, '', url()); render(); scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+  }
+  addEventListener('popstate', () => { parse(); render() });
+
+  function match(p, skip) {
+    if (skip !== 'group' && S.group && p.group !== S.group) return false;
+    if (skip !== 'type' && S.types.size && !S.types.has(p.type)) return false;
+    if (skip !== 'brand' && S.brands.size && !S.brands.has(p.brand)) return false;
+    if (skip !== 'loc' && S.locs.size && !S.locs.has(p.loc)) return false;
+    if (skip !== 'disc' && S.disc && !p.discount) return false;
+    if (skip !== 'stock' && S.stock && !p.inStock) return false;
+    if (skip !== 'price' && S.min != null && p.price < S.min) return false;
+    if (skip !== 'price' && S.max != null && p.price > S.max) return false;
+    if (S.q) { const h = norm([p.brand, p.name, p.type, p.group, p.finish].join(' ')); if (!norm(S.q).split(/\s+/).every(w => h.includes(w))) return false }
+    return true;
+  }
+  const count = (skip, f) => P.filter(p => match(p, skip) && f(p)).length;
+  const nFilters = () => S.types.size + S.brands.size + S.locs.size + (S.disc ? 1 : 0) + (S.stock ? 1 : 0) + (S.min != null || S.max != null ? 1 : 0);
+  function clearFilters() { S.q = ''; qEl.value = ''; S.types.clear(); S.brands.clear(); S.locs.clear(); S.min = S.max = null; S.stock = S.disc = false }
+
+  /* ── плитки категорий: внутри сменяют друг друга предметы этой категории ── */
+  const pics = g => { const c = P.filter(p => p.group === g && p.clean >= 0).map(img); return (c.length ? c : ['img/stock/' + THUMB[g] + '.jpg']).slice(0, 6) };
+  const ARR = '<svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg>';
+  const EXT = '<svg width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7l4-4M4 3h3v3"/></svg>';
+  const mosaic = P.filter(p => p.clean >= 0).map(img);
+  document.getElementById('tiles').innerHTML =
+    `<a class="lt lt--all" href="catalog.html?view=all" data-go="all"><span class="lt__mosaic">${mosaic.slice(0, 9).map(s => `<span><img src="${s}" alt="" loading="lazy"></span>`).join('')}</span>
+      <span class="lt__num num">${P.length}</span><span class="lt__stage"></span>
+      <span class="lt__b"><span><b>Весь каталог</b><span>Все предметы полотном</span></span><span class="lt__go">${ARR}</span></span></a>`
+    + GROUPS.map(g => `<a class="lt" href="catalog.html?cat=${encodeURIComponent(g)}" data-go="${esc(g)}"><span class="lt__stage">${pics(g).map((s, i) => `<img src="${s}" alt="" loading="lazy" class="${i ? '' : 'on'}">`).join('')}</span>
+      <span class="lt__b"><span><b>${esc(g)}</b><span>${fmt.plural(P.filter(p => p.group === g).length, 'предмет', 'предмета', 'предметов')}</span></span><span class="lt__go">${ARR}</span></span></a>`).join('')
+    + `<a class="lt lt--art" href="${ART}" target="_blank" rel="noopener"><img class="lt__photo" src="img/photo/int-13.jpg" alt="" loading="lazy"><span class="lt__stage"></span>
+      <span class="lt__b"><span><b>Искусство</b><span>Галерея HOMEART × ADH</span></span><span class="lt__go">${EXT}</span></span></a>`;
+  document.getElementById('tiles').addEventListener('click', e => {
+    const t = e.target.closest('[data-go]'); if (!t || e.metaKey || e.ctrlKey) return;
+    e.preventDefault(); clearFilters(); t.dataset.go === 'all' ? go('list', null) : go('list', t.dataset.go);
+  });
+  // смена предметов в плитках — по очереди, только пока плитки на экране и вкладка открыта
+  let tick = 0;
+  if (!still) setInterval(() => {
+    if (document.hidden || S.view !== 'home') return;
+    const tiles = [...document.querySelectorAll('#tiles .lt:not(.lt--all):not(.lt--art)')];
+    const t = tiles[tick++ % tiles.length], ims = t.querySelectorAll('.lt__stage img');
+    if (ims.length < 2) return;
+    const i = [...ims].findIndex(x => x.classList.contains('on'));
+    ims[i].classList.remove('on'); ims[(i + 1) % ims.length].classList.add('on');
+    // в «Весь каталог» меняем одну клетку мозаики
+    const cells = document.querySelectorAll('#tiles .lt__mosaic img'), c = cells[tick % cells.length];
+    c.style.opacity = 0; setTimeout(() => { c.src = mosaic[(tick * 7 + 9) % mosaic.length]; c.style.opacity = 1 }, 450);
+  }, 1300);
+
+  /* ── умный поиск: категории, типы и бренды становятся фильтрами, предметы — ссылками ── */
+  const srch = document.getElementById('srch');
+  suggest(qEl, document.getElementById('sug'), q => {
+    const nq = norm(q), has = s => norm(s).includes(nq);
+    const types = [...new Set(P.map(p => p.type))].filter(has), brands = [...new Set(P.map(p => p.brand))].filter(has);
+    const items = P.filter(p => norm([p.brand, p.name, p.type].join(' ')).includes(nq)).slice(0, 6);
+    const fac = (window.FACTORIES || []).filter(f => has(f.name) && !P.some(p => norm(p.brand) === norm(f.name))).slice(0, 2);
+    const into = fn => () => { fn(); unfloat(); S.view === 'home' ? go('list') : (history.replaceState(null, '', url()), render()) };
+    return [
+      { title: 'Категории', items: GROUPS.filter(has).map(g => ({ html: `<span class="ic">${P.filter(p => p.group === g).length}</span><span>${hl(g, q)}</span><small>категория</small>`, pick: () => { unfloat(); clearFilters(); go('list', g) } })) },
+      { title: 'Тип предмета', items: types.slice(0, 5).map(t => ({ html: `<span class="ic">${P.filter(p => p.type === t).length}</span><span>${hl(t, q)}</span><small>показать все</small>`, pick: into(() => S.types.add(t)) })) },
+      { title: 'Бренды', items: brands.slice(0, 5).map(b => ({ html: `<span class="ic">${P.filter(p => p.brand === b).length}</span><span><b>${hl(b, q)}</b></span><small>предметы бренда</small>`, pick: into(() => S.brands.add(b)) })) },
+      { title: 'Предметы', items: items.map(p => ({ href: `product.html?id=${encodeURIComponent(p.id)}`, html: `<img src="${img(p)}" alt=""><span><span class="k">${esc(p.brand)}</span>${hl(p.name, q)}</span><small>${fmt.eur(p.price)}</small>` })) },
+      { title: 'В каталоге фабрик', items: fac.map(f => ({ href: `factories.html?q=${encodeURIComponent(f.name)}`, html: `<span class="ic">${esc(f.name[0])}</span><span><b>${hl(f.name, q)}</b> · ${esc(f.country)}</span><small>фабрика →</small>` })) },
+    ];
+  }, q => { S.q = q; unfloat(); if (S.view === 'home') go('list'); else { history.replaceState(null, '', url()); render() } });
+
+  // поиск под рукой: если строка ушла за край экрана — она спускается сверху; клавиша «/» тоже вызывает её
+  function openSearch() {
+    const r = srch.getBoundingClientRect();
+    if (r.top > 60 && r.bottom < innerHeight) { qEl.focus(); return }
+    srch.classList.add('is-float'); qEl.focus({ preventScroll: true });
+  }
+  function unfloat() { srch.classList.remove('is-float') }
+  document.getElementById('dSearch').onclick = openSearch;
+  addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) { e.preventDefault(); openSearch() }
+    if (e.key === 'Escape') unfloat();
+  });
+  document.addEventListener('click', e => { if (srch.classList.contains('is-float') && !srch.contains(e.target) && !e.target.closest('#dSearch')) unfloat() });
+
+  /* ── выбранные фильтры чипами ── */
+  function drawActive() {
+    const c = [], chip = (t, fn) => c.push([t, fn]);
+    if (S.q) chip(`«${S.q}»`, () => { S.q = ''; qEl.value = '' });
+    S.types.forEach(t => chip(t, () => S.types.delete(t)));
+    S.brands.forEach(b => chip(b, () => S.brands.delete(b)));
+    S.locs.forEach(l => chip(l, () => S.locs.delete(l)));
+    if (S.min != null || S.max != null) chip(`${S.min != null ? 'от ' + fmt.eur(S.min) : ''} ${S.max != null ? 'до ' + fmt.eur(S.max) : ''}`.trim(), () => { S.min = S.max = null });
+    if (S.stock) chip('В наличии', () => { S.stock = false });
+    if (S.disc) chip('Со скидкой', () => { S.disc = false });
+    const el = document.getElementById('active');
+    el.innerHTML = c.map(([t], i) => `<span class="cx-chip">${esc(t)}<button type="button" data-x="${i}" aria-label="Убрать: ${esc(t)}">${X}</button></span>`).join('') + (c.length > 1 ? '<button type="button" class="cx-clear" data-x="all">Сбросить всё</button>' : '');
+    el.onclick = e => { const b = e.target.closest('[data-x]'); if (!b) return; b.dataset.x === 'all' ? clearFilters() : c[+b.dataset.x][1](); update() };
+  }
+  document.getElementById('reset2').onclick = () => { clearFilters(); update() };
+
+  /* ── фильтры раскрываются вниз и сдвигают страницу ── */
+  const fp = document.getElementById('fp'), fBtn = document.getElementById('fBtn'), body = document.getElementById('fpBody');
+  let brandQ = '';
+  const chips = (key, vals, set, getN) => `<div class="gx-chips">${vals.map(v => { const n = getN(v), on = set.has(v);
+    return `<button type="button" data-k="${key}" data-v="${esc(v)}" class="${on ? 'on' : ''}" ${n || on ? '' : 'disabled'}>${esc(v)}<span>${n}</span></button>` }).join('')}</div>`;
+  function drawPanel() {
+    const keep = document.activeElement && document.activeElement.id;
+    const types = [...new Set(P.filter(p => !S.group || p.group === S.group).map(p => p.type))].sort((a, b) => count('type', p => p.type === b) - count('type', p => p.type === a));
+    const brands = [...new Set(P.filter(p => !S.group || p.group === S.group).map(p => p.brand))].sort();
+    const PRE = [['до 3 000 €', null, 3000], ['3 000 — 10 000 €', 3000, 10000], ['от 10 000 €', 10000, null]];
+    body.innerHTML = `
+      <div class="fp__c"><h4>Наличие и цена</h4><div class="gx-tgs">
+          <label class="cx-tg"><input type="checkbox" data-t="stock" ${S.stock ? 'checked' : ''}><i></i>В наличии<span style="margin-left:auto;padding-left:10px;color:var(--graphite-2);font-size:12px">${count('stock', p => p.inStock)}</span></label>
+          <label class="cx-tg"><input type="checkbox" data-t="disc" ${S.disc ? 'checked' : ''}><i></i>Со скидкой<span style="margin-left:auto;padding-left:10px;color:var(--graphite-2);font-size:12px">${count('disc', p => p.discount)}</span></label></div>
+        <h4>Где посмотреть</h4>${chips('loc', LOCS, S.locs, l => count('loc', p => p.loc === l))}</div>
+      <div class="fp__c"><h4>Тип предмета${S.group ? ' · ' + esc(S.group) : ''}</h4>${chips('type', types, S.types, t => count('type', p => p.type === t))}</div>
+      <div class="fp__c"><h4>Бренд</h4><input class="cx-pop__q" id="bQ" placeholder="Найти бренд" value="${esc(brandQ)}">
+        <div class="gx-brands">${brands.map(b => { const n = count('brand', p => p.brand === b); return `<label ${norm(b).includes(norm(brandQ)) ? '' : 'hidden'} style="${n || S.brands.has(b) ? '' : 'opacity:.4'}"><input type="checkbox" data-k="brand" value="${esc(b)}" ${S.brands.has(b) ? 'checked' : ''}> ${esc(b)}<span>${n}</span></label>` }).join('')}</div></div>
+      <div class="fp__c"><h4>Цена, €</h4><div class="cx-range"><input id="pMin" inputmode="numeric" placeholder="от" value="${S.min ?? ''}" aria-label="Цена от"><input id="pMax" inputmode="numeric" placeholder="до" value="${S.max ?? ''}" aria-label="Цена до"></div>
+        <div class="cx-presets">${PRE.map(([t, a, b]) => `<button type="button" data-a="${a ?? ''}" data-b="${b ?? ''}" class="${S.min === a && S.max === b ? 'on' : ''}">${t}</button>`).join('')}</div></div>`;
+    if (keep) { const k = document.getElementById(keep); if (k && k.tagName === 'INPUT') { k.focus(); const n = k.value.length; k.setSelectionRange && k.setSelectionRange(n, n) } }
+  }
+  body.addEventListener('click', e => {
+    const c = e.target.closest('.gx-chips button');
+    if (c) { const set = { type: S.types, loc: S.locs }[c.dataset.k]; set.has(c.dataset.v) ? set.delete(c.dataset.v) : set.add(c.dataset.v); update(); return }
+    const pr = e.target.closest('[data-a]');
+    if (pr) { const a = pr.dataset.a ? +pr.dataset.a : null, b = pr.dataset.b ? +pr.dataset.b : null, same = S.min === a && S.max === b; S.min = same ? null : a; S.max = same ? null : b; update() }
+  });
+  body.addEventListener('change', e => {
+    const t = e.target;
+    if (t.dataset.t) { S[t.dataset.t] = t.checked; update() }
+    else if (t.dataset.k === 'brand') { t.checked ? S.brands.add(t.value) : S.brands.delete(t.value); update() }
+  });
+  const num = v => { const n = parseInt(String(v).replace(/\D/g, ''), 10); return isNaN(n) ? null : n };
+  body.addEventListener('input', e => {
+    if (e.target.id === 'bQ') { brandQ = e.target.value; body.querySelectorAll('.gx-brands label').forEach(l => l.hidden = !norm(l.textContent).includes(norm(brandQ))); return }
+    if (e.target.id === 'pMin') { S.min = num(e.target.value); update(true) }
+    if (e.target.id === 'pMax') { S.max = num(e.target.value); update(true) }
+  });
+  function setFp(on) {
+    fp.classList.toggle('on', on); fBtn.setAttribute('aria-expanded', on);
+    if (on) drawPanel();
+  }
+  fBtn.onclick = () => setFp(!fp.classList.contains('on'));
+  document.getElementById('fpShow').onclick = () => { setFp(false); scrollTo({ top: document.getElementById('tools').getBoundingClientRect().top + scrollY - 90, behavior: still ? 'auto' : 'smooth' }) };
+  document.getElementById('fpReset').onclick = () => { clearFilters(); brandQ = ''; update() };
+  document.getElementById('dFilt').onclick = () => { setFp(true); scrollTo({ top: document.getElementById('tools').getBoundingClientRect().top + scrollY - 90, behavior: still ? 'auto' : 'smooth' }) };
+
+  /* ── плавающая кнопка: прячется, пока листаете вниз; возвращается на паузе и при прокрутке вверх ── */
+  const dock = document.getElementById('dock');
+  let lastY = scrollY, pause;
+  function dockTick(show) {
+    const past = srch.getBoundingClientRect().bottom < 0 || srch.classList.contains('is-float');
+    const ft = document.getElementById('ftr'), atEnd = ft && ft.getBoundingClientRect().top < innerHeight - 60;   // у подвала не перекрываем ссылки
+    const ok = past && !atEnd && !srch.classList.contains('is-float');
+    dock.classList.toggle('on', ok && show); dock.setAttribute('aria-hidden', String(!(ok && show)));
+  }
+  addEventListener('scroll', () => {
+    const y = scrollY, down = y > lastY + 2; lastY = y;
+    dockTick(!down);
+    if (y < 40) unfloat();
+    clearTimeout(pause); pause = setTimeout(() => dockTick(true), 450);
+  }, { passive: true });
+  document.getElementById('toTop').onclick = () => scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+
+  /* ── список: карточки одного размера ── */
+  function card(p) {
+    // карточки EXPO (Павел 29.10): у готовых — наше фото предмета, при наведении — интерьер, ссылка на новую карточку
+    const o = (id => { const c = (window.CARDS || {})[id]; return c && c.tile && !c.hide && !c.pending ? c : null })(p.id);
+    const c = p.clean, a = o ? o.tile : img(p), b = o ? (o.ints || [])[0] : p.imgs.find((x, i) => i !== (c >= 0 ? c : 0));
+    const kind = o ? (o.tileCut ? 'gt--ours' + (o.tileKeep ? ' gt--keep' : '') : 'gt--photo gt--ourph') + (b ? ' gt--int' : '') : c >= 0 ? '' : p.pack ? 'gt--sheet' : 'gt--photo';
+    const ims = a ? `<img loading="lazy" src="${a}" alt="${esc(p.brand)} ${esc(p.name)}">${b && (o || c >= 0) ? `<img loading="lazy" src="${b}" alt="">` : ''}` : '';
+    const tags = (p.discount ? `<span class="gt__tag">${esc(p.discount)}</span>` : '') + (p.loc && p.loc !== 'Москва' ? `<span class="gt__tag gt__tag--city">${esc(p.loc)}</span>` : '');
+    return `<a class="gt ${kind}" href="${o ? 'product-card.html' : 'product.html'}?id=${encodeURIComponent(p.id)}">
+      <div class="gt__stage">${ims}<div class="gt__tags">${tags}</div></div>
+      <div class="gt__lbl"><span class="gt__k">${esc(p.brand)}</span><span class="gt__t">${esc(p.name)}</span>
+        <span class="gt__p">${fmt.eur(p.price)}${p.base ? `<s>${fmt.eur(p.base)}</s>` : ''}</span>
+        <span class="gt__more"><span>${esc(p.dims || p.type)}</span><span>${p.inStock ? 'В наличии · ' + esc(p.loc) : 'Под заказ'}</span></span></div></a>`;
+  }
+  /* карточки EXPO: фото предмета на белом — как в утверждённом каталоге: белые поля обрезаются (+2% воздуха),
+     сероватый фон фото доводится до белого, чтобы не было рамки; высокое фото с фоном — целиком, без обрезки сверху */
+  const scan = document.createElement('canvas'), sx = scan.getContext('2d', { willReadFrequently: true });
+  function trim(img) {
+    if (img.dataset.trim || !img.naturalWidth) return;
+    img.dataset.trim = '1';
+    const W = img.naturalWidth, H = img.naturalHeight, k = Math.min(1, 360 / Math.max(W, H));
+    const w = Math.max(1, Math.round(W * k)), h = Math.max(1, Math.round(H * k));
+    scan.width = w; scan.height = h; sx.drawImage(img, 0, 0, w, h);
+    let d; try { d = sx.getImageData(0, 0, w, h).data } catch (e) { return }
+    let x0 = w, y0 = h, x1 = -1, y1 = -1;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      if (Math.min(d[i], d[i + 1], d[i + 2]) < 232) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y }
+    }
+    if (x1 < 0) return;
+    const pad = .02, bx = Math.max(0, (x0 / w - pad) * W), by = Math.max(0, (y0 / h - pad) * H);
+    const bw = Math.min(W - bx, ((x1 - x0 + 1) / w + 2 * pad) * W), bh = Math.min(H - by, ((y1 - y0 + 1) / h + 2 * pad) * H);
+    const out = document.createElement('canvas'); out.width = Math.round(bw); out.height = Math.round(bh);
+    const ox = out.getContext('2d'); ox.fillStyle = '#fff'; ox.fillRect(0, 0, out.width, out.height);
+    ox.drawImage(img, bx, by, bw, bh, 0, 0, out.width, out.height);
+    try {
+      const px = ox.getImageData(0, 0, out.width, out.height), a = px.data;
+      // от 215 до 248 светлые тона плавно уходят в белый — тени сохраняют растушёвку, без резкого края
+      for (let i = 0; i < a.length; i += 4) {
+        const m = Math.min(a[i], a[i + 1], a[i + 2]); if (m <= 215) continue;
+        const t = Math.min(1, (m - 215) / 33), f = t * t * (3 - 2 * t);
+        a[i] += (255 - a[i]) * f; a[i + 1] += (255 - a[i + 1]) * f; a[i + 2] += (255 - a[i + 2]) * f;
+      }
+      ox.putImageData(px, 0, 0);
+    } catch (e) { }
+    img.src = out.toDataURL('image/jpeg', .9);
+  }
+  function ours(img) {
+    if (img.matches('.gt--ours:not(.gt--keep) .gt__stage img:first-child')) trim(img);   // gt--keep: светлый предмет на чисто белом — как есть
+    else if (img.matches('.gt--ourph .gt__stage img:first-child') && img.naturalHeight > img.naturalWidth * 1.02) img.classList.add('tall');
+  }
+  document.getElementById('grid').addEventListener('load', e => { if (e.target.matches) ours(e.target) }, true);
+  function drawList(soft) {
+    const list = P.filter(p => match(p)), s = sortEl.value;
+    if (s === 'asc') list.sort((a, b) => a.price - b.price);
+    else if (s === 'desc') list.sort((a, b) => b.price - a.price);
+    else if (s === 'disc') list.sort((a, b) => (!!b.discount - !!a.discount) || a.price - b.price);
+    else list.sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || (b.clean >= 0) - (a.clean >= 0));
+    document.getElementById('grid').innerHTML = list.map(card).join('');
+    document.querySelectorAll('#grid .gt__stage img:first-child').forEach(i => { if (i.complete) ours(i) });
+    document.getElementById('empty').hidden = list.length > 0;
+    const cnt = fmt.plural(list.length, 'предмет', 'предмета', 'предметов');
+    document.getElementById('cnt').textContent = cnt; document.getElementById('dCnt').textContent = cnt;
+    document.getElementById('fpShow').textContent = 'Показать ' + cnt;
+    const n = nFilters() || ''; document.getElementById('fN').textContent = n; document.getElementById('dN').textContent = n;
+    document.getElementById('ttl').textContent = S.group || 'Весь каталог';
+    document.getElementById('lsTabs').innerHTML = `<button type="button" class="${S.group ? '' : 'on'}" data-g="" role="tab" aria-selected="${!S.group}">Весь каталог<span>${P.length}</span></button>`
+      + GROUPS.map(g => `<button type="button" class="${S.group === g ? 'on' : ''}" data-g="${esc(g)}" role="tab" aria-selected="${S.group === g}">${esc(g)}<span>${P.filter(p => p.group === g).length}</span></button>`).join('');
+    const on = document.querySelector('#lsTabs .on'); if (on) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    drawActive();
+    if (fp.classList.contains('on') && !soft) drawPanel();
+  }
+  document.getElementById('lsTabs').onclick = e => { const b = e.target.closest('[data-g]'); if (b) { S.group = b.dataset.g || null; S.types.clear(); update(); setHero(S.group); crumbs() } };
+  sortEl.onchange = () => update();
+
+  function crumbs() {
+    document.getElementById('crumbs').innerHTML = S.view === 'home' ? '<a href="index.html">Главная</a><span>/</span><span>Каталог</span>'
+      : `<a href="index.html">Главная</a><span>/</span><a href="catalog.html" data-home>Каталог</a><span>/</span><span>${esc(S.group || 'Весь каталог')}</span>`;
+    const h = document.querySelector('#crumbs [data-home]'); if (h) h.onclick = e => { e.preventDefault(); go('home') };
+  }
+  function update(soft) { history.replaceState(null, '', url()); drawList(soft) }
+  /* фото первого экрана меняется по категории: новое проявляется поверх старого */
+  const HERO = { '': 'cat-all', 'Мягкая мебель': 'cat-sofa', 'Столы и стулья': 'cat-tables', 'Хранение': 'cat-storage', 'Спальня': 'cat-bedroom', 'Свет': 'cat-light', 'Декор': 'cat-decor' };
+  const heroImgs = document.querySelectorAll('.cx-hero__bg img');
+  let heroNow = 'cat-all';
+  function setHero(g) {
+    const want = HERO[g || ''] || 'cat-all'; if (want === heroNow) return; heroNow = want;
+    const cur = [...heroImgs].find(i => i.classList.contains('on')), next = [...heroImgs].find(i => i !== cur);
+    next.onload = () => { if (heroNow !== want) return; next.classList.add('on'); cur.classList.remove('on') };
+    next.dataset.k = want; next.src = 'img/photo/' + want + '.jpg';
+  }
+  function render() {
+    const home = S.view === 'home';
+    unfloat();
+    document.getElementById('home').hidden = !home; document.getElementById('list').hidden = home;
+    document.getElementById('head').classList.toggle('is-list', !home); document.getElementById('lsTabs').hidden = home;
+    if (home) document.getElementById('ttl').textContent = 'Каталог';
+    setHero(home ? '' : S.group);
+    dock.querySelectorAll('[data-l]').forEach(x => x.hidden = home);
+    crumbs();
+    if (!home) drawList(); else setFp(false);
+  }
+  // «Каталог предметов» — эта страница: карточка направления ведёт к плиткам
+  document.querySelector('.cx-dir.on').addEventListener('click', e => { e.preventDefault(); if (S.view !== 'home') go('home'); else document.getElementById('srch').scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' }) });
+  parse(); render();
+})();
+</script>
+</body>
+</html>

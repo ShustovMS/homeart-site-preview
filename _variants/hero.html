@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Первый экран — варианты подписей</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../assets/fonts.css?v=1793390595">
+<style>
+/* Служебная страница: сравнение вариантов подачи заголовков на первом экране. На боевой сайт не выкладывается. */
+:root{
+  --ink:#1a1a1a; --graphite:#585654; --stone:#a49e96; --paper:#f5f1ea; --linen:#ebe5dc; --off:#fafaf8;
+  --brass:#b8954a; --brass-pale:#e8d4b5; --amber:#b8691f;
+  --sans:"HA Sans","Montserrat","Helvetica Neue",Arial,sans-serif;
+  --out:cubic-bezier(.23,1,.32,1); --io:cubic-bezier(.77,0,.175,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:#e9e5de;color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* панель выбора */
+.bar{position:sticky;top:0;z-index:50;background:rgba(250,250,248,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:.5px solid rgba(26,26,26,.12);padding:14px clamp(16px,3vw,40px);display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+.bar h1{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{padding:8px 14px;border-radius:999px;border:.5px solid rgba(26,26,26,.2);font-size:12.5px;transition:background .2s,color .2s}
+.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.scrub{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--graphite);margin-left:auto}
+.scrub input{width:min(260px,40vw);accent-color:var(--ink)}
+.note{max-width:1100px;margin:22px auto 14px;padding:0 clamp(16px,3vw,40px);font-size:14px;line-height:1.55;color:var(--graphite)}
+.note b{color:var(--ink);font-weight:500}
+
+/* общая сцена: пропорции ролика 16:9, чтобы координаты выносок совпадали с кадром */
+/* сцена целиком помещается в окно под панелью */
+.v{display:none;max-width:min(1440px,calc((100vh - 120px) * 1.784));margin:0 auto 60px;padding:0 clamp(0px,2vw,24px)}
+.v.C{max-width:min(1440px,calc((100vh - 330px) * 1.784))}
+.v.B{max-width:1440px}
+
+.v.on{display:block}
+.frame{position:relative;aspect-ratio:1920/1076;overflow:hidden;background:#ddd}
+.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.s{transition:opacity .7s var(--out),transform .9s var(--out),filter .7s var(--out)}
+.st{font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+
+/* ── A · Титры ── */
+.A .frame::after{content:"";position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(0deg,rgba(18,14,10,.62),rgba(18,14,10,0));pointer-events:none}
+.A .sub{position:absolute;left:0;right:0;bottom:7%;z-index:2;text-align:center;color:#fff;padding:0 8%}
+.A .sub > div{position:absolute;left:8%;right:8%;bottom:0;opacity:0;filter:blur(8px);transform:translateY(12px)}
+.A .sub > div.on{position:relative;left:auto;right:auto;opacity:1;filter:none;transform:none}
+.A .st{color:var(--brass-pale);margin-bottom:12px}
+.A h2{font-weight:200;font-size:clamp(26px,3.3vw,50px);letter-spacing:-.01em;line-height:1.1}
+.A p{margin:12px auto 0;max-width:60ch;font-size:14px;color:rgba(255,255,255,.78);font-weight:300}
+.A .dots{display:flex;gap:8px;justify-content:center;margin-top:22px}
+.A .dots i{width:22px;height:1.5px;background:rgba(255,255,255,.3)}
+.A .dots i.on{background:#fff}
+
+/* ── B · Журнальный разворот: оглавление этапов = заголовки ── */
+.B .spread{display:grid;grid-template-columns:minmax(300px,36%) 1fr;background:var(--paper)}
+.B .col{padding:clamp(24px,3.4vw,52px);display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.B .kicker{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber)}
+.B .toc{list-style:none;border-top:.5px solid rgba(26,26,26,.16)}
+.B .toc li{border-bottom:.5px solid rgba(26,26,26,.16);padding:16px 0;cursor:pointer;position:relative}
+.B .toc li::before{content:"";position:absolute;left:0;top:-.5px;height:1.5px;width:calc(var(--f,0)*100%);background:var(--ink)}
+.B .toc .row{display:flex;gap:16px;align-items:baseline}
+.B .toc .n{font-size:12px;color:var(--stone);width:22px;font-variant-numeric:tabular-nums}
+.B .toc .t{font-size:15px;color:var(--graphite);transition:color .3s}
+.B .toc li.on .t{color:var(--ink)}
+.B .toc .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--io)}
+.B .toc li.on .body{grid-template-rows:1fr}
+.B .toc .body > div{overflow:hidden;padding-left:38px}
+.B .toc h2{font-weight:300;font-size:clamp(22px,2.2vw,32px);line-height:1.12;margin:10px 0 8px;letter-spacing:-.01em}
+.B .toc p{font-size:13.5px;line-height:1.5;color:var(--graphite);max-width:44ch}
+.B .cta{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;padding:13px 22px;border-radius:999px;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--ink)}
+.btn--ink{background:var(--ink);color:#fff}
+.btn--light{background:#fff;color:var(--ink);border-color:#fff}
+.btn--ghost{color:#fff;border-color:rgba(255,255,255,.6)}
+.B .frame{aspect-ratio:16/10.4;align-self:center}   /* шире кадр — меньше обрезка по краям (диван слева, стол справа) */
+
+/* ── C · Этикетка: статичный заголовок над сценой, этапы — музейной табличкой ── */
+.C .head{background:var(--off);padding:clamp(28px,4vw,60px) clamp(20px,3.4vw,52px) clamp(22px,3vw,40px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+.C .head .kicker{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber)}
+.C .head h1{font-weight:200;font-size:clamp(30px,3.4vw,54px);line-height:1.04;letter-spacing:-.02em;margin-top:14px;max-width:20ch}
+.C .head p{margin-top:16px;font-size:15px;color:var(--graphite);max-width:52ch}
+.C .label{position:absolute;left:clamp(14px,2.4vw,36px);bottom:clamp(14px,2.4vw,36px);z-index:2;width:min(330px,40%);
+  background:rgba(250,250,248,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:18px 20px 20px;border-radius:2px}
+.C .label > div{position:absolute;inset:18px 20px auto;opacity:0;transform:translateY(6px)}
+.C .label > div.on{position:relative;inset:auto;opacity:1;transform:none}
+.C .label .st{color:var(--stone)}
+.C .label h3{font-weight:400;font-size:17px;line-height:1.25;margin:8px 0 6px}
+.C .label p{font-size:12.5px;line-height:1.5;color:var(--graphite)}
+.C .label .bar2{display:flex;gap:4px;margin-top:14px}
+.C .label .bar2 i{flex:1;height:1.5px;background:rgba(26,26,26,.12);position:relative;overflow:hidden}
+.C .label .bar2 i::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:0;transform:scaleX(var(--f,0))}
+
+/* ── D · Выноски, как на чертеже: подпись указывает на предмет в кадре ── */
+.D .h1{position:absolute;left:50%;top:5%;transform:translateX(-50%);z-index:3;text-align:center;width:90%}   /* на светлом потолке */
+.D .h1 .st{color:var(--amber)}
+.D .h1 h1{font-weight:300;font-size:clamp(18px,2.2vw,34px);line-height:1.1;margin-top:8px;letter-spacing:-.01em}
+.D .h1 .cta{display:none}
+.D .co{position:absolute;z-index:3;left:calc(var(--x)*100%);top:calc(var(--y)*100%);opacity:0;pointer-events:none}
+.D .co.on{opacity:1;pointer-events:auto}
+.D .co .pt{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(26,26,26,.25)}
+.D .co .pt::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(255,255,255,.9);animation:ping 2.4s var(--out) infinite}
+@keyframes ping{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.D .co .ln{position:absolute;left:0;top:0;height:1px;background:#fff;width:var(--l);transform-origin:0 0;transform:rotate(var(--a)) scaleX(0);transition:transform .8s var(--io) .1s;box-shadow:0 0 0 .5px rgba(26,26,26,.15)}
+.D .co.on .ln{transform:rotate(var(--a)) scaleX(1)}
+.D .co .card{position:absolute;left:var(--cx);top:var(--cy);width:290px;background:rgba(250,250,248,.95);padding:14px 16px 16px;border-radius:2px;
+  opacity:0;transform:translateY(6px);transition:opacity .6s var(--out) .55s,transform .6s var(--out) .55s;box-shadow:0 10px 30px rgba(20,16,12,.18)}
+.D .co.on .card{opacity:1;transform:none}
+.D .co .card .st{color:var(--amber)}
+.D .co .card h3{font-weight:400;font-size:16px;line-height:1.25;margin:7px 0 5px}
+.D .co .card p{font-size:12.5px;line-height:1.5;color:var(--graphite)}
+
+/* ── E · Пустая комната как холст: заголовок крупно по центру, с появлением мебели уходит в угол ── */
+.E .big{position:absolute;z-index:3;left:50%;top:50%;width:min(900px,80%);text-align:center;transform:translate(-50%,-56%);transition:all 1.1s var(--io)}
+.E .big .st{color:var(--brass);transition:opacity .5s}
+.E .big h1{font-weight:200;font-size:clamp(34px,4.8vw,76px);line-height:1.02;letter-spacing:-.02em;margin-top:16px;transition:all 1.1s var(--io)}
+.E .big p{margin:18px auto 0;max-width:52ch;font-size:15px;color:var(--graphite);transition:opacity .5s}
+.E .frame.moved .big{top:5%;width:90%;transform:translate(-50%,0)}   /* уходит наверх, на светлый потолок */
+.E .frame.moved .big h1{font-size:clamp(17px,1.9vw,30px);margin-top:0;font-weight:300}
+.E .frame.moved .big p,.E .frame.moved .big .st{opacity:0}
+.E .ch{position:absolute;right:3.2%;bottom:7%;z-index:3;width:min(420px,40%);text-align:right;color:#fff}
+.E .frame::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 100% 100%,rgba(18,14,10,.7),rgba(18,14,10,.3) 45%,rgba(18,14,10,0) 75%);opacity:0;transition:opacity .8s;pointer-events:none}
+.E .frame.moved::after{opacity:1}
+.E .ch > div{position:absolute;right:0;bottom:0;width:100%;opacity:0;transform:translateY(10px)}
+.E .ch > div.on{position:relative;opacity:1;transform:none}
+.E .ch .num{font-weight:200;font-size:64px;line-height:1;color:rgba(255,255,255,.85)}
+.E .ch h2{font-weight:300;font-size:clamp(20px,2vw,30px);line-height:1.12;margin:6px 0 8px}
+.E .ch p{font-size:13px;line-height:1.5;color:rgba(255,255,255,.82)}
+
+.lbl{max-width:1440px;margin:0 auto 10px;padding:0 clamp(16px,3vw,40px);display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--graphite)}
+.lbl b{color:var(--ink);font-weight:500}
+@media (max-width:860px){.B .spread{grid-template-columns:1fr}.B .frame{aspect-ratio:1920/1076}.D .co .card{width:220px}.C .head{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>Первый экран · подписи</h1>
+  <div class="tabs" id="tabs">
+    <button data-v="A" class="on">A · Титры</button>
+    <button data-v="B">B · Разворот</button>
+    <button data-v="C">C · Этикетка</button>
+    <button data-v="D">D · Выноски</button>
+    <button data-v="E">E · Холст</button>
+  </div>
+  <label class="scrub">Перемотка <input type="range" id="scrub" min="0" max="1000" value="0"></label>
+</div>
+
+<p class="note">Пять способов подать заголовки поверх ролика. Тексты — те же, что на главной. Ролик в превью повторяется по кругу; ползунок «Перемотка» — чтобы быстро посмотреть все этапы. Мобильную версию соберу под выбранный вариант.</p>
+
+<!-- A -->
+<section class="v A on" data-v="A">
+  <div class="lbl"><span><b>A · Титры.</b> Как субтитры в кино: по центру внизу, тонкий крупный шрифт, без плашек. Этапы — штрихи под текстом.</span></div>
+  <div class="frame"><video muted playsinline loop preload="auto" src="../img/hero/scene-d.mp4"></video>
+    <div class="sub">
+      <div class="s" data-i="0"><div class="st">HOMEART · с 2009 года</div><h2>Всё, что нужно для дизайн-проекта — в одном месте</h2></div>
+      <div class="s" data-i="1"><div class="st">02 · Кухня</div><h2>Кухни с экспертами Kitchen Division</h2><p>Индивидуальные решения под задачи проекта и 3D-модели по каждой фабрике.</p></div>
+      <div class="s" data-i="2"><div class="st">03 · Мебель</div><h2>Весь процесс — от подбора до реализации</h2><p>Документация, расчёты, доставка, проверка и организация сборки — берём на себя.</p></div>
+      <div class="s" data-i="3"><div class="st">04 · Готово</div><h2>HOMEART — ваша платформа для ведения дизайн-проекта</h2></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="v B" data-v="B">
+  <div class="lbl"><span><b>B · Журнальный разворот.</b> Слева колонка на бумажном фоне: этапы как оглавление, текущий раскрывается заголовком. Этапность и тексты — одно целое, сцена чистая.</span></div>
+  <div class="spread">
+    <div class="col">
+      <div><div class="kicker">HOMEART · комплектация интерьера с 2009 года</div></div>
+      <ol class="toc">
+        <li data-i="0"><div class="row"><span class="n">01</span><span class="t">Проект</span></div><div class="body"><div><h2>Всё, что нужно для дизайн-проекта — в одном месте</h2><p>348 фабрик, одна команда и один менеджер на ваш проект.</p></div></div></li>
+        <li data-i="1"><div class="row"><span class="n">02</span><span class="t">Кухня</span></div><div class="body"><div><h2>Кухни с экспертами Kitchen Division</h2><p>Индивидуальные решения под задачи проекта, проработка технических нюансов и 3D-модели по каждой фабрике.</p></div></div></li>
+        <li data-i="2"><div class="row"><span class="n">03</span><span class="t">Мебель</span></div><div class="body"><div><h2>Весь процесс — от подбора до реализации</h2><p>Подбор предметов и альтернатив, документация, 3D, расчёты, доставка, проверка и сборка — берём на себя.</p></div></div></li>
+        <li data-i="3"><div class="row"><span class="n">04</span><span class="t">Готово</span></div><div class="body"><div><h2>HOMEART — ваша платформа для ведения дизайн-проекта</h2><p>Подбор, просчёт, поставка и сборка — один менеджер на весь проект.</p></div></div></li>
+      </ol>
+      <div class="cta"><span class="btn btn--ink">Обсудить проект</span><span class="btn">Каталог фабрик</span></div>
+    </div>
+    <div class="frame"><video muted playsinline loop preload="auto" src="../img/hero/scene-d.mp4"></video></div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="v C" data-v="C">
+  <div class="lbl"><span><b>C · Этикетка.</b> Главный заголовок стоит над сценой и не меняется. Этапы — небольшая табличка в углу, как подпись к экспонату.</span></div>
+  <div class="head">
+    <div><div class="kicker">HOMEART · комплектация интерьера с 2009 года</div>
+      <h1>Всё, что нужно для дизайн-проекта — в одном месте</h1>
+      <p>348 фабрик, одна команда и один менеджер на ваш проект: от подбора до сборки на объекте.</p></div>
+    <div class="cta" style="display:flex;gap:10px"><span class="btn btn--ink">Обсудить проект</span><span class="btn">Каталог фабрик</span></div>
+  </div>
+  <div class="frame"><video muted playsinline loop preload="auto" src="../img/hero/scene-d.mp4"></video>
+    <div class="label">
+      <div class="s" data-i="0"><div class="st">01 · Проект</div><h3>От чертежа до готового интерьера</h3><p>Штукатурка, дуб, свет из окон — основа проекта.</p></div>
+      <div class="s" data-i="1"><div class="st">02 · Кухня</div><h3>Кухни с экспертами Kitchen Division</h3><p>Решения под задачи проекта и 3D-модели по каждой фабрике.</p></div>
+      <div class="s" data-i="2"><div class="st">03 · Мебель</div><h3>Весь процесс — от подбора до реализации</h3><p>Документация, расчёты, доставка, проверка и сборка.</p></div>
+      <div class="s" data-i="3"><div class="st">04 · Готово</div><h3>Ваша платформа для ведения дизайн-проекта</h3><p>Один менеджер на весь проект.</p></div>
+      <div class="bar2"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="v D" data-v="D">
+  <div class="lbl"><span><b>D · Выноски, как на чертеже.</b> Подпись появляется точкой на предмете, о котором говорит: кухня — на острове, мебель — на столе, финал — на диване. Продолжает идею «от чертежа».</span></div>
+  <div class="frame"><video muted playsinline loop preload="auto" src="../img/hero/scene-d.mp4"></video>
+    <div class="h1"><div class="st">HOMEART · с 2009 года</div><h1>Всё, что нужно для дизайн-проекта — в одном месте</h1>
+      <div class="cta"><span class="btn btn--ink">Обсудить проект</span></div></div>
+    <div class="co" data-i="1" style="--x:.46;--y:.55;--l:150px;--a:-28deg;--cx:132px;--cy:-170px"><span class="ln"></span><span class="pt"></span>
+      <div class="card"><div class="st">02 · Кухня</div><h3>Кухни с экспертами Kitchen Division</h3><p>Решения под задачи проекта, технические нюансы и 3D-модели по каждой фабрике.</p></div></div>
+    <div class="co" data-i="2" style="--x:.74;--y:.6;--l:170px;--a:-150deg;--cx:-450px;--cy:-200px"><span class="ln"></span><span class="pt"></span>
+      <div class="card"><div class="st">03 · Мебель</div><h3>Весь процесс — от подбора до реализации</h3><p>Подбор и альтернативы, документация, расчёты, доставка, проверка и сборка.</p></div></div>
+    <div class="co" data-i="3" style="--x:.2;--y:.66;--l:160px;--a:-38deg;--cx:126px;--cy:-212px"><span class="ln"></span><span class="pt"></span>
+      <div class="card"><div class="st">04 · Готово</div><h3>HOMEART — ваша платформа для ведения дизайн-проекта</h3><p>Один менеджер на весь проект.</p></div></div>
+  </div>
+</section>
+
+<!-- E -->
+<section class="v E" data-v="E">
+  <div class="lbl"><span><b>E · Пустая комната как холст.</b> Пока комната пустая, заголовок стоит крупно по центру. Появляется мебель — он уходит в угол, а этапы идут большими номерами справа внизу.</span></div>
+  <div class="frame"><video muted playsinline loop preload="auto" src="../img/hero/scene-d.mp4"></video>
+    <div class="big"><div class="st">HOMEART · комплектация интерьера с 2009 года</div><h1>Всё, что нужно для дизайн-проекта — в одном месте</h1><p>348 фабрик, одна команда и один менеджер на ваш проект.</p></div>
+    <div class="ch">
+      <div class="s" data-i="1"><div class="num">02</div><h2>Кухни с экспертами Kitchen Division</h2><p>Индивидуальные решения и 3D-модели по каждой фабрике.</p></div>
+      <div class="s" data-i="2"><div class="num">03</div><h2>Весь процесс — от подбора до реализации</h2><p>Документация, расчёты, доставка, проверка и сборка — берём на себя.</p></div>
+      <div class="s" data-i="3"><div class="num">04</div><h2>HOMEART — ваша платформа для ведения дизайн-проекта</h2><p>Один менеджер на весь проект.</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  const ACTS = [0, .17, .36, .8], B = [...ACTS, 1];
+  const clamp = v => Math.min(1, Math.max(0, v));
+  const tabs = document.getElementById('tabs'), scrub = document.getElementById('scrub');
+  let cur = document.querySelector('.v.on'), dragging = false;
+  const vidOf = v => v.querySelector('video');
+
+  function render(v, p) {
+    let a = 0; ACTS.forEach((x, i) => { if (p >= x) a = i });
+    v.querySelectorAll('[data-i]').forEach(el => el.classList.toggle('on', +el.dataset.i === a));
+    v.querySelectorAll('.dots i').forEach((d, i) => d.classList.toggle('on', i === a));
+    v.querySelectorAll('.toc li, .bar2 i').forEach((el, i) => el.style.setProperty('--f', clamp((p - B[i]) / (B[i + 1] - B[i])).toFixed(3)));
+    const fr = v.querySelector('.frame'); if (fr) fr.classList.toggle('moved', p >= ACTS[1] - .02);
+    if (!dragging) scrub.value = Math.round(p * 1000);
+  }
+  function loop() {
+    const vid = vidOf(cur);
+    if (vid.duration) render(cur, vid.currentTime / vid.duration);
+    requestAnimationFrame(loop);
+  }
+  function show(id) {
+    document.querySelectorAll('.v').forEach(v => { v.classList.toggle('on', v.dataset.v === id); vidOf(v).pause() });
+    tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === id));
+    cur = document.querySelector(`.v[data-v="${id}"]`);
+    const vid = vidOf(cur); vid.currentTime = 0; vid.play().catch(() => {});
+    history.replaceState(null, '', '#' + id);
+  }
+  tabs.onclick = e => { const b = e.target.closest('[data-v]'); if (b) show(b.dataset.v) };
+  scrub.oninput = () => { dragging = true; const vid = vidOf(cur); if (vid.duration) { vid.currentTime = scrub.value / 1000 * vid.duration; render(cur, scrub.value / 1000) } };
+  scrub.onchange = () => { dragging = false };
+  document.querySelectorAll('.toc li').forEach(li => li.onclick = () => { const vid = vidOf(cur); if (vid.duration) vid.currentTime = B[+li.dataset.i] * vid.duration + .05 });
+  // запасной путь: если анимационный цикл притормозил (фоновая вкладка) — обновляем по событию видео
+  document.querySelectorAll('video').forEach(v => v.addEventListener('timeupdate', () => { if (v === vidOf(cur) && v.duration) render(cur, v.currentTime / v.duration) }));
+  document.querySelectorAll('video').forEach(v => v.addEventListener('seeked', () => { if (v === vidOf(cur) && v.duration) render(cur, v.currentTime / v.duration) }));
+  show((location.hash || '#A').slice(1));
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

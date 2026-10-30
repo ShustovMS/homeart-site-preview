@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Карточка товара — тест v5 · HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap">
+<link rel="stylesheet" href="../assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="../assets/site.css?v=1793390595">
+<style>
+/* Служебная страница: тестовая карточка товара v5 — главы по экрану (подача) + закреплённое описание (как у Casa Ricca).
+   Фото, видео и тексты фабрик — с официальных сайтов, только для теста. На боевой сайт не выкладывается. */
+:root{--paper:#fff;--out:cubic-bezier(.23,1,.32,1);--r2:3px;--stick:28px}
+.ico{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.t{display:inline-block;vertical-align:middle;margin-left:8px;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:3px 6px}
+
+.vbar{background:var(--ink);color:#f3eee6;font-size:13px}
+.vbar__in{max-width:var(--maxw);margin:0 auto;padding:10px var(--gutter);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.vbar__t{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.vbar__tabs{display:flex;gap:4px;flex-wrap:wrap}
+.vbar__tabs a{padding:6px 13px;border-radius:999px;border:.5px solid rgba(243,238,230,.32)}
+.vbar__tabs a:hover{border-color:#f3eee6}
+.vbar__tabs a.on{background:#f3eee6;color:var(--ink)}
+.vbar__note{flex-basis:100%;color:#bdb6aa;font-size:12.5px;line-height:1.5}
+.vbar__note a{border-bottom:1px solid rgba(243,238,230,.4)}
+
+.split{display:grid;grid-template-columns:clamp(150px,12.5vw,220px) minmax(0,1.25fr) minmax(0,.8fr);gap:clamp(22px,3vw,60px);margin-top:26px;align-items:start}
+
+/* видео — слева, стоит */
+.vid{position:sticky;top:var(--stick);cursor:pointer;outline-offset:4px}
+.vid__h{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);margin-bottom:12px}
+.vid__h i{width:6px;height:6px;border-radius:50%;background:var(--ink);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.vid__f{position:relative;aspect-ratio:9/16;border-radius:var(--r2);overflow:hidden;background:#1d1b18}
+.vid__f video,.vid__f img{width:100%;height:100%;object-fit:cover}
+.vid__f img{animation:kb 16s ease-in-out infinite alternate;filter:saturate(.85)}
+@keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.22) translate(-6%,-4%)}}
+.vid__play{position:absolute;left:50%;top:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;display:grid;place-items:center;background:rgba(250,250,248,.9);color:var(--ink);opacity:0;transition:opacity .3s}
+.vid:hover .vid__play,.vid:focus-visible .vid__play{opacity:1}
+.vid__soon{position:absolute;left:12px;right:12px;bottom:12px;font-size:12.5px;line-height:1.4;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55)}
+.vid__c{font-size:12.5px;color:var(--graphite-2);margin-top:10px;line-height:1.45}
+
+/* ── главы: движется только эта колонка ── */
+.rib{position:relative}
+.rib__nav{position:sticky;top:var(--stick);height:0;z-index:4}
+.rib__nav ol{position:absolute;left:calc(-1 * clamp(11px,1.5vw,30px));transform:translateX(-50%);list-style:none;display:flex;flex-direction:column;gap:2px;padding-top:6px}
+.rib__nav button{display:grid;place-items:center;width:22px;height:16px;color:var(--sand);transition:color .25s}
+.rib__nav button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.rib__nav button i{width:10px;height:1.5px;background:currentColor;transition:width .35s var(--out)}
+.rib__nav button:hover{color:var(--graphite)}
+.rib__nav button.on{color:var(--ink)}
+.rib__nav button.on i{width:20px}
+.sc{position:relative;min-height:calc(100vh - 2 * var(--stick));display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,56px) 0}
+.sc:first-child{min-height:0;padding-top:0}
+.big{font-family:var(--sans);font-weight:300;font-size:clamp(22px,1.9vw,32px);line-height:1.2;letter-spacing:0;text-transform:uppercase;text-wrap:balance}
+.lede{font-size:15.5px;line-height:1.65;color:var(--graphite);max-width:40ch}
+.pic{margin:0;position:relative;overflow:hidden;border-radius:var(--r2);background:var(--paper);cursor:zoom-in}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+.pic--cut img{object-fit:contain;mix-blend-mode:multiply;padding:8%}
+.chipx{position:absolute;right:12px;bottom:12px;font-size:11px;padding:5px 10px;border-radius:999px;background:rgba(250,250,248,.9);color:var(--graphite)}
+/* появление: слово выезжает снизу, один раз */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--out),transform 1.2s var(--out)}
+.in .rv{opacity:1;transform:none}
+.in .rv:nth-child(2){transition-delay:.08s}.in .rv:nth-child(3){transition-delay:.16s}
+
+/* 1 — герой: крупное слово наезжает на фото */
+/* 1 — первый кадр: только фото, предмет крупно и целиком, сразу сверху */
+.sc.sc--hero{min-height:0;padding-top:0;justify-content:flex-start}
+.sc--hero .pic{aspect-ratio:4/5;max-height:calc(100vh - 140px)}
+.sc--hero .pic img{transition:none}
+/* 2 — макро на весь блок, слово поверх */
+.sc--macro .pic{position:absolute;inset:clamp(28px,4vw,56px) 0;border-radius:var(--r2)}
+.sc--macro .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,15,0) 40%,rgba(20,18,15,.62) 100%);pointer-events:none}
+.sc--macro .ov{position:relative;z-index:2;margin-top:auto;padding:0 clamp(20px,3vw,44px) clamp(24px,3vw,40px);color:#fff;pointer-events:none}
+.sc--macro .lede{color:rgba(255,255,255,.86);margin-top:14px}
+/* 3 — чертёж как графика: размеры крупными цифрами */
+.sc--draw{background-image:linear-gradient(rgba(26,26,26,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,26,26,.05) 1px,transparent 1px);background-size:32px 32px}
+.sc--draw .dw{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(16px,2vw,32px);align-items:center}
+.sc--draw .pic--draw{background:transparent;aspect-ratio:1/1}
+.sc--draw .pic--draw img{mix-blend-mode:multiply;object-fit:contain;transform:scale(1.75)}
+.sc--draw .num2{font-weight:200;font-size:clamp(28px,2.6vw,46px);letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums;text-wrap:balance}
+.sc--draw small{display:block;margin-top:10px;font-size:12.5px;color:var(--graphite-2)}
+/* 4 — пара: большое и малое фото, текст между */
+.sc--duo .duo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:end}
+.sc--duo .a{grid-column:1/10;grid-row:1;aspect-ratio:4/3}
+.sc--duo .b{grid-column:8/13;grid-row:1;align-self:end;aspect-ratio:3/4;margin-bottom:-14%;z-index:2;box-shadow:0 26px 54px rgba(26,26,26,.2)}
+.sc--duo .tx{margin-top:clamp(56px,7vw,110px);max-width:30rem}
+.sc--duo .lede{margin-top:14px}
+/* 5 — автор: портрет и цитата крупно */
+.sc--who .who{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,3vw,48px);align-items:end}
+.sc--who .pic{aspect-ratio:3/4;align-self:end}
+.sc--who .pic img{object-position:50% 18%}
+.sc--who blockquote{font-weight:200;font-size:clamp(24px,2.3vw,38px);line-height:1.22;letter-spacing:-.015em}
+.sc--who blockquote small{display:block;margin-top:16px;font-style:italic;font-weight:300;font-size:13px;line-height:1.55;color:var(--graphite-2);letter-spacing:0}
+.sc--who .n{margin-top:22px;font-size:14px}
+.sc--who .n span{color:var(--graphite-2)}
+
+.loupe{position:absolute;width:clamp(96px,9.5vw,148px);aspect-ratio:1;border-radius:50%;pointer-events:none;z-index:3;border:3px solid rgba(255,255,255,.96);
+  box-shadow:0 20px 44px rgba(26,26,26,.26);background-size:cover;background-position:center;background-color:var(--paper);transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .5s var(--out),transform .7s var(--out)}
+.loupe.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.loupe span{position:absolute;left:50%;top:100%;transform:translate(-50%,10px);white-space:nowrap;font-size:11px;letter-spacing:.06em;background:rgba(26,26,26,.86);color:#fff;padding:6px 11px;border-radius:999px}
+
+/* ── описание — справа, стоит ── */
+.info{position:sticky;top:var(--stick);padding:4px 2px 24px}
+.fac{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.fac a:hover{color:var(--amber)}
+.fac .c{color:var(--graphite-2)}
+.lvl2{display:inline-flex;align-items:center;gap:7px;letter-spacing:.02em;text-transform:none;font-weight:400;font-size:12.5px;color:var(--graphite-2)}
+.lvl2 i{display:inline-flex;gap:3px}
+.lvl2 i b{width:5px;height:5px;border-radius:50%;background:var(--sand)}
+.lvl2 i b.on{background:var(--brass)}
+.info h1{font-size:clamp(30px,2.8vw,46px);font-weight:200;letter-spacing:-.025em;margin:16px 0 8px;text-wrap:balance}
+.author{font-size:14px;color:var(--graphite-2)}
+.author b{font-weight:400;color:var(--ink)}
+.tagline{margin-top:22px;font-weight:300;font-size:clamp(16.5px,1.3vw,19px);line-height:1.5;color:var(--ink-soft);max-width:40ch;text-wrap:pretty}
+.origbtn{margin-left:4px;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--graphite-2);border-bottom:1px dotted currentColor;vertical-align:2px}
+.orig{margin-top:10px;font-style:italic;font-weight:300;font-size:13.5px;line-height:1.55;color:var(--graphite-2);max-width:48ch;display:none}
+.orig.on{display:block;animation:fade .4s var(--out)}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}}
+.avail{margin-top:26px;display:flex;gap:12px;align-items:baseline;font-size:14.5px;line-height:1.5}
+.avail small{display:block;color:var(--graphite-2);font-size:13px}
+.avail button{color:var(--ink);border-bottom:1px solid var(--line)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 4px var(--emerald-wash);flex:none;transform:translateY(-1px)}
+.price{margin-top:22px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.price .now{font-size:clamp(28px,2.2vw,34px);font-weight:200;letter-spacing:-.01em}
+.price s{font-size:16px;color:var(--graphite-2)}
+.off{font-size:11.5px;font-weight:500;color:var(--ink);border:1px solid var(--ink);border-radius:999px;padding:2px 8px;align-self:center}
+.promo{font-size:13px;color:var(--ink);margin-top:2px}
+.pnote{font-size:12.5px;color:var(--graphite-2);margin-top:6px;max-width:44ch}
+.buy{margin-top:20px}
+.buy .btn{width:100%;padding:17px 24px}
+.acts{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:18px;font-size:13.5px}
+.acts button{display:inline-flex;align-items:center;gap:8px;color:var(--ink-soft);transition:color .2s}
+.acts button:hover{color:var(--amber)}
+.acc{margin-top:26px;border-top:.5px solid var(--line)}
+.acc details{border-bottom:.5px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:15px 0;font-size:14.5px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary i{width:11px;height:11px;position:relative;flex:none}
+.acc summary i::before,.acc summary i::after{content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:currentColor;transition:transform .35s var(--out)}
+.acc summary i::after{transform:rotate(90deg)}
+.acc details[open] summary i::after{transform:rotate(0)}
+.acc .in{padding:0 0 18px;font-size:14px;line-height:1.6;animation:fade .35s var(--out)}
+.acc dl{display:grid;grid-template-columns:auto 1fr;gap:8px 20px}
+.acc dt{color:var(--graphite-2)}
+.acc dd a,.acc .links a,.acc .links button{border-bottom:1px solid var(--line)}
+.acc .links{display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin-top:12px}
+.acc p{color:var(--graphite)}
+
+.more{margin-top:clamp(70px,8vw,120px)}
+.more__h{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.more__h h2{font-weight:200}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3*20px)/4);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 0 14px;scrollbar-width:thin}
+.rail>a{scroll-snap-align:start;display:flex;flex-direction:column;gap:4px}
+.rail figure{margin:0 0 10px;aspect-ratio:4/5;border-radius:var(--r2);overflow:hidden;background:var(--paper)}
+.rail img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;padding:9%;transition:transform .9s var(--out)}
+.rail img.cv{object-fit:cover;padding:0;mix-blend-mode:normal}
+.rail>a:hover img{transform:scale(1.04)}
+.rail small{font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--graphite-2)}
+.rail .p{font-size:14px;color:var(--graphite)}
+.invite{margin:clamp(56px,6vw,96px) 0;font-weight:200;font-size:clamp(20px,1.8vw,26px);line-height:1.45;max-width:46rem}
+.invite a{border-bottom:1px solid var(--line);white-space:nowrap}
+
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(250,250,248,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:.5px solid var(--line);transform:translateY(110%);transition:transform .45s var(--out)}
+.buybar.on{transform:none}
+.buybar__i{min-width:0;flex:1}
+.buybar__n{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.buybar__p{font-size:16px}
+.lb{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border:0;padding:0;background:#f4f1ec}
+.lb::backdrop{background:rgba(20,18,15,.6)}
+.lb__track{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.lb__track::-webkit-scrollbar{display:none}
+.lb__track figure{flex:0 0 100%;height:100%;scroll-snap-align:center;margin:0;display:grid;place-items:center;padding:64px clamp(16px,6vw,96px)}
+.lb__track img,.lb__track video{max-width:100%;max-height:100%;object-fit:contain}
+.lb__x,.lb__nav{position:absolute;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(250,250,248,.94)}
+.lb__x{top:14px;right:14px}.lb__nav{top:50%;transform:translateY(-50%)}.lb__nav--p{left:14px}.lb__nav--n{right:14px}
+.lb__c{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-size:12px;letter-spacing:.1em}
+
+@media(max-width:1240px){
+  .split{grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr)}
+  .vid{grid-column:1;grid-row:1;position:static;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0 20px;align-items:end;margin-bottom:36px}
+  .vid__h{grid-column:1/-1}
+  .vid__f{aspect-ratio:16/10}
+  .rib{grid-column:1;grid-row:2}
+  .info{grid-column:2;grid-row:1/span 2}
+  .rib__nav{display:none}
+}
+/* телефон: первая глава, затем описание, затем остальные главы и видео */
+@media(max-width:980px){
+  .split{display:flex;flex-direction:column;gap:0}
+  .rib{display:contents}
+  .sc{order:3;min-height:0;padding:clamp(40px,10vw,64px) 0 0}
+  .sc:first-of-type{order:1;padding-top:0}
+  .info{order:2;position:static;max-height:none;overflow:visible;margin-top:26px}
+  .vid{order:4;margin:48px 0 0;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+  .vid__f{aspect-ratio:4/5}
+  .sc--hero .pic{max-height:none}
+  .sc--macro{min-height:72vh}
+  .sc--macro .pic{inset:clamp(40px,10vw,64px) 0 0}
+  .sc--draw .dw,.sc--who .who{grid-template-columns:minmax(0,1fr)}
+  .sc--duo .a{grid-column:1/11}
+  .sc--duo .b{grid-column:7/13}
+  .loupe{width:82px}
+  .loupe span{font-size:10px;padding:4px 8px}
+  .rail{grid-auto-columns:70%}
+  .buybar{display:flex}
+  body{padding-bottom:76px}
+}
+@media(prefers-reduced-motion:reduce){.vid__f img,.vid__h i{animation:none}.rv{opacity:1;transform:none;transition:none}.pic img{transform:none!important}}
+</style>
+</head>
+<body data-page="catalog" data-root="../">
+<div class="vbar" id="vbar"></div>
+<div id="hdr"></div>
+<main class="wrap" id="main"></main>
+<div id="ftr"></div>
+<div class="buybar" id="buybar" aria-hidden="true"></div>
+<dialog class="lb" id="lb" aria-label="Просмотр">
+  <div class="lb__track" id="lbTrack"></div>
+  <button type="button" class="lb__x" id="lbX" aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="lb__nav lb__nav--p" id="lbP" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="lb__nav lb__nav--n" id="lbN" aria-label="Вперёд"><svg class="ico" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb__c" id="lbC"></div>
+</dialog>
+<script src="../data/data.js?v=1793390595"></script>
+<script src="../data/stock.js?v=1793390595"></script>
+<script src="../assets/site.js?v=1793390595"></script>
+<script>
+(function () {
+  const { fmt, esc, qs, brandFactory, toast } = HA;
+  const D = 'pdp-test/';
+  const VVD = {
+    who: 'Vincent Van Duysen', role: 'бельгийский архитектор, с 2016 года — креативный директор Molteni&C', img: 'vvd.jpg',
+    ru: 'Чувство защищённости очень важно — оно нужно всем нам. Его я и хочу передать в архитектуре и дизайне.',
+    orig: 'Sentirsi protetti è qualcosa di molto importante, di cui tutti abbiamo bisogno, è qualcosa che vorrei tradurre nei miei progetti di architettura e design.',
+  };
+  /* Главы: hero · macro · draw · duo · who. Тексты — из официальных источников фабрик; переводы и заголовки — черновик. */
+  const C = 'cleo/0000_PH_Col_Set_Cleo_Sofas_Indoor_', P = 'paula/2023_PH_Col_Set_Paula_Armchair', L = 'loic/';
+  const X = {
+    'm-p003': {
+      designer: 'Vincent Van Duysen', src: 'https://www.molteni.it/it/eu/product/cleo',
+      tag: 'Плавная изогнутая оболочка обнимает сиденье и спинку — и диван становится укромным местом, где тепло и спокойно.',
+      orig: ['IT', 'La sua scocca fluida e curvilinea avvolge seduta e schienale creando un luogo raccolto, in equilibrio tra eleganza e sensazione di calore e relax.'],
+      loupe: { x: 84, y: 24, img: C + '10.jpg', label: 'Обивка крупно' },
+      sc: [
+        { k: 'hero', nav: 'Предмет', h: 'Укромное место', img: 'cleo/x_11.jpg', ratio: '4/3', pos: '64% 84%', zoom: 2.1, t: 'Цельная изогнутая оболочка охватывает сиденье и спинку. Её обтягивают тканью или кожей — в тон или контрастно.' },
+        { k: 'macro', nav: 'Фактура', h: 'Подушки как удобно', img: C + '10.jpg', t: 'Прямоугольные подушки спинки переставляются свободно: для чтения, разговора или отдыха.' },
+        { k: 'draw', nav: 'Размеры', img: 'cleo/td.jpg', side: '../img/stock/m-p003.jpg' },
+        { k: 'duo', nav: 'Интерьер', h: 'Будто парит', a: 'cleo/x_12.jpg', b: C + '08.jpg', t: 'Каркас стоит на тонких ножках из окрашенной стали — диван выглядит лёгким и у стены, и в центре гостиной.' },
+        { k: 'who', nav: 'Автор', q: VVD },
+      ],
+      note: 'Фото фабрики: обивка может отличаться от экземпляра в шоуруме.',
+    },
+    'm-p045': {
+      designer: 'Vincent Van Duysen', src: 'https://www.molteni.it/en/eu/product/paula',
+      tag: 'Форму кресла задают кожаные ремни-петли: на них держатся сиденье и спинка, перекинутые через металлическую раму.',
+      orig: ['EN', 'Paula’s shape is defined by an innovative system of looping leather straps that attach the seat and backrest to the metal frame.'],
+      loupe: { corner: 'left', img: P + 's_Indoor_Web_02.jpg', size: '520%', pos: '41% 47%', label: 'Кожа крупно' },
+      video: 'paula/video.mp4', vposter: P + 's_Indoor_Web_02.jpg',
+      sc: [
+        { k: 'hero', nav: 'Предмет', h: 'Мягкое на строгом', img: P + '_Indoor_Web_07.jpg', t: 'Консольная металлическая рама и «подвешенные» подушки: мягкое сиденье на прочном и лёгком каркасе.' },
+        { k: 'macro', nav: 'Ремни', h: 'Держится на ремнях', img: P + 's_Indoor_Web_02.jpg', t: 'Кожаные ремни-петли крепят сиденье, спинку и подушки к раме. Конструкция открыта — и становится украшением.' },
+        { k: 'draw', nav: 'Размеры', img: 'paula/td.jpg', side: P + 's_Indoor_03.jpg' },
+        { k: 'duo', nav: 'Интерьер', h: 'Наследник модернизма', a: P + 's_Indoor_Web_04.jpg', b: P + 's_Indoor_03.jpg', t: 'Автор вдохновлялся мебелью модернистов — в том числе креслом Barcelona Миса ван дер Роэ. К креслу есть пуф в пару.' },
+        { k: 'who', nav: 'Автор', q: VVD },
+      ],
+      note: 'Фото фабрики: кожа и металл могут отличаться от экземпляра в Санкт-Петербурге.',
+    },
+    'm-p019': {
+      designer: 'Boatto Martino Studio', year: 2022, src: 'https://www.capitalcollection.it/en/products/loic',
+      tag: null,
+      loupe: { x: 80, y: 19, img: L + 'CAPITAL-Loic-tondo-v10.jpg', label: 'Дерево и мрамор' },
+      sc: [
+        { k: 'hero', nav: 'Предмет', h: 'Дерево и мрамор', img: L + 'CAPITAL-Loic-tondo-v1.jpg', cut: true, t: 'Круглый обеденный стол. На фото — отделка экземпляра из шоурума: тёмное дерево, мрамор Sahara Noir, бронза.' },
+        { k: 'macro', nav: 'Фактура', h: 'Два материала в одной ножке', img: L + 'CAPITAL-Loic-tondo-v10.jpg', t: 'Сверху — дерево, снизу — мрамор. Стык становится рисунком.' },
+        { k: 'draw', nav: 'Размеры', img: null, side: L + 'CAPITAL-Loic-tondo-v11.jpg' },
+        { k: 'duo', nav: 'Интерьер', h: 'За большим столом', a: L + 'LOIC-round-table-ambient-1.jpg', b: L + 'loic-hoover-1.jpg', chip: 'Другая отделка', t: 'Круглый стол собирает компанию в центре комнаты.' },
+      ],
+      note: '',
+    },
+  };
+  const ORDER = [['m-p045', 'Кресло Paula'], ['m-p003', 'Диван Cleo'], ['m-p019', 'Стол LOIC']];
+  const id = X[qs.get('id')] ? qs.get('id') : ORDER[0][0];
+  const p = STOCK.find(s => s.id === id), x = X[id], f = brandFactory(p.brand);
+  const what = `${p.brand} — ${p.name}`;
+  const I = {
+    cube: '<svg class="ico" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>',
+    share: '<svg class="ico" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M5 13v6h14v-6"/></svg>',
+    chat: '<svg class="ico" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+  };
+  const src = s => s.startsWith('../') ? s : D + s;
+  const LV = ['Средний', 'Выше среднего', 'Высокий', 'Люкс'];
+  const lvl = f && f.level ? `<span class="lvl2" title="Ценовой уровень фабрики"><i>${[1, 2, 3, 4].map(i => `<b class="${i <= LV.indexOf(f.level) + 1 ? 'on' : ''}"></b>`).join('')}</i>${esc(f.level)}${f.levelSrc === 'предварительно' ? '<span class="t">предв.</span>' : ''}</span>` : '';
+  const qty = `${p.qty} ${p.unit === 'компл.' ? 'компл.' : 'шт.'}`;
+
+  document.getElementById('vbar').innerHTML = `<div class="vbar__in"><span class="vbar__t">Тестовая карточка · v5</span>
+    <nav class="vbar__tabs">${ORDER.map(([k, n]) => `<a class="${k === id ? 'on' : ''}" href="?id=${k}">${n}</a>`).join('')}</nav>
+    <p class="vbar__note">Тестовая подача карточки на позициях EXPO. Фото, видео и описания — с сайта фабрики, только для теста (<a href="${x.src}" target="_blank" rel="noopener">источник</a>); переводы и заголовки — черновик.</p></div>`;
+
+  /* ── видео ── */
+  const play = '<span class="vid__play"><svg class="ico" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M8 5v14l11-7z"/></svg></span>';
+  const vid = x.video
+    ? `<aside class="vid" id="vid" role="button" tabindex="0" aria-label="Открыть видео крупно"><div class="vid__h"><i></i>Видео</div>
+        <div class="vid__f"><video src="${D + x.video}" muted autoplay loop playsinline poster="${D + x.vposter}"></video>${play}</div>
+        <p class="vid__c">${esc(p.name)} в движении. Видео фабрики.</p></aside>`
+    : `<aside class="vid" id="vid" role="button" tabindex="0" aria-label="Видео появится позже"><div class="vid__h"><i></i>Видео</div>
+        <div class="vid__f"><img src="${src(x.sc[3] ? x.sc[3].a : x.sc[0].img)}" alt=""><span class="vid__soon">Здесь будет видео из шоурума</span></div>
+        <p class="vid__c">Короткий ролик: как ${p.type === 'Стол' ? 'за столом сидят' : 'на нём сидят и как ложится материал'}.</p></aside>`;
+
+  /* ── главы ── */
+  const allImgs = [];
+  const ph = (s, cls = '', extra = '', cut = false) => { allImgs.push(src(s)); return `<figure class="pic ${cls} ${cut ? 'pic--cut' : ''}" data-src="${src(s)}"><img loading="lazy" src="${src(s)}" alt="">${extra}</figure>` };
+  const dimsBig = p.dims ? esc(p.dims).replace(/[xх×*]/gi, ' × ') : '';
+  const scene = c => {
+    // первый кадр — только фото; zoom приближает предмет внутри снимка высокого разрешения (без потери качества)
+    if (c.k === 'hero') return `<section class="sc sc--hero" data-nav="${c.nav}">${ph(c.img, '', '', c.cut).replace('loading="lazy"', '')
+      .replace('class="pic', `style="${c.ratio ? `aspect-ratio:${c.ratio}` : ''}" class="pic`)
+      .replace('alt=""', `alt="${esc(p.brand)} ${esc(p.name)}" style="${c.pos ? `object-position:${c.pos};` : ''}${c.zoom ? `transform:scale(${c.zoom});transform-origin:${c.pos}` : ''}"`)}</section>`;
+    if (c.k === 'macro') return `<section class="sc sc--macro" data-nav="${c.nav}">${ph(c.img)}<div class="ov"><h2 class="big rv">${c.h}</h2><p class="lede rv">${c.t}</p></div></section>`;
+    if (c.k === 'draw') return c.img
+      ? `<section class="sc sc--draw" data-nav="${c.nav}"><div class="dw">${ph(c.img, 'pic--draw')}
+          <div><p class="num2 rv">${dimsBig || 'Размеры по запросу'}</p><small class="rv">Размеры экземпляра — как в каталоге наличия. На чертеже — модель фабрики.</small></div></div></section>`
+      : `<section class="sc sc--draw" data-nav="${c.nav}"><div class="dw" style="grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)">
+          <div><p class="num2 rv">${dimsBig || 'Размеры по запросу'}</p><small class="rv">Размеры экземпляра — как в каталоге наличия.</small></div>${c.side ? ph(c.side) : ''}</div></section>`;
+    if (c.k === 'duo') return `<section class="sc sc--duo" data-nav="${c.nav}"><div class="duo">${ph(c.a, 'a', c.chip ? `<span class="chipx">${c.chip}</span>` : '')}${ph(c.b, 'b')}</div>
+        <div class="tx"><h2 class="big rv">${c.h}</h2><p class="lede rv">${c.t}</p></div></section>`;
+    if (c.k === 'who') return `<section class="sc sc--who" data-nav="${c.nav}"><div class="who">${ph(c.q.img)}<div><blockquote class="rv">«${esc(c.q.ru)}»<small>${esc(c.q.orig)}</small></blockquote>
+        <p class="n rv">${esc(c.q.who)} <span>— ${esc(c.q.role)}</span><span class="t">тест</span></p></div></div></section>`;
+    return '';
+  };
+  const navs = x.sc.map(c => c.nav);
+  const rib = `<div class="rib" id="rib">
+      <nav class="rib__nav" aria-label="Главы"><ol>${navs.map((n, i) => `<li><button type="button" class="${i ? '' : 'on'}" data-go="${i}" title="${n}"><i></i><span>${n}</span></button></li>`).join('')}</ol></nav>
+      ${x.sc.map(scene).join('')}
+      <div class="loupe" id="loupe"><span>${x.loupe.label}</span></div>
+    </div>`;
+
+  /* ── описание ── */
+  const where = p.loc === 'Москва'
+    ? `<span class="dot"></span><span>В шоуруме на 3-й Фрунзенской — можно посмотреть и потрогать.<small>${qty} · <button type="button" data-call="Посмотреть в шоуруме: ${esc(what)}">договориться о просмотре</button></small></span>`
+    : `<span class="dot"></span><span>В Санкт-Петербурге.<small>${qty} · <button type="button" data-call="Посмотреть в Санкт-Петербурге: ${esc(what)}">договориться о просмотре</button></small></span>`;
+  const rows = [['Фабрика', f ? `<a href="../factory.html?id=${f.id}">${esc(f.name)} · ${esc(f.country)}</a>` : esc(p.brand)], x.designer && ['Дизайн', esc(x.designer)],
+    p.dims && ['Размеры', `<span class="num">${esc(p.dims)}</span>`], p.finish && ['Отделка', esc(p.finish)],
+    ['Где', p.loc === 'Москва' ? 'Шоурум, 3-я Фрунзенская, 1' : 'Санкт-Петербург'], ['Количество', qty],
+    p.url && ['О модели', `<a href="${esc(p.url)}" target="_blank" rel="noopener">Сайт фабрики ↗</a>`]].filter(Boolean);
+  const info = `<div class="info" id="info">
+      <div class="fac">${f ? `<a href="../factory.html?id=${f.id}">${esc(f.name)}</a><span class="c">${esc(f.country)}</span>` : esc(p.brand)}${lvl}</div>
+      <h1>${esc(p.name)}</h1>
+      ${x.designer ? `<div class="author">Дизайн — <b>${esc(x.designer)}</b>${x.year && p.discount ? ` · коллекция ${x.year}` : ''}<span class="t">тест</span></div>` : ''}
+      ${x.tag ? `<p class="tagline">${x.tag} <button type="button" class="origbtn" id="origBtn" aria-expanded="false" title="Оригинал фабрики">${x.orig[0]}</button></p><p class="orig" id="orig">${esc(x.orig[1])}</p>` : ''}
+      <div class="avail">${where}</div>
+      <div class="price"><span class="now num">${fmt.eur(p.price)}</span>${p.base ? `<s class="num">${fmt.eur(p.base)}</s>` : ''}${p.discount ? `<span class="off">${esc(p.discount)}</span>` : ''}</div>
+      ${p.discount && x.year ? `<p class="promo">Экспозиционный образец коллекции ${x.year} года.</p>` : ''}
+      <p class="pnote">${p.unit === 'компл.' ? 'За комплект. ' : ''}Цена в евро — как в каталоге наличия. Условия оплаты уточнит менеджер.</p>
+      <div class="buy" id="mainCta"><button type="button" class="btn" data-call="Бронь из наличия: ${esc(what)}">Забронировать</button></div>
+      <div class="acts">
+        <button type="button" data-call="Запрос 3D-модели и технички: ${esc(what)}">${I.cube} 3D и техничка</button>
+        <button type="button" id="share">${I.share} Переслать клиенту</button>
+        <button type="button" data-call="Вопрос менеджеру: ${esc(what)}">${I.chat} Вопрос менеджеру</button>
+      </div>
+      <div class="acc">
+        <details><summary>Характеристики<i></i></summary><div class="in"><dl>${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>${x.note ? `<p style="margin-top:12px;font-size:12.5px;color:var(--graphite-2)">${x.note}</p>` : ''}</div></details>
+        <details><summary>Под заказ у фабрики<i></i></summary><div class="in"><p>Нужен другой размер, ткань или кожа? ${esc(p.name.replace(/^\S+\s/, ''))} изготовит фабрика под ваш проект — менеджер посчитает срок и цену.</p>
+          <div class="links"><button type="button" data-call="Под заказ у фабрики: ${esc(what)}">Запросить расчёт</button>
+            ${f ? `<a href="../factory.html?id=${f.id}">Вся фабрика ${esc(f.name)}</a>` : ''}<a href="../catalog.html?cat=${encodeURIComponent(p.group)}">${esc(p.group)} в наличии</a></div></div></details>
+      </div>
+    </div>`;
+
+  const same = STOCK.filter(s => s.id !== p.id && s.brand === p.brand).slice(0, 8);
+  const more = same.length ? `<section class="more"><div class="more__h"><h2>Ещё ${esc(f ? f.name : p.brand)} в наличии</h2><a class="link" href="../catalog.html?brand=${encodeURIComponent(p.brand)}">Все →</a></div>
+    <div class="rail">${same.map(s => `<a href="../product.html?id=${encodeURIComponent(s.id)}"><figure><img loading="lazy" class="${s.pack ? '' : 'cv'}" src="../${s.imgs[0]}" alt=""></figure>
+      <small>${esc(s.brand)}</small><span>${esc(s.name)}</span><span class="p num">${fmt.eur(s.price)}</span></a>`).join('')}</div></section>` : '';
+  const invite = `<p class="invite">Хотите увидеть вживую и встретиться с коллегами — приходите на встречу HOMEART Academy в шоуруме. <a href="${HA.BOT}" target="_blank" rel="noopener">Анонсы встреч →</a></p>`;
+
+  document.title = `${p.name} · ${p.brand} — HOMEART`;
+  document.getElementById('main').innerHTML = `<div class="crumbs"><a href="../index.html">Главная</a><span>/</span><a href="../catalog.html">Наличие</a><span>/</span><span>${esc(p.name)}</span></div>
+    <div class="split">${vid}${rib}${info}</div>${more}${invite}`;
+
+  const ob = document.getElementById('origBtn');
+  if (ob) ob.onclick = () => { const o = document.getElementById('orig'); const on = !o.classList.contains('on'); o.classList.toggle('on', on); ob.setAttribute('aria-expanded', on) };
+
+  /* ── лупа на первой главе: настоящий макро-снимок ── */
+  const scs = [...document.querySelectorAll('.sc')], loupe = document.getElementById('loupe'), ribEl = document.getElementById('rib');
+  const heroPh = scs[0].querySelector('.pic'), heroImg = heroPh.querySelector('img');
+  let loupeOn = false;
+  const placeLoupe = () => {
+    const r = heroPh.getBoundingClientRect(), s = (getComputedStyle(ribEl).display === 'contents' ? document.querySelector('.split') : ribEl).getBoundingClientRect();
+    // лупа — в верхнем углу фото, на пустом месте, чтобы не закрывать предмет
+    const half = loupe.offsetWidth / 2, gap = 18, right = x.loupe.corner !== 'left';
+    loupe.style.left = (r.left - s.left + (right ? r.width - half - gap : half + gap)) + 'px';
+    loupe.style.top = (r.top - s.top + half + gap) + 'px';
+  };
+  // в лупе — обивка: целый макро-кадр или увеличенный участок настоящего снимка высокого разрешения
+  const showLoupe = () => {
+    placeLoupe(); loupe.style.backgroundImage = `url("${D + x.loupe.img}")`;
+    loupe.style.backgroundSize = x.loupe.size || 'cover'; loupe.style.backgroundPosition = x.loupe.pos || 'center';
+    loupe.classList.add('on'); loupeOn = true;
+  };
+  if (getComputedStyle(ribEl).display === 'contents') document.querySelector('.split').style.position = 'relative', document.querySelector('.split').appendChild(loupe);
+  const start = () => setTimeout(() => { if (scrollY < innerHeight * .5) showLoupe() }, 1300);
+  heroImg.complete ? start() : heroImg.addEventListener('load', start);
+
+  /* ── прокрутка: появление, лёгкое движение фото, активная глава, панель на телефоне ── */
+  const navBtns = [...document.querySelectorAll('[data-go]')];
+  navBtns.forEach(b => b.onclick = () => scrollTo({ top: scs[+b.dataset.go].getBoundingClientRect().top + scrollY - 20, behavior: 'smooth' }));
+  const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const bar = document.getElementById('buybar'), cta = document.getElementById('mainCta'), narrow = matchMedia('(max-width:980px)');
+  bar.innerHTML = `<div class="buybar__i"><div class="buybar__n">${esc(p.brand)} · ${esc(p.name)}</div><div class="buybar__p num">${fmt.eur(p.price)}</div></div>
+    <button type="button" class="btn" data-call="Бронь из наличия: ${esc(what)}">Забронировать</button>`;
+  let tick = false;
+  const sync = () => {
+    tick = false; const vh = innerHeight; let act = 0;
+    scs.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      if (r.top < vh * .85) s.classList.add('in');
+      if (r.top < vh * .45) act = i;
+      if (!still && !s.classList.contains('sc--who')) { const k = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh)); s.querySelectorAll('.pic:not(.pic--cut):not(.pic--draw) img:not([style*="object-position"])').forEach(im => im.style.transform = `translateY(${(k * 5).toFixed(2)}%) scale(1.1)`) }
+    });
+    navBtns.forEach((b, i) => b.classList.toggle('on', i === act));
+    if (loupeOn && scrollY > vh * .6) { loupe.classList.remove('on'); loupeOn = false }
+    const on = narrow.matches && cta.getBoundingClientRect().bottom < 0; bar.classList.toggle('on', on); bar.setAttribute('aria-hidden', String(!on));
+  };
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(sync) } }, { passive: true });
+  /* ── закреплённые колонки встают под шапкой сайта (если она закреплена);
+        высокая колонка описания сначала прокручивается до конца и только потом закрепляется — ничего не обрезается ── */
+  const infoEl = document.getElementById('info'), hdrEl = document.querySelector('.hdr');
+  const layoutSticky = () => {
+    const hp = hdrEl ? getComputedStyle(hdrEl).position : '';
+    const stick = (hdrEl && (hp === 'sticky' || hp === 'fixed') ? hdrEl.offsetHeight : 0) + 24;
+    document.documentElement.style.setProperty('--stick', stick + 'px');
+    if (narrow.matches) { infoEl.style.top = ''; return }
+    const room = innerHeight - stick - 24;
+    infoEl.style.top = (infoEl.offsetHeight > room ? innerHeight - infoEl.offsetHeight - 24 : stick) + 'px';
+  };
+  document.querySelectorAll('.acc details').forEach(d => d.addEventListener('toggle', layoutSticky));
+  addEventListener('resize', () => { layoutSticky(); sync(); if (loupeOn) placeLoupe() });
+  addEventListener('load', layoutSticky);
+  layoutSticky();
+  sync();
+
+  /* ── видео ── */
+  const vd = document.getElementById('vid');
+  const openVid = () => x.video ? openLb(0, ['video:' + D + x.video]) : toast('Видео из шоурума появится позже.');
+  vd.onclick = openVid; vd.onkeydown = e => { if (e.key === 'Enter') openVid() };
+
+  document.getElementById('share').onclick = async () => {
+    try {
+      if (navigator.share) { await navigator.share({ title: `${p.name} · ${p.brand}`, url: location.href }); return }
+      await navigator.clipboard.writeText(location.href); toast('Ссылка скопирована — отправьте её клиенту.');
+    } catch (e) { if (e && e.name !== 'AbortError') toast('Скопируйте адрес страницы из строки браузера.') }
+  };
+
+  /* ── просмотр во весь экран ── */
+  const lb = document.getElementById('lb'), lbT = document.getElementById('lbTrack'), lbC = document.getElementById('lbC');
+  let set = [];
+  const lbI = () => Math.round(lbT.scrollLeft / (lbT.clientWidth || 1));
+  const lbGo = i => { lbT.scrollTo({ left: i * lbT.clientWidth }); lbC.textContent = set.length > 1 ? `${i + 1} / ${set.length}` : '' };
+  lbT.addEventListener('scroll', () => { if (set.length > 1) lbC.textContent = `${lbI() + 1} / ${set.length}` }, { passive: true });
+  function openLb(i, list) {
+    set = list;
+    lbT.innerHTML = set.map(s => s.startsWith('video:') ? `<figure><video src="${s.slice(6)}" controls autoplay loop playsinline></video></figure>` : `<figure><img src="${s}" alt=""></figure>`).join('');
+    ['lbP', 'lbN'].forEach(k => document.getElementById(k).hidden = set.length < 2);
+    if (typeof lb.showModal === 'function') { lb.showModal(); document.body.style.overflow = 'hidden'; lbGo(Math.max(0, i)) }
+  }
+  lb.addEventListener('close', () => { document.body.style.overflow = ''; lbT.innerHTML = '' });
+  document.getElementById('lbX').onclick = () => lb.close();
+  document.getElementById('lbP').onclick = () => lbGo(Math.max(0, lbI() - 1));
+  document.getElementById('lbN').onclick = () => lbGo(Math.min(set.length - 1, lbI() + 1));
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') lbGo(Math.max(0, lbI() - 1)); if (e.key === 'ArrowRight') lbGo(Math.min(set.length - 1, lbI() + 1)) });
+  const uniq = [...new Set(allImgs)];
+  document.getElementById('main').addEventListener('click', e => { const f2 = e.target.closest('figure[data-src]'); if (f2 && f2.closest('.split')) openLb(uniq.indexOf(f2.dataset.src), uniq) });
+
+  const SKIP = 3.2;
+  const skipIntro = v => { if (v.dataset.skip) return; v.dataset.skip = 1; v.addEventListener('timeupdate', () => { if (v.currentTime < SKIP && v.duration > SKIP + 2) v.currentTime = SKIP }) };
+  document.querySelectorAll('video').forEach(skipIntro);
+  new MutationObserver(() => lbT.querySelectorAll('video').forEach(skipIntro)).observe(lbT, { childList: true });
+})();
+</script>
+</body>
+</html>

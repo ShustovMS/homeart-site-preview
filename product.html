@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Позиция в наличии — HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="assets/site.css?v=1793390595">
+<script src="data/cards.js?v=1793390595"></script>
+<script>/* карточки EXPO (Павел 29.10): готовые позиции открываются в новой карточке product-card.html, остальные — здесь */
+(id => { const c = (window.CARDS || {})[id]; return c && c.tile && !c.hide && !c.pending ? c : null })(new URLSearchParams(location.search).get('id')) && location.replace('product-card.html' + location.search + location.hash)</script>
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main class="wrap" id="main"></main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1793390595"></script>
+<script src="data/stock.js?v=1793390595"></script>
+<script src="assets/site.js?v=1793390595"></script>
+<script>
+(function () {
+  const { fmt, esc, qs, brandFactory } = HA;
+  const p = STOCK.find(x => x.id === qs.get('id')) || STOCK[0];
+  const f = brandFactory(p.brand);
+  document.title = `${p.name} · ${p.brand} — HOMEART`;
+  const gal = p.imgs;
+  const main = gal.length ? `<img id="gmain" src="${gal[0]}" alt="${esc(p.brand)} ${esc(p.name)}">` : `<div class="ph"><b>${esc(p.brand)}</b></div>`;
+  const what = `${p.brand} — ${p.name}`;
+  const qty = `${p.qty} ${p.unit === 'компл.' ? 'компл.' : 'шт.'}`;
+
+  // ещё в наличии: тот же раздел, ближе по цене
+  const alt = STOCK.filter(x => x.id !== p.id && x.group === p.group)
+    .sort((a, b) => Math.abs(a.price - p.price) - Math.abs(b.price - p.price)).slice(0, 4);
+
+  document.getElementById('main').innerHTML = `
+    <div class="crumbs"><a href="index.html">Главная</a><span>/</span><a href="catalog.html">Каталог</a><span>/</span><span>${esc(p.name)}</span></div>
+    <div class="pdp" style="margin-top:24px">
+      <div>
+        <div class="gal__main ${p.pack ? 'gal__main--pack' : ''}" id="gwrap">${main}</div>
+        ${gal.length > 1 ? `<div class="gal__thumbs">${gal.map((g, i) => `<button type="button" class="${i ? '' : 'on'}" data-g="${g}" aria-label="Фото ${i + 1}"><img src="${g}" alt=""></button>`).join('')}</div>` : ''}
+      </div>
+      <div>
+        ${f ? `<span class="pdp__fac">${esc(f.name)} · ${esc(f.country)}</span>` : `<span class="pdp__fac">${esc(p.brand)}</span>`}
+        <h1>${esc(p.name)}</h1>
+        <div class="pdp__price" style="margin-top:20px">
+          <span class="price num">${fmt.eur(p.price)}${p.base ? `<s>${fmt.eur(p.base)}</s>` : ''}</span>
+          <p>${p.unit === 'компл.' ? 'За комплект. ' : ''}Цена в евро — как в каталоге наличия. Условия оплаты уточнит менеджер.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span class="badge badge--stock">В наличии · ${esc(p.loc)} · ${qty}</span>
+            ${p.discount ? `<span class="badge badge--disc">Скидка ${esc(p.discount)}</span>` : ''}
+          </div>
+        </div>
+        <div class="acts">
+          <button type="button" class="btn acts__wide" data-call="Бронь из наличия: ${esc(what)}">Забронировать</button>
+          <button type="button" class="btn btn--line" data-act="3d" data-what="${esc(what)}">Запросить 3D-модель</button>
+          <button type="button" class="btn btn--line" data-act="tech" data-what="${esc(what)}">Запросить техничку</button>
+          <button type="button" class="btn btn--line" data-call="Посмотреть в шоуруме: ${esc(what)}">Посмотреть вживую</button>
+        </div>
+        <p class="small muted" style="margin-top:10px">Оставьте телефон — менеджер подтвердит наличие и пришлёт материалы.</p>
+        <div class="spec">
+          ${p.dims ? `<div><span class="k">Размеры</span><span class="num">${esc(p.dims)}</span></div>` : ''}
+          ${p.finish ? `<div><span class="k">Отделка</span><span>${esc(p.finish)}</span></div>` : ''}
+          <div><span class="k">Раздел</span><span>${esc(p.group)}</span></div>
+          <div><span class="k">Где посмотреть</span><span>${p.loc === 'Москва' ? 'Москва, шоурум на 3-й Фрунзенской или склад' : esc(p.loc)}</span></div>
+          ${p.url ? `<div><span class="k">О модели</span><span><a href="${esc(p.url)}" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">Страница на сайте фабрики ↗</a></span></div>` : ''}
+        </div>
+      </div>
+    </div>
+    ${alt.length ? `<section class="sec--tight sec--line" style="padding-bottom:80px"><div class="sec__h"><div><div class="eyebrow">Ещё в наличии</div><h2>${esc(p.group)}</h2></div>
+      <a class="link" href="catalog.html?cat=${encodeURIComponent(p.group)}">Весь раздел →</a></div>
+      <div class="grid4">${alt.map(x => `<a class="card" href="product.html?id=${encodeURIComponent(x.id)}">
+        <div class="card__img ${x.pack ? 'card__img--pack' : ''}">${x.imgs[0] ? `<img loading="lazy" src="${x.imgs[0]}" alt="">` : `<div class="ph"><b>${esc(x.brand)}</b></div>`}</div>
+        <div class="card__b"><span class="card__k">${esc(x.brand)}</span><span class="card__t">${esc(x.name)}</span>
+        <div class="card__f"><span class="price">${fmt.eur(x.price)}${x.base ? `<s>${fmt.eur(x.base)}</s>` : ''}</span></div></div></a>`).join('')}</div></section>` : ''}`;
+
+  document.querySelectorAll('[data-g]').forEach(b => b.onclick = () => {
+    document.getElementById('gmain').src = b.dataset.g;
+    document.getElementById('gwrap').classList.toggle('gal__main--pack', p.pack && !/-b\.jpg$/.test(b.dataset.g));
+    document.querySelectorAll('[data-g]').forEach(x => x.classList.toggle('on', x === b));
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кухни на главной — заголовок, варианты 2</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="../assets/site.css?v=1793390595">
+<link rel="stylesheet" href="../assets/home.css?v=1793390595">
+<style>
+/* Служебная страница: три подачи «Кухни и системы хранения» + «наша специализация» на главной. На боевой сайт не выкладывается. */
+.kdsec{padding:clamp(48px,6vw,96px) 0}
+.vlabel{font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--graphite-2);margin:0 0 18px}
+.vlabel b{color:var(--ink);font-weight:500}
+.kdsec+.kdsec{border-top:1px solid var(--line)}
+.kd h2{margin-bottom:clamp(22px,2.4vw,34px)}
+
+/* 1 — плашка-метка над заголовком */
+.v1 .tag{display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 14px;border-radius:999px;background:var(--ink);color:var(--white);
+  font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px;align-self:flex-start}
+.v1 .tag i{width:7px;height:7px;border-radius:50%;background:var(--sand)}
+.v1 h2{font-family:var(--sans);font-weight:300;font-size:clamp(28px,2.9vw,44px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;color:var(--ink)}
+
+/* 2 — заголовок, под ним «наша специализация» плотным шрифтом с чертой */
+.v2 h2 .a{display:block;font-family:var(--sans);font-weight:300;font-size:clamp(28px,2.9vw,44px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;color:var(--ink)}
+.v2 h2 .b{display:flex;align-items:center;gap:14px;margin-top:16px;font-family:var(--display);font-weight:500;font-size:clamp(13px,1.1vw,16px);letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+.v2 h2 .b::before{content:"";width:48px;height:2px;background:var(--ink);flex:none}
+
+/* 3 — одна фраза: «Наша специализация» ведёт к главному, «кухни и системы хранения» — крупно и плотно */
+.v3 h2 .a{display:block;font-family:var(--sans);font-weight:300;font-size:clamp(18px,1.6vw,24px);letter-spacing:.06em;text-transform:uppercase;color:var(--graphite)}
+.v3 h2 .b{display:block;margin-top:8px;font-family:var(--display);font-weight:500;font-size:clamp(28px,2.7vw,42px);line-height:1.08;letter-spacing:.02em;text-transform:uppercase;color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+  <section class="sec--tight kdsec">
+    <div class="wrap">
+      <p class="vlabel"><b>Вариант 1</b> · плашка-метка над заголовком</p>
+      <div class="kd v1">
+        <div class="kd__img"><img src="../img/photo/showroom-kitchen.jpg" alt=""></div>
+        <div class="kd__body">
+          <span class="tag"><i></i>Наша специализация</span>
+          <h2>Кухни и системы хранения</h2>
+          <p>Отдельная команда экспертов HOMEART берёт на себя все ключевые этапы работы над проектом — от расчётов и визуализации до подготовки технических чертежей и встреч с клиентом.</p>
+          <div class="kd__cta">
+            <span class="kd__go"><small>Спроектировать</small><b>Кухню</b><i aria-hidden="true">→</i></span>
+            <span class="kd__go kd__go--sand"><small>Спроектировать</small><b>Гардероб</b><i aria-hidden="true">→</i></span>
+          </div>
+          <span class="link kd__more">Посмотреть фабрики <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec--tight kdsec">
+    <div class="wrap">
+      <p class="vlabel"><b>Вариант 2</b> · заголовок, под ним «наша специализация» плотно и с чертой</p>
+      <div class="kd v2">
+        <div class="kd__img"><img src="../img/photo/showroom-kitchen.jpg" alt=""></div>
+        <div class="kd__body">
+          <h2><span class="a">Кухни и системы хранения</span><span class="b">Наша специализация</span></h2>
+          <p>Отдельная команда экспертов HOMEART берёт на себя все ключевые этапы работы над проектом — от расчётов и визуализации до подготовки технических чертежей и встреч с клиентом.</p>
+          <div class="kd__cta">
+            <span class="kd__go"><small>Спроектировать</small><b>Кухню</b><i aria-hidden="true">→</i></span>
+            <span class="kd__go kd__go--sand"><small>Спроектировать</small><b>Гардероб</b><i aria-hidden="true">→</i></span>
+          </div>
+          <span class="link kd__more">Посмотреть фабрики <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec--tight kdsec">
+    <div class="wrap">
+      <p class="vlabel"><b>Вариант 3</b> · одна фраза: «Наша специализация — кухни и системы хранения»</p>
+      <div class="kd v3">
+        <div class="kd__img"><img src="../img/photo/showroom-kitchen.jpg" alt=""></div>
+        <div class="kd__body">
+          <h2><span class="a">Наша специализация —</span><span class="b">кухни и системы хранения</span></h2>
+          <p>Отдельная команда экспертов HOMEART берёт на себя все ключевые этапы работы над проектом — от расчётов и визуализации до подготовки технических чертежей и встреч с клиентом.</p>
+          <div class="kd__cta">
+            <span class="kd__go"><small>Спроектировать</small><b>Кухню</b><i aria-hidden="true">→</i></span>
+            <span class="kd__go kd__go--sand"><small>Спроектировать</small><b>Гардероб</b><i aria-hidden="true">→</i></span>
+          </div>
+          <span class="link kd__more">Посмотреть фабрики <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

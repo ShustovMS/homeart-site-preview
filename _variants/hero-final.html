@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Финал ролика — кнопки, варианты</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="../assets/site.css?v=1793390595">
+<link rel="stylesheet" href="../assets/home.css?v=1793390595">
+<style>
+/* Служебная страница: финальный кадр ролика на главной — цвета плиток и расположение. На боевой сайт не выкладывается. */
+:root{--out:cubic-bezier(.23,1,.32,1)}
+body{background:var(--mist)}
+.vwrap{max-width:1320px;margin:0 auto;padding:40px var(--gutter) 80px}
+.vrow+.vrow{margin-top:56px}
+.vlabel{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--graphite-2);margin:0 0 14px}
+.vlabel b{color:var(--ink);font-weight:500}
+.vlabel button{font:inherit;letter-spacing:inherit;color:var(--ink);border-bottom:1px solid currentColor;cursor:pointer}
+
+/* кадр — последний кадр ролика, затемнение снизу как на главной */
+.fr{position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#222 url(../img/hero/poster-end.jpg) center/cover no-repeat;color:#fff}
+.fr::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,18,18,.62) 0%,rgba(18,18,18,.2) 38%,rgba(18,18,18,0) 60%)}
+.fr--side::before{background:linear-gradient(0deg,rgba(18,18,18,.66) 0%,rgba(18,18,18,.15) 45%,rgba(18,18,18,0) 65%),linear-gradient(90deg,rgba(18,18,18,.35) 0%,rgba(18,18,18,0) 55%)}
+.in{position:absolute;left:0;right:0;bottom:clamp(24px,5%,56px);padding:0 6%;z-index:1}
+.fr h2{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(20px,2.3vw,34px);line-height:1.15;color:#fff}
+.fr .eyebrow{color:var(--sand);margin-bottom:12px}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.c{position:relative;display:flex;flex-direction:column;gap:8px;min-width:230px;padding:20px 24px;border-radius:var(--r-lg);text-align:left;cursor:pointer;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),background-color .2s var(--ease)}
+.c small{font-family:var(--display);font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.c b{font-family:var(--display);font-weight:500;font-size:clamp(18px,1.7vw,24px);letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.c i{position:absolute;right:24px;bottom:20px;font-style:normal;font-size:18px;line-height:1;transition:transform .25s var(--out)}
+.c:hover{transform:translateY(-2px)} .c:hover i{transform:translateX(4px)} .c:active{transform:scale(.98)}
+/* цвета */
+.c--white{background:#fff;color:var(--ink)} .c--white small{color:var(--graphite)}
+.c--sand{background:var(--sand);color:var(--ink)} .c--sand small{color:var(--ink)}
+.c--glass{background:rgba(33,33,33,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.c--glass small{color:var(--sand)} .c--glass:hover{background:rgba(33,33,33,.7)}
+.c--line{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)} .c--line small{color:rgba(255,255,255,.75)}
+.c--line:hover{background:rgba(255,255,255,.12)}
+.c--ink{background:var(--ink);color:#fff} .c--ink small{color:var(--sand)}
+/* белое матовое стекло: размытый фон, светлый край и блик сверху; лёгкое — белый текст, плотное («молочное») — графитовый */
+.c--frost{background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,.12));-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);color:#fff;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.38),inset 0 1px 0 rgba(255,255,255,.6),0 8px 24px rgba(0,0,0,.12)}
+.c--frost small{color:rgba(255,255,255,.82)} .c--frost:hover{background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.18))}
+.c--milk{background:linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,255,255,.64));-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),inset 0 1px 0 #fff,0 8px 24px rgba(0,0,0,.12)}
+.c--milk small{color:var(--graphite)} .c--milk:hover{background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(255,255,255,.74))}
+/* светлое матовое стекло: фон за плиткой размыт и высветлен, сверху полупрозрачный белый — текст чёрный */
+.c--light{background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.42));-webkit-backdrop-filter:blur(22px) saturate(150%) brightness(1.3);backdrop-filter:blur(22px) saturate(150%) brightness(1.3);color:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 1px 0 #fff,0 10px 28px rgba(0,0,0,.14)}
+.c--light small{color:var(--ink);opacity:.7} .c--light:hover{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.54))}
+/* графитовое стекло с белой рамкой и объёмом: сверху светлее, снизу темнее, блик по верхней кромке, тень вниз */
+.c--glass3d{background:linear-gradient(180deg,rgba(70,70,70,.62) 0%,rgba(33,33,33,.6) 55%,rgba(18,18,18,.72) 100%);-webkit-backdrop-filter:blur(14px) saturate(130%);backdrop-filter:blur(14px) saturate(130%);color:#fff;
+  border:1.5px solid rgba(255,255,255,.85);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 12px 18px -10px rgba(255,255,255,.22),inset 0 -10px 16px -8px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.25),0 14px 30px -6px rgba(0,0,0,.5)}
+.c--glass3d small{color:var(--sand)}
+.c--glass3d:hover{border-color:#fff;background:linear-gradient(180deg,rgba(80,80,80,.68) 0%,rgba(38,38,38,.66) 55%,rgba(20,20,20,.78) 100%)}
+
+/* расположения */
+.center{text-align:center}.center .ctas{justify-content:center}
+.side{display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.side h2{font-size:clamp(24px,3vw,46px);max-width:14ch}
+.side .ctas{flex-direction:column;margin:0;flex:none}
+.left h2{font-size:clamp(24px,3vw,46px);max-width:16ch}
+.bar{left:4%;right:4%;padding:clamp(16px,1.8vw,24px) clamp(18px,2vw,28px);border-radius:var(--r-lg);background:rgba(33,33,33,.5);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.bar .ctas{margin:0;flex:none}
+.bar h2{font-size:clamp(18px,1.9vw,28px)}
+/* две строки: «HOMEART —» / «больше чем интерьерный шоурум», вторая строка не переносится */
+.side h2.h2l{max-width:none;font-size:clamp(20px,2.7vw,40px);line-height:1.12}
+.h2l span{display:block;white-space:nowrap}
+.side--mid{align-items:center}
+.side h2.h2l--3{font-size:clamp(24px,3vw,46px)}
+
+/* появление: заголовок поднимается, плитки въезжают (откуда — по варианту); «Повторить» запускает заново */
+.fr .ah{opacity:0;transform:translateY(16px);filter:blur(6px)}
+.fr .c{opacity:0}
+.fr.play .ah{animation:upIn .8s var(--out) forwards}
+.fr.play .c{animation:upIn .7s var(--out) forwards}
+.fr.play .c:nth-child(1){animation-delay:.35s}.fr.play .c:nth-child(2){animation-delay:.47s}
+.fr--fromR.play .c{animation-name:rIn}
+.fr--fromL.play .c{animation-name:lIn}
+@keyframes upIn{from{opacity:0;transform:translateY(16px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes lIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fr .ah,.fr .c{opacity:1;transform:none;filter:none;animation:none!important}}
+@media (max-width:760px){.h2l span{white-space:normal}.side,.side--mid{flex-direction:column;align-items:flex-start}.bar{flex-direction:column;align-items:flex-start}.c{min-width:0}}
+</style>
+</head>
+<body>
+<main class="vwrap">
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 1</b> · по центру, обе плитки белые</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--white"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--white"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 2</b> · по центру, графитовое стекло — тёмные, но не теряются</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--glass"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 3</b> · по центру, главная белая + вторая стеклом</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--white"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 4</b> · заголовок слева, плитки справа столбиком — въезжают справа</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromR">
+      <div class="in side">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--white"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 5</b> · всё слева, крупный заголовок, плитки под ним: белая + контур</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromL">
+      <div class="in left">
+        <div class="eyebrow ah">HOMEART · с 2009 года</div>
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--white"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--line"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 6</b> · стеклянная панель внизу: заголовок слева, плитки справа</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--fromR">
+      <div class="in bar ah">
+        <h2>HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--white"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--sand"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 7</b> · по центру, белое матовое стекло — лёгкое, белый текст</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--frost"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--frost"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 8</b> · по центру, молочное матовое стекло — плотнее, тёмный текст</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--milk"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--frost"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 9</b> · заголовок слева, плитки справа — матовое стекло</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromR">
+      <div class="in side">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--milk"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--frost"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 10</b> · по центру, светлое матовое стекло, чёрный текст</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--light"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--light"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 11</b> · заголовок слева, плитки справа — светлое матовое стекло</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromR">
+      <div class="in side">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--light"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--light"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 12</b> · по центру, графитовое стекло с белой рамкой и объёмом</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr">
+      <div class="in center">
+        <h2 class="ah">HOMEART — больше чем интерьерный шоурум</h2>
+        <div class="ctas"><span class="c c--glass3d"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass3d"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vrow">
+    <p class="vlabel"><span><b>Вариант 13</b> · заголовок слева, плитки справа — графитовое стекло с белой рамкой, заголовок в две строки</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromR">
+      <div class="in side side--mid">
+        <h2 class="ah h2l"><span>HOMEART —</span><span>больше чем интерьерный шоурум</span></h2>
+        <div class="ctas"><span class="c c--glass3d"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass3d"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+<div class="vrow">
+    <p class="vlabel"><span><b>Вариант 14</b> · как 13, заголовок без тире</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromR">
+      <div class="in side side--mid">
+        <h2 class="ah h2l"><span>HOMEART</span><span>больше чем интерьерный шоурум</span></h2>
+        <div class="ctas"><span class="c c--glass3d"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass3d"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+<div class="vrow">
+    <p class="vlabel"><span><b>Вариант 15</b> · как 13, заголовок в три строки</span><button type="button" data-replay>Повторить появление</button></p>
+    <div class="fr fr--side fr--fromR">
+      <div class="in side side--mid">
+        <h2 class="ah h2l h2l--3"><span>HOMEART —</span><span>больше чем</span><span>интерьерный шоурум</span></h2>
+        <div class="ctas"><span class="c c--glass3d"><small>Обсудить</small><b>Проект</b><i>→</i></span><span class="c c--glass3d"><small>Смотреть</small><b>Фабрики</b><i>→</i></span></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<script>
+// появление — когда кадр доходит до экрана; «Повторить появление» — заново
+const frames = [...document.querySelectorAll('.fr')];
+const play = fr => { fr.classList.remove('play'); void fr.offsetWidth; fr.classList.add('play') };
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { play(e.target); io.unobserve(e.target) } }), { threshold: .45 });
+frames.forEach(fr => io.observe(fr));
+document.querySelectorAll('[data-replay]').forEach((b, i) => b.addEventListener('click', () => play(frames[i])));
+</script>
+</body>
+</html>

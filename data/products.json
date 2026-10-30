@@ -1,0 +1,741 @@
+[
+ {
+  "id": "molteni-c-divan-lucio",
+  "name": "Диван Lucio",
+  "type": "Диван",
+  "factory": "molteni-c",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "2090 × 970 × 730 мм",
+  "finish": "Ткань KG696",
+  "mats": [
+   "Ткань"
+  ],
+  "priceFrom": 690000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p003.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p003.jpg",
+   "img/product/p003-b.jpg"
+  ],
+  "full": true,
+  "desc": "Позиция из экспозиции шоурума на 3-й Фрунзенской — её можно посмотреть вживую и показать клиенту. Итоговая конфигурация, отделки и сроки фиксируются в просчёте."
+ },
+ {
+  "id": "molteni-c-divan-cleo",
+  "name": "Диван Cleo",
+  "type": "Диван",
+  "factory": "molteni-c",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "2100 × 100 × 67 мм",
+  "finish": "ткань KH142, кожа UE146, ткань для подушек KH743",
+  "mats": [
+   "Кожа",
+   "Ткань"
+  ],
+  "priceFrom": 1235000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p004.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p004.jpg",
+   "img/product/p004-b.jpg"
+  ]
+ },
+ {
+  "id": "molteni-c-divan-albert",
+  "name": "Диван Albert",
+  "type": "Диван",
+  "factory": "molteni-c",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "1910 × 1080 × 90 мм",
+  "finish": "Ткань ZE522 SABBIA",
+  "mats": [
+   "Ткань"
+  ],
+  "priceFrom": 1395000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p005.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p005.jpg"
+  ]
+ },
+ {
+  "id": "edra-divan-standard",
+  "name": "Диван Standard",
+  "type": "Диван",
+  "factory": "edra",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "3340 × 960 × 920 мм",
+  "finish": null,
+  "mats": [],
+  "priceFrom": 2340000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Санкт-Петербург",
+  "img": "img/product/p006.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p006.jpg",
+   "img/product/p006-b.jpg"
+  ]
+ },
+ {
+  "id": "classicon-divan-odin",
+  "name": "Диван Odin",
+  "type": "Диван",
+  "factory": "classicon",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "1600 × 690 × 740 мм",
+  "finish": "ткань Dedar AdamoEva col.168",
+  "mats": [
+   "Ткань"
+  ],
+  "priceFrom": 590000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p008.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p008.jpg",
+   "img/product/p008-b.jpg"
+  ]
+ },
+ {
+  "id": "living-divani-divan-krovat-neowall-sofa-bed",
+  "name": "Диван-кровать NEOWALL SOFA BED",
+  "type": "Диван-кровать",
+  "factory": "living-divani",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "2310 × 1000 × 650 мм",
+  "finish": "кожа cat.В 38a Seta / 708 Talpa",
+  "mats": [
+   "Кожа"
+  ],
+  "priceFrom": 1205000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p009.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p009.jpg"
+  ]
+ },
+ {
+  "id": "baxter-divan-budapest-soft",
+  "name": "Диван Budapest soft",
+  "type": "Диван",
+  "factory": "baxter",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "1100 × 2000 × 760 мм",
+  "finish": "кожа cat.А KASHMIR BOUE",
+  "mats": [
+   "Кожа"
+  ],
+  "priceFrom": 3545000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p010.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p010.jpg",
+   "img/product/p010-b.jpg"
+  ]
+ },
+ {
+  "id": "molteni-c-stol-lise",
+  "name": "Стол Lise",
+  "type": "Стол",
+  "factory": "molteni-c",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "2500 × 1100 × 740 мм",
+  "finish": "Основание крашеный МДФ Burgundy, столешница шпон Coffe oak",
+  "mats": [
+   "Дерево",
+   "Лак/МДФ"
+  ],
+  "priceFrom": 1435000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p012.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p012.jpg",
+   "img/product/p012-b.jpg"
+  ]
+ },
+ {
+  "id": "molteni-c-stol-filigree",
+  "name": "Стол FILIGREE",
+  "type": "Стол",
+  "factory": "molteni-c",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "2400 × 980 × 740 мм",
+  "finish": "шпон Eucalyptus, основание iridium brown",
+  "mats": [
+   "Дерево",
+   "Металл"
+  ],
+  "priceFrom": 620000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p013.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p013.jpg",
+   "img/product/p013-b.jpg"
+  ]
+ },
+ {
+  "id": "molteni-c-stol-mateo-glossy-almond",
+  "name": "Стол Mateo Glossy Almond",
+  "type": "Стол",
+  "factory": "molteni-c",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "2500 × 1250 × 740 мм",
+  "finish": "Крашеный МДФ, финиш Glossy Almond",
+  "mats": [
+   "Лак/МДФ"
+  ],
+  "priceFrom": 1035000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p014.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p014.jpg"
+  ]
+ },
+ {
+  "id": "oasis-stol-tao",
+  "name": "Стол Tao",
+  "type": "Стол",
+  "factory": "oasis",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "240 × 110 × 730 мм",
+  "finish": "лак глянец",
+  "mats": [
+   "Лак/МДФ"
+  ],
+  "priceFrom": 545000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p021.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p021.jpg",
+   "img/product/p021-b.jpg"
+  ]
+ },
+ {
+  "id": "porro-stol-jeff",
+  "name": "Стол Jeff",
+  "type": "Стол",
+  "factory": "porro",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "260 × 100 × 750 мм",
+  "finish": "Топ W13 OAK, основание H27 HYREK PIGMETED BLUE",
+  "mats": [
+   "Дерево"
+  ],
+  "priceFrom": 1050000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p023.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p023.jpg"
+  ]
+ },
+ {
+  "id": "capital-stul-augusta",
+  "name": "Стул AUGUSTA",
+  "type": "Стул",
+  "factory": "capital",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "620 × 575 × 820 мм",
+  "finish": "ткань TM220, кожа BLANCH, BLACK OAK, LACCATO NERO",
+  "mats": [
+   "Дерево",
+   "Кожа",
+   "Лак/МДФ",
+   "Ткань"
+  ],
+  "priceFrom": 240000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p032.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p032.jpg",
+   "img/product/p032-b.jpg"
+  ]
+ },
+ {
+  "id": "edra-stul-gilda-b",
+  "name": "Стул Gilda B",
+  "type": "Стул",
+  "factory": "edra",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "460 × 540 × 850 мм",
+  "finish": null,
+  "mats": [],
+  "priceFrom": 235000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p033.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p033.jpg",
+   "img/product/p033-b.jpg"
+  ]
+ },
+ {
+  "id": "oasis-stul-isabey",
+  "name": "Стул Isabey",
+  "type": "Стул",
+  "factory": "oasis",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "580 × 600 × 850 мм",
+  "finish": "Кант: CARLUCCI ALLURE VELVET CA 1357/085",
+  "mats": [
+   "Ткань"
+  ],
+  "priceFrom": 90000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p034.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p034.jpg",
+   "img/product/p034-b.jpg"
+  ]
+ },
+ {
+  "id": "trussardi-stul-anabel",
+  "name": "Стул Anabel",
+  "type": "Стул",
+  "factory": "trussardi",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "510 × 600 × 520 мм",
+  "finish": "ткань 001 QUARTZ GREY-MUSCHIO, каркас — бронза",
+  "mats": [
+   "Металл",
+   "Ткань"
+  ],
+  "priceFrom": 205000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p036.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p036.jpg",
+   "img/product/p036-b.jpg"
+  ]
+ },
+ {
+  "id": "pianca-stul-orchestra",
+  "name": "Стул Orchestra",
+  "type": "Стул",
+  "factory": "pianca",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "470 × 550 × 810 мм",
+  "finish": "ножки rovere grigio, ткань color51",
+  "mats": [
+   "Дерево",
+   "Ткань"
+  ],
+  "priceFrom": 110000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p037.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p037.jpg",
+   "img/product/p037-b.jpg"
+  ]
+ },
+ {
+  "id": "kristalia-kreslo-tnbo",
+  "name": "Кресло Tnbo",
+  "type": "Кресло",
+  "factory": "kristalia",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "580 × 525 × 780 мм",
+  "finish": "ножки — черный дуб, экокожа 43084",
+  "mats": [
+   "Дерево",
+   "Кожа"
+  ],
+  "priceFrom": 225000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p038.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p038.jpg",
+   "img/product/p038-b.jpg"
+  ]
+ },
+ {
+  "id": "capital-kreslo-brera",
+  "name": "Кресло BRERA",
+  "type": "Кресло",
+  "factory": "capital",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "830 × 830 × 740 мм",
+  "finish": "дерево LMBNO LACCATO BRONZO, ткань TLLI01A / BRUR01",
+  "mats": [
+   "Дерево",
+   "Лак/МДФ",
+   "Металл",
+   "Ткань"
+  ],
+  "priceFrom": 460000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p052.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p052.jpg",
+   "img/product/p052-b.jpg"
+  ]
+ },
+ {
+  "id": "poliform-banketka-jane",
+  "name": "Банкетка JANE",
+  "type": "Банкетка",
+  "factory": "poliform",
+  "cat": "Мягкая мебель",
+  "room": "Спальня",
+  "dims": "1300 × 480 × 500 мм",
+  "finish": "ножки OLMO NERO, топ — кожа 881 TESTA DI MORO",
+  "mats": [
+   "Дерево",
+   "Кожа"
+  ],
+  "priceFrom": 335000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p059.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p059.jpg",
+   "img/product/p059-b.jpg"
+  ]
+ },
+ {
+  "id": "trussardi-konsol-wady-afcot02-1",
+  "name": "Консоль Wady AFCOT02/1",
+  "type": "Консоль",
+  "factory": "trussardi",
+  "cat": "Хранение",
+  "room": "Гостиная",
+  "dims": "1120 × 400 × 580 мм",
+  "finish": null,
+  "mats": [],
+  "priceFrom": 290000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p072.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p072.jpg",
+   "img/product/p072-b.jpg"
+  ]
+ },
+ {
+  "id": "baxter-krovat-paris-slim",
+  "name": "Кровать Paris Slim",
+  "type": "Кровать",
+  "factory": "baxter",
+  "cat": "Спальня",
+  "room": "Спальня",
+  "dims": "2280 × 2430 × 920 мм",
+  "finish": "кожа cat.А NABUCK LIGHT GREY",
+  "mats": [
+   "Кожа"
+  ],
+  "priceFrom": 1345000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p077.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p077.jpg"
+  ]
+ },
+ {
+  "id": "bellavista-tumba-california",
+  "name": "Тумба CALIFORNIA",
+  "type": "Тумба",
+  "factory": "bellavista-collection",
+  "cat": "Хранение",
+  "room": "Спальня",
+  "dims": "900 × 480 × 600 мм",
+  "finish": "дерево NC Noce Canaletto, металл OBA Bronzo Antico",
+  "mats": [
+   "Дерево",
+   "Металл"
+  ],
+  "priceFrom": 515000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p078.jpg",
+  "pack": true,
+  "gallery": [
+   "img/product/p078.jpg",
+   "img/product/p078-b.jpg"
+  ]
+ },
+ {
+  "id": "imperfetto-lab-puf-ciottolo",
+  "name": "Пуф CIOTTOLO",
+  "type": "Пуф",
+  "factory": "imperfetto-lab",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "580 × 400 × 540 мм",
+  "finish": "Материал: стекловолокно, цвет magenta to gold",
+  "mats": [
+   "Стекло"
+  ],
+  "priceFrom": 205000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p096.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p096.jpg"
+  ]
+ },
+ {
+  "id": "classicon-stolik-sol-side-table",
+  "name": "Столик SOL SIDE TABLE",
+  "type": "Столик",
+  "factory": "classicon",
+  "cat": "Столы и стулья",
+  "room": "Гостиная",
+  "dims": "500 × 460 × 510 мм",
+  "finish": "стекло Grey",
+  "mats": [
+   "Стекло"
+  ],
+  "priceFrom": 160000,
+  "has3d": true,
+  "inStock": true,
+  "loc": "Москва",
+  "img": "img/product/p097.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p097.jpg"
+  ]
+ },
+ {
+  "id": "sovet-stolik-genius",
+  "name": "Столик Genius",
+  "type": "Столик",
+  "factory": "sovet",
+  "cat": "Столы и стулья",
+  "room": "Гостиная",
+  "dims": "480 × 480 × 600 мм",
+  "finish": "черный металл, дымчатое стекло",
+  "mats": [
+   "Металл",
+   "Стекло"
+  ],
+  "priceFrom": 85000,
+  "has3d": false,
+  "inStock": true,
+  "loc": "Санкт-Петербург",
+  "img": "img/product/p099.jpg",
+  "pack": false,
+  "gallery": [
+   "img/product/p099.jpg"
+  ]
+ },
+ {
+  "id": "flos-ic-lights-s",
+  "name": "Светильник IC Lights S",
+  "type": "Светильник",
+  "factory": "flos",
+  "cat": "Свет",
+  "room": "Гостиная",
+  "dims": "Ø300 × 700 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 95000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ },
+ {
+  "id": "artemide-tolomeo-mega",
+  "name": "Светильник Tolomeo Mega",
+  "type": "Светильник",
+  "factory": "artemide",
+  "cat": "Свет",
+  "room": "Кабинет",
+  "dims": "Ø420 × 2800 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 70000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ },
+ {
+  "id": "davide-groppi-moon",
+  "name": "Светильник Moon",
+  "type": "Светильник",
+  "factory": "davide-groppi",
+  "cat": "Свет",
+  "room": "Столовая",
+  "dims": "Ø600 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 180000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ },
+ {
+  "id": "vibia-musa",
+  "name": "Светильник Musa",
+  "type": "Светильник",
+  "factory": "vibia",
+  "cat": "Свет",
+  "room": "Спальня",
+  "dims": "Ø260 × 170 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 45000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ },
+ {
+  "id": "gessi-inciso",
+  "name": "Смеситель Inciso",
+  "type": "Смеситель",
+  "factory": "gessi",
+  "cat": "Сантехника",
+  "room": "Ванная",
+  "dims": "240 × 180 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 65000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ },
+ {
+  "id": "calligaris-cartesio",
+  "name": "Стол Cartesio",
+  "type": "Стол",
+  "factory": "calligaris",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "1600 × 900 × 750 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 120000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": [],
+  "full": true,
+  "desc": "Раздвижной стол среднего ценового сегмента. Подходит для проектов, где нужен итальянский предмет в ограниченном бюджете. Конфигурация и отделки — в просчёте."
+ },
+ {
+  "id": "calligaris-gala",
+  "name": "Стул Gala",
+  "type": "Стул",
+  "factory": "calligaris",
+  "cat": "Столы и стулья",
+  "room": "Столовая",
+  "dims": "560 × 560 × 820 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 25000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ },
+ {
+  "id": "bonaldo-saddle",
+  "name": "Диван Saddle",
+  "type": "Диван",
+  "factory": "bonaldo",
+  "cat": "Мягкая мебель",
+  "room": "Гостиная",
+  "dims": "2200 × 950 × 800 мм",
+  "finish": "по выбору",
+  "mats": [],
+  "priceFrom": 390000,
+  "has3d": true,
+  "inStock": false,
+  "loc": null,
+  "img": null,
+  "gallery": []
+ }
+]

@@ -1,0 +1,11 @@
+/* Montserrat как замена Museo Sans Cyrl (ДС HOMEART v2). Файлы лежат рядом —
+   прототип открывается на любом компьютере. Google Fonts подключён в страницах запасным путём. */
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-ExtraLight.ttf") format("truetype");font-weight:200;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-Light.ttf") format("truetype");font-weight:300;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-SemiBold.ttf") format("truetype");font-weight:600;font-display:swap}
+
+/* Museo Sans Cyrl — основной шрифт бренда (бренд-платформа, стр. 14): заголовки, подписи, кнопки.
+   Своё имя «HA Display», чтобы не путаться с установленным на компьютере Museo. Пока есть только начертание 500. */
+@font-face{font-family:"HA Display";src:url("fonts/MuseoSansCyrl.otf") format("opentype");font-weight:500;font-display:swap}

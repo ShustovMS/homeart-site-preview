@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кухни и системы хранения — HOMEART</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="assets/site.css?v=1793390595">
+<style>
+:root{--out:cubic-bezier(.23,1,.32,1)}
+main .sec{padding:clamp(72px,9vw,150px) 0}
+.hero>img{object-position:50% 62%}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(18,18,18,.72) 0%,rgba(18,18,18,.4) 38%,rgba(18,18,18,0) 62%)}
+
+/* «Кто что делает»: у дизайнера — образ, у команды — всё остальное */
+.roles{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:12px;margin-top:clamp(32px,4vw,56px)}
+.role{border-radius:var(--r-lg);padding:clamp(26px,3.4vw,52px);display:flex;flex-direction:column}
+.role--you{background:var(--white)}
+.role--we{background:var(--ink);color:#fff}
+.role__who{font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--graphite-2)}
+.role--we .role__who{color:var(--sand)}
+.role h3{font-size:clamp(18px,1.6vw,22px);margin:14px 0 26px;max-width:22ch}
+.role ul{list-style:none;display:grid;gap:0 40px}
+.role--we ul{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);grid-auto-flow:column}
+.role li{padding:15px 0;border-top:.5px solid var(--line);font-weight:300;font-size:16px;line-height:1.45;display:grid;grid-template-columns:34px minmax(0,1fr)}
+.role li span{font-size:12px;color:var(--graphite-2);padding-top:3px;font-variant-numeric:tabular-nums}
+.role--we li{border-color:rgba(255,255,255,.14);color:#e7e6e6}
+.role--we li span{color:var(--sand)}
+.role__note{margin-top:auto;padding-top:26px;font-size:13px;color:var(--graphite-2);line-height:1.5}
+
+/* «На практике»: идея → встреча → решение */
+.fast{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);border-radius:var(--r-lg);overflow:hidden;background:var(--ink);color:#fff}
+.fast__img{position:relative;min-height:clamp(520px,46vw,700px)}
+.fast__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.fast__body{padding:clamp(28px,4.4vw,72px);display:flex;flex-direction:column;justify-content:center}
+.fast .eyebrow{color:var(--sand)}
+.fast h2{color:#fff;margin:14px 0 18px}
+.fast p{color:#cfcdc8;font-weight:300;font-size:clamp(16px,1.2vw,18px);line-height:1.6;max-width:44ch}
+.path{list-style:none;margin-top:clamp(30px,3.4vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative}
+.path::before{content:"";position:absolute;left:5px;right:5px;top:5px;height:1px;background:rgba(255,255,255,.22)}
+.path li{position:relative;padding-top:24px;padding-right:12px;font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;line-height:1.4}
+.path li::before{content:"";position:absolute;left:0;top:0;width:11px;height:11px;border-radius:50%;background:var(--sand)}
+.path li:last-child::before{background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.12)}
+.path small{display:block;margin-top:6px;font-family:var(--sans);font-weight:300;font-size:13px;letter-spacing:0;text-transform:none;color:#a6a29a}
+
+/* Storage: фасады открываются при прокрутке */
+.stor{height:260vh;position:relative}
+.stor__stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,88px);align-items:center;padding:calc(var(--hh) + 12px) var(--gutter) 24px}
+.stor__txt h2{margin:14px 0 18px}
+.stor__txt p{font-weight:300;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:var(--graphite);max-width:42ch}
+.stor__steps{list-style:none;margin-top:30px;display:grid;gap:0}
+.stor__steps li{padding:14px 0;border-top:.5px solid var(--line);font-size:14px;line-height:1.5;color:var(--graphite-2);transition:color .4s var(--out)}
+.stor__steps b{display:block;font-weight:500;margin-bottom:2px}
+.stor__steps li.on{color:var(--ink)}
+.stor__pic{position:relative;height:calc(100vh - var(--hh) - 48px);max-width:100%;aspect-ratio:3/4;justify-self:end;border-radius:var(--r-lg);overflow:hidden;background:var(--ink)}
+.stor__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stor__pic img+img{opacity:0}
+
+/* Фабрики направления: плитки-разделы ведут к своему списку; внутри раздела — по ценовым сегментам */
+html{scroll-behavior:smooth}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cat{position:relative;aspect-ratio:4/5;border-radius:var(--r-lg);overflow:hidden;color:#fff;background:var(--ink);display:block;transition:transform .2s var(--out)}
+.cat:active{transform:scale(.98)}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.78);transition:filter .5s var(--out),transform .9s var(--out)}
+.cat:hover img{filter:brightness(.9);transform:scale(1.04)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,0) 40%,rgba(20,20,20,.8))}
+.cat__in{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:clamp(16px,1.8vw,26px);display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.cat__n{display:block;font-size:12px;color:var(--sand);letter-spacing:.06em}
+.cat__t{display:block;margin-top:6px;font-family:var(--display);font-weight:500;font-size:clamp(13px,1.1vw,16px);letter-spacing:.06em;text-transform:uppercase;line-height:1.3}
+.cat__go{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.6);display:grid;place-items:center;font-size:16px;transition:background .3s var(--out),color .3s var(--out),transform .3s var(--out)}
+.cat:hover .cat__go{background:#fff;color:var(--ink);transform:translateY(3px)}
+.fsec{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);margin-top:clamp(56px,7vw,112px);scroll-margin-top:calc(var(--hh) + 8px)}
+.fsec+.fsec{border-top:1px solid rgba(33,33,33,.2);padding-top:clamp(56px,7vw,112px)}
+.fsec__side{position:sticky;top:calc(var(--hh) + 20px);align-self:start}
+.fsec__side img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg)}
+.fsec__side .eyebrow{margin-top:22px}
+.fsec__side h3{font-size:clamp(20px,1.9vw,28px);margin:10px 0 10px;line-height:1.2}
+.fsec__side p{font-size:14px;color:var(--graphite);max-width:36ch}
+.seg+.seg{margin-top:clamp(28px,3vw,44px)}
+.seg__h{display:flex;align-items:center;gap:12px;padding-bottom:14px;margin-bottom:12px;border-bottom:.5px solid var(--line);
+  font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.seg__h span{color:var(--graphite-2);font-family:var(--sans);font-weight:400;letter-spacing:.04em}
+.seg__d{display:inline-flex;gap:3px}.seg__d b{width:7px;height:7px;border-radius:50%;background:var(--line)}.seg__d b.on{background:var(--ink)}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fcard{display:grid;grid-template-columns:76px minmax(0,1fr);gap:18px;align-items:center;background:var(--white);border-radius:var(--r-lg);padding:14px 18px 14px 14px;
+  transition:transform .3s var(--out),box-shadow .3s var(--out)}
+.fcard:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(33,33,33,.35)}
+.fcard__logo{width:76px;height:76px;border-radius:6px;overflow:hidden;background:var(--ink);color:#fff;display:grid;place-items:center;
+  font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.06em}
+.fcard__logo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .4s var(--out)}
+.fcard:hover .fcard__logo img{filter:none}
+.fcard b{display:block;font-family:var(--display);font-weight:500;font-size:15px;letter-spacing:.05em;text-transform:uppercase;line-height:1.2}
+.fcard small{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite-2)}
+.fcard p{margin-top:6px;font-size:13.5px;line-height:1.45;color:var(--graphite)}
+.fl__all{margin-top:clamp(40px,5vw,64px)}
+
+/* Вживую в шоуруме */
+/* лента фото кухонь: медленно течёт сама, без переключателей */
+.river{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.river{cursor:grab;touch-action:pan-y;user-select:none}
+.river.is-drag{cursor:grabbing}
+.river__track{display:flex;gap:12px;width:max-content;will-change:transform}
+.river img{height:clamp(240px,30vw,440px);width:auto;border-radius:var(--r-lg);flex:none;pointer-events:none;-webkit-user-drag:none}
+.visit{margin-top:clamp(56px,7vw,112px);background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:clamp(18px,1.8vw,26px) clamp(28px,4.4vw,64px) clamp(18px,1.8vw,26px) clamp(18px,1.8vw,26px);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.visit .eyebrow{color:var(--sand)}
+.visit__who{flex:1 1 0;min-width:min(100%,560px);display:flex;align-items:center;gap:clamp(24px,3.4vw,56px)}
+.visit__who img{flex:none;width:clamp(150px,17vw,250px);aspect-ratio:1;border-radius:50%;object-fit:cover}
+.visit h2{color:#fff;margin:14px 0 14px}
+.visit p{color:#cfcdc8;font-weight:300;font-size:clamp(16px,1.2vw,18px);max-width:48ch}
+.visit .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+
+@media (max-width:1024px){
+  .fsec{grid-template-columns:minmax(0,3fr) minmax(0,7fr)}
+  .fgrid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .roles,.fast{grid-template-columns:1fr}
+  .role--we ul{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}
+  .fast__img{min-height:300px}
+  .path{grid-template-columns:1fr;gap:22px}
+  .path::before{left:5px;right:auto;top:5px;bottom:5px;width:1px;height:auto}
+  .path li{padding:0 0 0 30px}
+  .stor{height:auto;padding:clamp(48px,8vw,72px) 0}
+  .stor__stage{position:static;height:auto;grid-template-columns:1fr;gap:24px;padding:0 var(--gutter)}
+  .stor__txt p{font-size:15px}
+  .stor__pic{justify-self:stretch;height:auto;aspect-ratio:3/4}
+  .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat{aspect-ratio:1/1}
+  .cat__in{top:0;padding:14px;flex-direction:column;justify-content:flex-end;align-items:flex-start}   /* слой во всю плитку — стрелка встаёт в её угол */
+  .cat__go{position:absolute;top:12px;right:12px;width:32px;height:32px;font-size:13px;background:rgba(20,20,20,.25)}   /* стрелка в угол — подписи вся ширина */
+  .cat__t{font-size:12.5px;letter-spacing:.05em}
+  .fsec{grid-template-columns:1fr;gap:20px}
+  .fsec__side{position:static}
+  .fsec__side img{aspect-ratio:16/10}
+  /* фабрики на телефоне — в две колонки, логотип сверху: список вдвое короче */
+  .fgrid{grid-template-columns:1fr 1fr;gap:8px}
+  .fcard{grid-template-columns:1fr;align-items:start;align-content:start;gap:12px;padding:14px}
+  .fcard__logo{width:52px;height:52px}
+  .fcard b{font-size:13px}
+  .fcard small{font-size:9.5px;letter-spacing:.1em}
+  .fcard p{font-size:12.5px}
+  .river img{height:62vw}
+  .visit{padding:20px 20px 28px}
+  .visit__who{flex-direction:column;align-items:flex-start}
+  .visit__who img{width:min(100%,260px);align-self:center}
+  .visit__who>div{width:100%}
+  .visit .btns{flex-direction:column}
+  .visit .btns .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .stor{height:auto}
+  .stor__stage{position:static;height:auto}
+  .stor__pic{height:70vh}
+  .stor__pic img{opacity:0}
+  .stor__pic img:last-child{opacity:1}
+}
+/* карточка фабрики — всплывающее окно, как в «Каталоге фабрик»: описание, официальный сайт, письмо менеджеру */
+.fdlg{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;background:rgba(33,33,33,.42);opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.fdlg.on{opacity:1;pointer-events:auto}
+.fdlg__c{position:relative;width:min(560px,100%);max-height:calc(100vh - 40px);overflow:auto;background:var(--white);border-radius:14px;padding:clamp(24px,3vw,36px);box-shadow:0 30px 80px rgba(0,0,0,.25);transform:translateY(12px) scale(.98);transition:transform .4s var(--ease)}
+.fdlg.on .fdlg__c{transform:none}
+.fdlg__x{position:absolute;right:16px;top:16px;width:34px;height:34px;border-radius:50%;border:.5px solid var(--line);display:grid;place-items:center}
+.fdlg__x:hover{border-color:var(--ink)}
+.fdlg__h{display:flex;gap:16px;align-items:center;margin-bottom:18px;padding-right:40px}
+.fdlg__h img,.fdlg__mono{flex:none;width:64px;height:64px;border-radius:var(--r);object-fit:contain;background:var(--white);border:.5px solid var(--line-soft)}
+.fdlg__mono{display:grid;place-items:center;font-family:var(--display);font-weight:500;font-size:16px;color:var(--graphite);background:var(--mist)}
+.fdlg__h b{display:block;font-family:var(--display);font-weight:500;font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.fdlg__h span{font-size:13px;color:var(--graphite)}
+.fdlg p{font-size:15px;line-height:1.65;color:var(--ink);font-weight:300}
+.fdlg__tags{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 22px}
+.fdlg__tags span{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--mist);color:var(--ink)}
+.fdlg__a{display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:760px){
+  .fdlg{place-items:end stretch;padding:0}
+  .fdlg__c{width:100%;border-radius:16px 16px 0 0;max-height:88vh;transform:translateY(40px)}
+}
+@media (prefers-reduced-motion:reduce){.fdlg,.fdlg__c{transition:none}}
+</style>
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main>
+  <section class="hero" style="min-height:calc(min(86vh,820px) + var(--hh))" data-hdr-over>
+    <img src="img/kitchen/hero.jpg" alt="Кухня в шоуруме HOMEART: остров с барными стульями и высокий шкаф с подсветкой">
+    <div class="wrap hero__in">
+      <div class="eyebrow eyebrow--light">Направление HOMEART</div>
+      <h1>Кухни и системы хранения</h1>
+      <p class="hero__sub">Вы задаёте образ — наша команда берёт на себя расчёт, визуализацию, технические чертежи и встречу с клиентом.</p>
+      <div class="hero__cta">
+        <button type="button" class="btn btn--light" data-call="Консультация">Записаться на консультацию</button>
+        <a href="#factories" class="btn btn--ghost-light">Фабрики направления</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="eyebrow">Как мы работаем вместе</div>
+      <h2 style="margin-top:14px;max-width:26ch">Вы продумываете образ, остальное берёт на себя наша команда</h2>
+      <div class="roles">
+        <div class="role role--you">
+          <div class="role__who">Дизайнер</div>
+          <h3>Идея и визуальный образ</h3>
+          <ul>
+            <li><span>01</span>Продумываете образ кухни, гардероба и техники в проекте</li>
+            <li><span>02</span>Приглашаете клиента в шоурум</li>
+          </ul>
+          <p class="role__note">На этом ваша часть работы практически заканчивается.</p>
+        </div>
+        <div class="role role--we">
+          <div class="role__who">Команда HOMEART</div>
+          <h3>Всё, что нужно, чтобы сделка состоялась</h3>
+          <ul>
+            <li><span>01</span>Эксперты подключаются к проекту с первого обсуждения</li>
+            <li><span>02</span>Подбираем фабрику под задачу и бюджет</li>
+            <li><span>03</span>Готовим индивидуальный расчёт</li>
+            <li><span>04</span>Делаем визуализацию и технические чертежи</li>
+            <li><span>05</span>Проводим встречу с клиентом и снимаем его запрос</li>
+            <li><span>06</span>Сопровождаем каждый этап — до монтажа</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="fast">
+        <div class="fast__img"><img src="img/kitchen/meet.jpg" alt="Кухня у окон в шоуруме HOMEART: обеденный стол и мраморный фартук с подсветкой" loading="lazy"></div>
+        <div class="fast__body">
+          <div class="eyebrow">На практике</div>
+          <h2>Точно и быстро</h2>
+          <p>Дизайнер приносит идею — мы готовим визуализацию, встречаемся с клиентом и сразу отвечаем на его вопросы. Клиент быстрее принимает решение, а проект идёт дальше без пауз.</p>
+          <ol class="path">
+            <li>Идея<small>визуал дизайнера</small></li>
+            <li>Встреча<small>визуализация, чертежи, расчёт</small></li>
+            <li>Решение<small>клиент получает ответы сразу</small></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stor" id="storage" aria-labelledby="storTitle">
+    <div class="wrap stor__stage">
+      <div class="stor__txt">
+        <div class="eyebrow">Storage</div>
+        <h2 id="storTitle">Гардеробные и системы хранения</h2>
+        <p>Проектируем и изготавливаем гардеробные, шкафы и системы хранения индивидуально — с учётом задач проекта и потребностей клиента. Наши специалисты берут на себя расчёты, визуализацию, подготовку чертежей и встречи с клиентом.</p>
+        <ol class="stor__steps">
+          <li class="on"><b>Отвечаем на вопросы и находим решения.</b>Помогаем разобраться в нюансах и подобрать оптимальный вариант для проекта.</li>
+          <li><b>Учитываем важные детали.</b>Опираемся на опыт наших экспертов и реализованных проектов, чтобы заранее предусмотреть возможные сложности.</li>
+          <li><b>Продумываем хранение до мелочей.</b>Учитываем потребности клиента и сценарии использования, чтобы готовое решение было удобным в повседневной жизни.</li>
+        </ol>
+      </div>
+      <div class="stor__pic">
+        <img src="img/kitchen/st-1.jpg" alt="Гардероб с зеркальными дверями в спальне шоурума HOMEART">
+        <img src="img/kitchen/st-2.jpg" alt="" loading="lazy">
+        <img src="img/kitchen/st-3.jpg" alt="Тот же гардероб открыт: штанги с одеждой, ящики и подсветка" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="factories" style="scroll-margin-top:var(--hh)">
+    <div class="wrap">
+      <div class="sec__h"><div><div class="eyebrow">Фабрики направления</div><h2 id="fTitle">Фабрики для кухни, хранения, дверей и техники</h2>
+        <p>Нажмите на раздел — перейдём к его фабрикам. Внутри раздела фабрики разделены по ценовому сегменту.</p></div></div>
+      <div class="cats" id="cats"></div>
+      <div id="fl"></div>
+      <a class="link fl__all" href="factories.html?tab=kd">Все фабрики в каталоге →</a>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="river" aria-label="Кухни в шоуруме HOMEART">
+      <div class="river__track"><img src="img/kitchen/car-01.jpg" alt="" width="960" height="720" loading="lazy"><img src="img/kitchen/car-02.jpg" alt="" width="961" height="720" loading="lazy"><img src="img/kitchen/car-03.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-04.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-05.jpg" alt="" width="1191" height="720" loading="lazy"><img src="img/kitchen/car-06.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-07.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-08.jpg" alt="" width="961" height="720" loading="lazy"><img src="img/kitchen/car-09.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-10.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-11.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-12.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-13.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-14.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-15.jpg" alt="" width="536" height="720" loading="lazy"><img src="img/kitchen/car-16.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-17.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-18.jpg" alt="" width="540" height="720" loading="lazy"><img src="img/kitchen/car-19.jpg" alt="" width="549" height="720" loading="lazy"></div>
+    </div>
+    <div class="wrap">
+      <div class="visit">
+        <div class="visit__who">
+          <img src="img/photo/about-host.jpg" alt="Сотрудница шоурума HOMEART" loading="lazy">
+          <div>
+            <div class="eyebrow">Шоурум · 3-я Фрунзенская, 1</div>
+            <h2>Запланируйте визит в HOMEART</h2>
+            <p>Покажем кухни и системы хранения вживую, обсудим проект и подготовим расчёт.</p>
+            <div class="btns">
+              <button type="button" class="btn btn--light" data-call="Встреча в шоуруме">Записаться на встречу</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="fdlg" id="fdlg" role="dialog" aria-modal="true" aria-labelledby="fdlgT"><div class="fdlg__c" id="fdlgC"></div></div>
+<div id="ftr"></div>
+<script src="data/data.js?v=1793390595"></script>
+<script src="data/brands.js?v=1793390595"></script>
+<script src="assets/site.js?v=1793390595"></script>
+<script>
+// Фабрики направления: плитки ведут к разделу; в разделе фабрики сгруппированы по ценовому сегменту
+(function () {
+  const { esc } = HA;
+  const CATS = [
+    { s: 'Кухни', id: 'f-kitchen', t: 'Кухни', tile: 'img/kitchen/cat-kitchen.jpg', img: 'img/kitchen/sec-kitchen.jpg',
+      d: 'Выбор по архитектуре, характеру фасадов и задаче проекта.' },
+    { s: 'Гардеробные', id: 'f-storage', t: 'Гардеробные и хранение', tile: 'img/kitchen/cat-storage.jpg', img: 'img/kitchen/sec-storage.jpg',
+      d: 'Гардеробные, шкафы и системы хранения — от верхнего ценового сегмента к более доступным решениям.' },
+    { s: 'Двери', id: 'f-doors', t: 'Двери и перегородки', tile: 'img/kitchen/cat-doors-tile.jpg', img: 'img/kitchen/cat-doors.jpg',
+      d: 'Двери с разными открываниями и отделками, стеклянные перегородки, стеновые панели и скрытые проходы.' },
+    { s: 'Техника', id: 'f-tech', t: 'Встраиваемая техника', tile: 'img/kitchen/cat-tech.jpg', img: 'img/kitchen/sec-tech.jpg',
+      d: 'Встраиваемая техника, холодильники и винные шкафы.' },
+  ];
+  const SEG = [['Люкс', 'Люкс-сегмент', 4], ['Высокий', 'Высокий сегмент', 3], ['Выше среднего', 'Сегмент выше среднего', 2], ['Средний', 'Средний сегмент', 1]];
+  const NOLOGO = ['arredo3'];   // файл логотипа — пустой чёрный квадрат
+  const rows = [];
+  FACTORIES.forEach(f => (f.kdNotes || []).forEach(n => rows.push({ f, ...n })));
+  const plural = n => n % 10 === 1 && n % 100 !== 11 ? 'фабрика' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'фабрики' : 'фабрик';
+  const total = new Set(rows.map(r => r.f.id)).size;
+  document.getElementById('fTitle').textContent = `${total} ${plural(total)} для кухни, хранения, дверей и техники`;
+  const n = c => rows.filter(r => r.section === c.s).length;
+  document.getElementById('cats').innerHTML = CATS.map(c => `<a class="cat" href="#${c.id}">
+      <img src="${c.tile}" alt="" loading="lazy"><span class="cat__in"><span><span class="cat__n">${n(c)} ${plural(n(c))}</span>
+      <span class="cat__t">${c.t}</span></span><span class="cat__go" aria-hidden="true">↓</span></span></a>`).join('');
+  const logo = f => f.logo && !NOLOGO.includes(f.id) ? `<img src="${f.logo}" alt="" loading="lazy">` : esc(f.name.split(/\s+/).map(w => w[0]).join('').slice(0, 2));
+  const card = r => `<a class="fcard" href="#" role="button" data-id="${r.f.id}"><span class="fcard__logo">${logo(r.f)}</span>
+      <span><b>${esc(r.f.name)}</b>${r.subgroup ? `<small>${esc(r.subgroup)}</small>` : ''}<p>${esc(r.note)}</p></span></a>`;
+  const dots = k => `<i class="seg__d">${[1, 2, 3, 4].map(i => `<b class="${i <= k ? 'on' : ''}"></b>`).join('')}</i>`;
+  document.getElementById('fl').innerHTML = CATS.map((c, i) => {
+    const list = rows.filter(r => r.section === c.s);
+    return `<section class="fsec" id="${c.id}">
+      <div class="fsec__side"><img src="${c.img}" alt="" loading="lazy"><div class="eyebrow">Раздел 0${i + 1} · ${list.length} ${plural(list.length)}</div>
+        <h3>${c.t}</h3><p>${c.d}</p></div>
+      <div>${SEG.map(([lv, t, k]) => {
+        const g = list.filter(r => r.f.level === lv);
+        return g.length ? `<div class="seg"><div class="seg__h">${dots(k)}${t}<span>· ${g.length}</span></div><div class="fgrid">${g.map(card).join('')}</div></div>` : '';
+      }).join('')}</div></section>`;
+  }).join('');
+
+  // карточка фабрики: отдельных страниц фабрик нет — открываем окно с описанием и официальным сайтом, как в «Каталоге фабрик»
+  const norm = s => s.toLowerCase().replace(/[^a-z0-9а-яё]/g, '');
+  const dlg = document.getElementById('fdlg'), dlgC = document.getElementById('fdlgC');
+  let back = null;
+  function open(id) {
+    const f = FACTORIES.find(x => x.id === id); if (!f) return;
+    const b = BRANDS.find(x => x.id === id) || BRANDS.find(x => norm(x.name) === norm(f.name)) || {};
+    const name = b.name || f.name, site = b.site || f.site, desc = b.desc || f.desc, tags = (b.tags || f.tags || []).slice(0, 10);
+    const mono = `<span class="fdlg__mono">${esc(name[0])}</span>`;
+    back = document.activeElement;
+    dlgC.innerHTML = `<button type="button" class="fdlg__x" data-x aria-label="Закрыть"><svg width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2l6 6M8 2l-6 6"/></svg></button>
+      <div class="fdlg__h">${b.logo ? `<img src="${b.logo}" alt="" onerror="this.outerHTML='${mono.replace(/"/g, '&quot;')}'">` : mono}<div><b id="fdlgT">${esc(name)}</b><span>${esc([b.country || f.country, (b.groups || []).join(', ')].filter(Boolean).join(' · '))}</span></div></div>
+      ${desc ? `<p>${esc(desc)}</p>` : ''}
+      ${tags.length ? `<div class="fdlg__tags">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>` : '<div style="height:20px"></div>'}
+      <div class="fdlg__a">${site ? `<a class="btn" href="${esc(site)}" target="_blank" rel="noopener">Официальный сайт ↗</a>` : ''}
+        <button type="button" class="btn btn--line" data-call="Фабрика: ${esc(name)}">Написать менеджеру</button></div>`;
+    dlg.classList.add('on'); document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => dlgC.querySelector('[data-x]').focus(), 60);
+  }
+  function close() { dlg.classList.remove('on'); document.documentElement.style.overflow = ''; if (back) back.focus({ preventScroll: true }) }
+  document.getElementById('fl').addEventListener('click', e => { const c = e.target.closest('.fcard'); if (c) { e.preventDefault(); open(c.dataset.id) } });
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('[data-x]') || e.target.closest('[data-call]')) close() });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && dlg.classList.contains('on')) close() });
+})();
+
+// Лента кухонь: течёт сама; при наведении её можно прокрутить колесом или трекпадом, перетащить мышью или пальцем
+(function () {
+  const river = document.querySelector('.river'), t = river.querySelector('.river__track');
+  t.insertAdjacentHTML('beforeend', t.innerHTML.replace(/<img /g, '<img aria-hidden="true" '));   // вторая копия — поток без шва
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SPEED = 22;                      // px в секунду — спокойное течение
+  let x = 0, v = 0, half = 1, hover = false, drag = null, seen = false, last = 0;
+  const measure = () => { half = t.scrollWidth / 2 + 6 };   // 6 — половина зазора между копиями
+  measure(); addEventListener('resize', measure);
+  function frame(now) {
+    const dt = Math.min(.05, (now - last) / 1000 || 0); last = now;
+    if (!drag) {
+      x -= (still ? 0 : SPEED * (hover ? .35 : 1)) * dt + v;   // под курсором течёт медленнее
+      v *= .9; if (Math.abs(v) < .05) v = 0;                  // инерция после колеса и броска
+    }
+    x = ((x % half) - half) % half;                            // держим в пределах одной копии
+    t.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+    if (seen || drag || v) requestAnimationFrame(frame); else last = 0;
+  }
+  const run = () => { if (!last) { last = performance.now(); requestAnimationFrame(frame) } };
+  new IntersectionObserver(([e]) => { seen = e.isIntersecting; if (seen) run() }).observe(river);
+  river.addEventListener('mouseenter', () => hover = true);
+  river.addEventListener('mouseleave', () => hover = false);
+  river.addEventListener('wheel', e => {
+    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (!d) return;
+    e.preventDefault(); v += d * .06; run();
+  }, { passive: false });
+  river.addEventListener('pointerdown', e => {
+    drag = { x: e.clientX, lx: e.clientX, t: performance.now(), moved: 0 }; v = 0;
+    river.setPointerCapture(e.pointerId); river.classList.add('is-drag');
+  });
+  river.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.lx; drag.lx = e.clientX; x += dx; drag.v = dx;
+    t.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+  });
+  // отпустили — лента летит дальше по инерции, скорость броска ограничена
+  const end = () => { if (!drag) return; v = Math.max(-40, Math.min(40, -(drag.v || 0) * .9)); drag = null; river.classList.remove('is-drag'); run() };
+  river.addEventListener('pointerup', end); river.addEventListener('pointercancel', end);
+})();
+
+// Storage: при прокрутке двери гардероба открываются — три кадра одной съёмки сменяют друг друга
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const sec = document.getElementById('storage'), imgs = sec.querySelectorAll('.stor__pic img'), steps = sec.querySelectorAll('.stor__steps li');
+  let ticking = false;
+  function draw() {
+    // на компьютере сцена прилипает — ход по секции; на телефоне — пока фото проходит через экран
+    const pin = getComputedStyle(sec.querySelector('.stor__stage')).position === 'sticky';
+    const r = (pin ? sec : sec.querySelector('.stor__pic')).getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, pin ? -r.top / (r.height - innerHeight) : (innerHeight * .85 - r.top) / (r.height * .9)));
+    const f = p * 2.4 - .2;   // 0…2 по кадрам, с небольшой паузой в начале и в конце
+    imgs[1].style.opacity = Math.min(1, Math.max(0, f)).toFixed(3);
+    imgs[2].style.opacity = Math.min(1, Math.max(0, f - 1)).toFixed(3);
+    const k = f < .5 ? 0 : f < 1.5 ? 1 : 2;
+    steps.forEach((li, i) => li.classList.toggle('on', i <= k));
+    ticking = false;
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(draw) } }, { passive: true });
+  addEventListener('resize', draw); draw();
+})();
+</script>
+</body>
+</html>

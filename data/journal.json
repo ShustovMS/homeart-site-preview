@@ -1,0 +1,93 @@
+[
+ {
+  "id": "svet-v-proekte",
+  "rubric": "Техника и решения",
+  "title": "Свет в проекте: что заложить до чистовой отделки",
+  "lead": "Пять решений, которые нужно принять на этапе черновых работ, чтобы потом не штробить стены.",
+  "img": "img/photo/int-03.jpg",
+  "min": 7,
+  "access": "partial",
+  "date": "2026-09-24",
+  "factories": [
+   "flos",
+   "davide-groppi",
+   "artemide"
+  ]
+ },
+ {
+  "id": "10-fabrik",
+  "rubric": "Широта HOMEART",
+  "title": "10 фабрик, о которых вы, возможно, не знаете",
+  "lead": "Средний сегмент Италии и Испании: где искать альтернативу, когда бюджет проекта ограничен.",
+  "img": "img/photo/int-07.jpg",
+  "min": 5,
+  "access": "open",
+  "date": "2026-09-17",
+  "factories": [
+   "calligaris",
+   "bonaldo",
+   "midj",
+   "kristalia"
+  ]
+ },
+ {
+  "id": "pochemu-stolko-stoit",
+  "rubric": "Аргументы для клиента",
+  "title": "Почему это столько стоит: структура цены итальянского дивана",
+  "lead": "Из чего складывается цена — производство, материалы, логистика, таможня. Версия для разговора с клиентом.",
+  "img": "img/photo/showroom-2.jpg",
+  "min": 6,
+  "access": "member",
+  "date": "2026-09-10",
+  "factories": [
+   "minotti",
+   "baxter",
+   "flexform"
+  ]
+ },
+ {
+  "id": "salone-2026",
+  "rubric": "Насмотренность",
+  "title": "Salone del Mobile 2026: что взять в проект уже сейчас",
+  "lead": "Не тренды, а конкретные предметы и отделки, которые уже можно заказать.",
+  "img": "img/photo/int-12.jpg",
+  "min": 8,
+  "access": "open",
+  "date": "2026-09-03",
+  "factories": [
+   "molteni-c",
+   "poliform",
+   "edra"
+  ]
+ },
+ {
+  "id": "kuhnya-uzly",
+  "rubric": "Техника и решения",
+  "title": "Кухня до КП: какие узлы проверить на замере",
+  "lead": "Вентиляция, подводы, ниши под технику — что убивает сроки, если не решено заранее.",
+  "img": "img/photo/kitchen-1.jpg",
+  "min": 6,
+  "access": "partial",
+  "date": "2026-08-27",
+  "factories": [
+   "modulnova",
+   "tm-italia",
+   "gaggenau"
+  ]
+ },
+ {
+  "id": "dizayner-geroy",
+  "rubric": "Сообщество",
+  "title": "Проект месяца: квартира на Патриарших",
+  "lead": "Как дизайнер собрал интерьер из четырёх фабрик и уложился в срок новоселья.",
+  "img": "img/photo/project-2.jpg",
+  "min": 4,
+  "access": "open",
+  "date": "2026-08-20",
+  "factories": [
+   "molteni-c",
+   "rimadesio",
+   "flos"
+  ]
+ }
+]

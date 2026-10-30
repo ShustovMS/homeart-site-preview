@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Проекты с мебелью и светом HOMEART — дизайнеры и архитекторы</title>
+<meta name="description" content="Реализованные интерьеры дизайнеров и архитекторов с мебелью, светом и кухнями HOMEART: квартиры и загородные дома.">
+<meta property="og:title" content="Проекты с мебелью и светом HOMEART">
+<meta property="og:description" content="Реализованные интерьеры дизайнеров и архитекторов с мебелью, светом и кухнями HOMEART.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/fonts.css?v=1793390595">
+<link rel="stylesheet" href="assets/site.css?v=1793390595">
+<link rel="stylesheet" href="assets/projects.css?v=1793390595">
+</head>
+<body data-page="projects" data-root="">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><a href="index.html">Главная</a><span>/</span><span>Проекты</span></div>
+  <div class="pagehead">
+    <div class="eyebrow">Проекты</div>
+    <h1>Проекты</h1>
+    <p class="lead">HOMEART — надёжный партнёр в реализации дизайн-проекта любой сложности. Интерьеры дизайнеров и архитекторов, в которых работают мебель, свет и кухни из нашего шоурума.</p>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div id="list" style="padding-bottom:clamp(64px,7vw,110px)"></div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1793390595"></script>
+<script src="data/projects.js?v=1793390595"></script>
+<script src="assets/site.js?v=1793390595"></script>
+<script>
+(function () {
+  const { esc, qs } = HA;
+  const tab = qs.get('tab') === 'designers' ? 'designers' : 'projects';
+  const byId = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
+  document.getElementById('tabs').innerHTML =
+    `<a href="projects.html" class="${tab === 'projects' ? 'on' : ''}">Проекты<span>${PROJECTS.length}</span></a>` +
+    `<a href="projects.html?tab=designers" class="${tab === 'designers' ? 'on' : ''}">Дизайнеры<span>${DESIGNERS.length}</span></a>`;
+  const list = document.getElementById('list');
+  if (tab === 'projects') {
+    list.innerHTML = `<div class="ptiles">${PROJECTS.map(p => `<a class="ptile" href="project.html?id=${encodeURIComponent(p.id)}">
+      <div class="ptile__p">${p.photos[0] ? `<img loading="lazy" src="${p.photos[0]}" alt="${esc(p.title)}">` : ''}</div>
+      <div class="ptile__b"><span class="ptile__t">${esc(p.title)}</span>${p.author ? `<span class="ptile__a">${esc(p.author)}</span>` : ''}</div></a>`).join('')}</div>`;
+  } else {
+    document.title = 'Дизайнеры и архитекторы — проекты с HOMEART';
+    list.innerHTML = `<div class="dtiles">${DESIGNERS.map(d => {
+      const n = d.projects.filter(id => byId[id]).length;
+      return `<a class="dtile" href="designer.html?id=${encodeURIComponent(d.id)}">
+        <div class="dtile__p">${d.portrait ? `<img loading="lazy" src="${d.portrait}" alt="${esc(d.name)}">` : ''}</div>
+        <span class="dtile__t">${esc(d.name)}</span>${d.role ? `<span class="dtile__r">${esc(d.role)}</span>` : ''}
+        <span class="dtile__n">${HA.fmt.plural(n, 'проект', 'проекта', 'проектов')}</span></a>`;
+    }).join('')}</div>`;
+  }
+})();
+</script>
+</body>
+</html>
