@@ -1,0 +1,343 @@
+/* Главная: сцена «дизайн-проект собирается» (ролик в canvas, кадр = прокрутка)
+   и блок «Нам доверяют». Двигаем только transform и opacity. */
+
+:root{
+  --hx-ease:cubic-bezier(.77,0,.175,1);
+  --hx-out:cubic-bezier(.23,1,.32,1);
+}
+
+/* ── сцена ─────────────────────────────────────────────── */
+/* первый экран: ролик во весь экран сцены */
+.hx{position:relative;background:#e7e6e6}
+.hx{--hdr:0px}   /* сцена заходит под шапку (data-hdr-over), шапка лежит на ролике дымкой */
+.hx__stage{position:relative;top:var(--hdr);height:calc(100vh - var(--hdr));height:calc(100svh - var(--hdr));overflow:hidden;isolation:isolate;background:#e7e6e6}
+/* окно ролика: на компьютере — весь экран сцены */
+.hx__view{position:absolute;inset:0}
+.hx__poster,.hx__vid{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hx__poster,.hx__vid{object-fit:cover}
+.hx__poster{z-index:1;transition:opacity .4s ease}
+.hx--live .hx__poster{opacity:0;pointer-events:none}   /* видео пошло — заставку убираем */
+/* затемнение снизу — под титрами текст читается на любом кадре */
+.hx__scrim{position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;z-index:1;
+  background:linear-gradient(0deg,rgba(33,33,33,.66) 0%,rgba(33,33,33,.3) 45%,rgba(33,33,33,0) 100%)}
+
+/* кнопка ролика: тихая надпись в левом нижнем углу, без подложки; видна только когда ролик не идёт */
+.hxbtn{position:absolute;z-index:6;left:clamp(16px,3vw,48px);bottom:clamp(20px,4vh,40px);display:inline-flex;align-items:center;gap:8px;padding:6px 0;
+  color:#fff;font-family:var(--display);font-weight:500;font-size:10px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.35);
+  opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.23,1,.32,1)}
+.hxbtn.on{opacity:.6;pointer-events:auto}
+.hxbtn.on:hover,.hxbtn.on:focus-visible{opacity:1}
+.hxbtn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.hxbtn:hover svg{transform:rotate(-200deg)}
+
+/* подписи — как титры в кино: по центру внизу, тонкий крупный шрифт, без плашек */
+.cap{position:absolute;left:0;right:0;bottom:clamp(24px,7vh,64px);z-index:5;padding:0 8%;text-align:center}
+.cap__stack{position:relative;max-width:1320px;margin:0 auto}
+.cap .nw{white-space:nowrap}   /* фраза переносится только между смысловыми частями */
+.cap__b{position:absolute;left:0;right:0;bottom:0;opacity:0;filter:blur(8px);transform:translateY(12px);
+  transition:opacity .7s var(--hx-out),filter .7s var(--hx-out),transform .9s var(--hx-out);pointer-events:none}
+.cap__b.on{position:relative;opacity:1;filter:none;transform:none;pointer-events:auto}
+.cap .eyebrow{color:var(--brass-pale);letter-spacing:.2em}
+.cap h1,.cap h2{font-weight:200;font-size:clamp(26px,3.3vw,50px);line-height:1.1;letter-spacing:-.01em;margin:12px 0 0;color:#fff}
+.cap p{color:rgba(255,255,255,.8);font-size:14px;font-weight:300;line-height:1.55;max-width:62ch;margin:12px auto 0}
+.cap__cta{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+/* финал ролика: заголовок в три строки слева, по центру столбика плиток справа; плитки — графитовое стекло с белой рамкой и объёмом, въезжают справа */
+.cap__b--fin{display:flex;align-items:center;justify-content:space-between;gap:32px;text-align:left}
+.cap .cap__b--fin h2{margin:0;font-size:clamp(24px,3vw,46px);line-height:1.12}
+.cap__b--fin h2 span{display:block;white-space:nowrap}
+.cap__b--fin .cap__cta{flex-direction:column;margin:0;flex:none}
+.cap__cta .cap__go{min-width:240px;color:#fff;border:1.5px solid rgba(255,255,255,.85);
+  background:linear-gradient(180deg,rgba(70,70,70,.62) 0%,rgba(33,33,33,.6) 55%,rgba(18,18,18,.72) 100%);-webkit-backdrop-filter:blur(14px) saturate(130%);backdrop-filter:blur(14px) saturate(130%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 12px 18px -10px rgba(255,255,255,.22),inset 0 -10px 16px -8px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.25),0 14px 30px -6px rgba(0,0,0,.5)}
+.cap__cta .cap__go small{color:var(--sand)}
+.cap__cta .cap__go:hover{border-color:#fff;background:linear-gradient(180deg,rgba(80,80,80,.68) 0%,rgba(38,38,38,.66) 55%,rgba(20,20,20,.78) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 12px 18px -10px rgba(255,255,255,.22),inset 0 -10px 16px -8px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.25),0 18px 34px -6px rgba(0,0,0,.55)}
+/* fill-mode backwards: после въезда плитка снова слушается :hover/:active */
+.cap__b--fin.on .cap__go{animation:capGoIn .7s var(--hx-out) .35s backwards}
+.cap__b--fin.on .cap__go+.cap__go{animation-delay:.47s}
+@keyframes capGoIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+.cap__soon{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:rgba(255,255,255,.82)}
+.cap__soon i{width:18px;height:18px;border-radius:50%;background:#2aabee;color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:10px}
+
+/* этапы вверху сцены — тихо: мелкий шрифт, тонкие линии; ярче при наведении */
+
+/* кнопка: кольцо = ход ролика, внутри пауза или play.
+   При открытии мягко вспыхивает и тускнеет; после конца ролика несколько раз «дышит» — приглашает посмотреть снова */
+.hx__list{display:none}
+
+/* статичный режим: «меньше движения» — финальный кадр без закрепления и прокрутки */
+.hx--static{height:auto}
+.hx--static .hx__stage{position:relative}
+.hx--static .hx__vid,.hx--static .hxbtn{display:none}
+.hx--static .hx__list{display:block;position:relative;z-index:5;max-width:var(--maxw);margin:0 auto;padding:28px var(--gutter) 40px}
+.hx--static .hx__list ol{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;border-top:.5px solid var(--line);padding-top:20px}
+.hx--static .hx__list b{display:block;font-weight:500;margin-bottom:4px}
+.hx--static .hx__list p{font-size:14px;color:var(--graphite)}
+
+/* телефон: ролик — окно 4:3 сверху, подпись — под ним на светлом фоне */
+@media (max-width:860px){
+  .hx__view{inset:0 0 auto 0;aspect-ratio:4/3}
+  .hx__scrim{display:none}
+  .cap{left:16px;right:16px;width:auto;top:calc(75vw + 18px);bottom:auto;padding:0}   /* сразу под окном ролика */
+  .cap__b{top:0;bottom:auto}
+  .hxbtn{top:calc(75vw - 40px);bottom:auto;left:14px}
+  .cap .eyebrow{color:var(--amber)}
+  .cap h1,.cap h2{font-size:clamp(25px,7vw,32px);font-weight:300;margin:8px 0 0;color:var(--ink)}
+  .cap p,.cap__soon{font-size:13.5px;color:var(--graphite)}
+  .cap .btn--light{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .cap .btn--ghost-light{color:var(--ink);border-color:var(--ink)}
+  .cap__b--fin{display:block;text-align:center}
+  .cap .cap__b--fin h2{font-size:clamp(25px,7vw,32px);margin:8px 0 0}
+  .cap__b--fin h2 span{display:inline;white-space:normal}
+  .cap__b--fin .cap__cta{flex-direction:row;margin-top:22px}
+  .cap__b--fin .cap__go{min-width:min(100%,240px)}
+  .hx__stage{height:calc(75vw + 330px)}   /* ролик + подпись, без пустоты снизу */
+  .hx--static .hx__stage{height:auto;min-height:0;padding-bottom:0}
+  .hx--static .hx__view{position:relative;top:0}
+  .hx--static .cap{position:relative;inset:auto;margin:20px 16px 0}
+  .hx--static .hx__list ol{grid-template-columns:1fr 1fr}
+}
+@media (min-width:861px){
+  .hx--static .hx__stage{height:calc(100vh - var(--hdr))}
+}
+
+/* ── «Нам доверяют»: на прокрутке стопка снимков раскладывается в стену, затем появляется заголовок ── */
+.trust{position:relative;height:280vh;background:var(--ink);color:#e7e6e6}
+.trust__stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+.trust__in{position:relative;width:100%}
+.trust__wall{padding:0 clamp(6px,.7vw,10px)}
+/* ровные ряды: снимки в своих пропорциях, целиком; место и размер каждого считает home.js */
+.trust__cols{position:relative;isolation:isolate}   /* порядок стопки (z-index) — внутри стены, заголовок всегда сверху */
+.face{position:absolute;display:block;margin:0;will-change:transform}
+.face__ph{display:block;height:100%;overflow:hidden;border-radius:4px;background:var(--ink-soft)}
+/* в стопке и в полёте снимок — отпечаток: белая рамка и имя на нижнем поле; к месту в стене растворяются (--pk, home.js) */
+.face::before{content:"";position:absolute;inset:-7px -7px -36px;z-index:-1;border-radius:3px;background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.45);opacity:var(--pk,0);pointer-events:none}
+.face__name{position:absolute;left:0;right:0;bottom:-36px;height:36px;display:flex;align-items:center;justify-content:center;padding:0 4px;text-align:center;
+  font-family:var(--display);font-weight:500;font-size:12px;line-height:1.15;text-transform:uppercase;color:var(--ink);opacity:var(--pk,0);pointer-events:none}
+/* вместе с заголовком (--tp) стена притухает, чтобы надпись читалась; снимок под курсором — в полную яркость */
+.face img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04) brightness(.92);opacity:calc(1 - .58 * var(--tp,0));
+  transition:filter .7s var(--hx-out),opacity .5s var(--hx-out),transform 1s var(--hx-out)}
+/* в стене снимок «зажигается» цветом: наведение на компьютере; на телефоне собранные снимки по очереди сами (is-color) */
+.face.is-color img{filter:none;transform:scale(1.035);opacity:1}
+@media (hover:hover) and (pointer:fine){
+  .face:hover img{filter:none;transform:scale(1.035);opacity:1;transition-duration:.6s}
+}
+.face:not(.is-set),.trust:not(.done) .trust__foot{pointer-events:none}   /* снимок откликается, как только встал на место */
+.trust__title{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;
+  opacity:var(--tp,0);background:radial-gradient(42% 40% at 50% 50%,rgba(33,33,33,.93) 0%,rgba(33,33,33,.72) 50%,rgba(33,33,33,0) 100%)}
+.trust__title>*{transform:translateY(calc((1 - var(--tp,0)) * 16px))}
+.trust__title .eyebrow{color:var(--brass-pale)}
+.trust__title h2{font-weight:300;font-size:clamp(30px,4.4vw,68px);margin:14px 0 12px;color:#fff;text-transform:uppercase}
+.trust__title p{max-width:44ch;color:var(--sand);font-size:15px;padding:0 16px}
+.trust__hint{position:absolute;left:0;right:0;bottom:clamp(20px,5vh,44px);text-align:center;font-family:var(--display);font-weight:500;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:var(--hp,1);pointer-events:none}
+.trust__foot{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(16px,4vh,36px);display:flex;justify-content:space-between;align-items:center;
+  gap:8px 20px;flex-wrap:wrap;color:#a6a29a;font-size:14px;opacity:var(--tp,0)}
+.trust__foot .link{color:#e7e6e6}
+
+@media (max-width:760px){
+  .trust__title{background:radial-gradient(70% 30% at 50% 50%,rgba(33,33,33,.9) 0%,rgba(33,33,33,.6) 60%,rgba(33,33,33,0) 100%)}
+  .trust__title h2{font-size:clamp(26px,7vw,34px)}
+  .trust__foot{font-size:13px}
+  .face::before{inset:-5px -5px -32px}
+  .face__name{bottom:-32px;height:32px;font-size:10px;padding:0 2px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .trust{height:auto}.trust__stage{position:relative;height:auto;padding:clamp(70px,9vw,130px) 0}
+  .face{transform:none!important}.face img{opacity:.42}.trust__title{opacity:1}.trust__hint{display:none}
+  .trust__foot{position:static;opacity:1;margin:28px var(--gutter) 0}
+  .trust .face,.trust .trust__foot{pointer-events:auto}
+  .cap__b{transition:none}
+  .cap__b--fin.on .cap__go{animation:none}
+}
+
+/* служебная плашка прототипа на главной не закрывает подпись справа */
+body[data-page="home"] .proto{right:auto;left:12px}
+@media (max-width:640px){body[data-page="home"] .proto{right:8px;left:8px}}
+
+/* подписи первого экрана — как заголовок первого экрана текущего сайта: Museo 500, прописные */
+.cap h1,.cap h2{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(22px,2.5vw,38px);line-height:1.18}
+.trust__title h2{font-family:var(--sans);font-weight:300}
+
+/* ══ вариант «темнее» (brand-v2): первый экран на графите ══ */
+.hx,.hx__stage{background:var(--ink-soft)}
+@media (max-width:860px){
+  .cap .eyebrow{color:var(--sand)}
+  .cap h1,.cap h2{color:#fff}
+  .cap p,.cap__soon{color:#bdbdbd}
+  .cap .btn--light{background:#fff;color:var(--ink);border-color:#fff}
+  .cap .btn--ghost-light{color:#fff;border-color:rgba(255,255,255,.6)}
+}
+
+/* ── «Знакомьтесь с HOMEART»: графитовая панель, цифры команды и поле из 348 точек ── */
+/* «Знакомьтесь» — на графите во всю ширину; «Кухни» и Academy — на белом */
+.tm{background:var(--ink);color:#fff;padding:clamp(88px,11vw,176px) 0 clamp(96px,12vw,192px)}
+/* переход графит → белый под «Знакомьтесь»: плавная кривая (ease-in-out), без полосы на стыке.
+   Верхняя половина помечена графитом, нижняя — белым: шапка (site.js) меняет тон ровно на середине */
+.tone-fade i{display:block;height:clamp(21px,2.47vw,40px)}
+.tone-fade i:first-child{background-color:var(--ink);background-image:linear-gradient(180deg,rgb(33,33,33) 0%,rgb(35,35,35) 12.5%,rgb(41,41,41) 25%,rgb(52,52,52) 37.5%,rgb(66,66,66) 50%,rgb(82,82,82) 62.5%,rgb(102,102,102) 75%,rgb(122,122,122) 87.5%,rgb(144,144,144) 100%)}
+.tone-fade i:last-child{background-color:var(--white);background-image:linear-gradient(180deg,rgb(144,144,144) 0%,rgb(166,166,166) 12.5%,rgb(186,186,186) 25%,rgb(206,206,206) 37.5%,rgb(222,222,222) 50%,rgb(236,236,236) 62.5%,rgb(247,247,247) 75%,rgb(253,253,253) 87.5%,#fff 100%)}
+/* белый → графит (над «Нам доверяют») и графит → светло-серый фон страницы (под ним) — та же кривая */
+.tone-fade--up i:first-child{background-color:var(--white);background-image:linear-gradient(180deg,#fff 0%,rgb(253,253,253) 12.5%,rgb(247,247,247) 25%,rgb(236,236,236) 37.5%,rgb(222,222,222) 50%,rgb(206,206,206) 62.5%,rgb(186,186,186) 75%,rgb(166,166,166) 87.5%,rgb(144,144,144) 100%)}
+.tone-fade--up i:last-child{background-color:var(--ink);background-image:linear-gradient(180deg,rgb(144,144,144) 0%,rgb(122,122,122) 12.5%,rgb(102,102,102) 25%,rgb(82,82,82) 37.5%,rgb(66,66,66) 50%,rgb(52,52,52) 62.5%,rgb(41,41,41) 75%,rgb(35,35,35) 87.5%,rgb(33,33,33) 100%)}
+.tone-fade--mist i:first-child{background-image:linear-gradient(180deg,rgb(33,33,33) 0%,rgb(35,35,35) 12.5%,rgb(41,41,41) 25%,rgb(50,50,50) 37.5%,rgb(62,62,62) 50%,rgb(77,77,77) 62.5%,rgb(94,94,94) 75%,rgb(113,113,113) 87.5%,rgb(132,132,132) 100%)}
+.tone-fade--mist i:last-child{background-color:var(--mist);background-image:linear-gradient(180deg,rgb(132,132,132) 0%,rgb(151,151,151) 12.5%,rgb(170,170,170) 25%,rgb(187,187,187) 37.5%,rgb(202,202,202) 50%,rgb(214,214,214) 62.5%,rgb(223,223,223) 75%,rgb(229,229,229) 87.5%,rgb(231,231,231) 100%)}
+.tm__in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4vw,72px)}   /* текст прямо на графите, блок целиком помещается в экран под шапкой (16:9) */
+.tm .eyebrow{color:var(--sand)}
+.tm h2{color:#fff;font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:clamp(24px,2.8vw,42px);line-height:1.1;letter-spacing:.01em;margin:0 0 14px;white-space:nowrap}   /* «Знакомьтесь с HOMEART» — в одну строку */
+.tm__sub{color:#d6d6d6;font-weight:300;font-size:clamp(15px,1.15vw,17px);line-height:1.5;max-width:46ch}
+.tm__nums{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,1.8vw,26px) 32px;margin-top:clamp(22px,2.4vw,36px)}
+.tm b{display:block;font-weight:200;line-height:.95;color:#fff;font-variant-numeric:tabular-nums}
+.tm__nums b{font-size:clamp(38px,3.4vw,54px)}
+.tm__nums span{display:block;margin-top:8px;font-size:13px;line-height:1.45;color:#a9a9a9;max-width:30ch}
+.tm__fab{display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.tm__stage{position:relative}
+.tm__dots{display:grid;grid-template-columns:repeat(24,1fr);gap:clamp(4px,.45vw,7px)}   /* поле шире, чем выше: 24 × 15 */
+.tm__dots i{aspect-ratio:1;border-radius:50%;background:var(--sand);opacity:0;transform:scale(.6);transition:opacity .5s ease,transform .5s cubic-bezier(.23,1,.32,1)}
+.tm__dots.dim i{opacity:.08;transform:none}
+.tm__dots.go i{opacity:.5;transform:none}
+.tm__dots i.hit{opacity:1;background:#fff;transform:scale(1.25);transition-delay:0s!important}
+/* логотипы ключевых фабрик поверх поля: сначала крупно, потом каждый сжимается в свою точку */
+.tm__logos{position:absolute;inset:0;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;row-gap:clamp(10px,1.2vw,18px);pointer-events:none}   /* по 4 в ряд, неполный последний ряд — по центру */
+.tm__logos>span{width:25%;display:flex;align-items:center;justify-content:center;height:clamp(22px,2.3vw,34px)}
+.tm__logos img{max-width:84%;max-height:100%;object-fit:contain;opacity:0}   /* появление и исчезновение — анимациями из скрипта */
+.tm__logos>span:first-child{width:100%;height:clamp(34px,3.6vw,52px)}   /* Molteni&C — главный: крупно, отдельной строкой */
+.tm__logos>span:first-child img{max-width:72%}
+/* «и ещё N фабрики →» — под сеткой логотипов, пока они на экране */
+.tm__more{flex-basis:100%;text-align:center;margin-top:clamp(4px,1vw,12px);font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sand);
+  opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .5s cubic-bezier(.23,1,.32,1),color .2s;pointer-events:none}
+.tm__more span{display:inline-block;transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.tm__stage.more .tm__more{opacity:1;transform:none;pointer-events:auto}
+.tm__more:hover{color:#fff}.tm__more:hover span{transform:translateX(4px)}
+.tm__fab b{font-size:clamp(48px,4.4vw,70px);line-height:.9}
+.tm__fab p{color:#d6d6d6;font-weight:300;font-size:15px;line-height:1.5;margin:8px 0 18px;max-width:44ch}
+@media (max-width:980px){.tm__in{grid-template-columns:1fr}.tm__dots{grid-template-columns:repeat(20,1fr)}.tm h2{font-size:clamp(16px,calc((100vw - 2 * var(--gutter)) / 14.2),40px)}}
+@media (max-width:640px){.tm__nums{gap:22px 18px}}
+@media (prefers-reduced-motion:reduce){.tm__dots i{transition:none}.tm__logos{display:none}}
+
+/* заголовок в одну строку (на телефоне — переносится, если не влезает) */
+@media (min-width:641px){.nw1{white-space:nowrap}}
+
+/* ── Кухни и системы хранения: экспертиза, две заявки, ссылка к фабрикам направления ── */
+.kdsec{background:var(--white);padding:clamp(72px,9vw,144px) 0 clamp(72px,10vw,160px)}   /* больше воздуха между графитовыми блоками над и под ним */
+.kd__body{padding-left:clamp(32px,5.6vw,104px)}
+.kd{background:var(--white);color:var(--ink)}
+.kd h2{color:var(--ink)}
+.kd p{color:var(--graphite)}
+.kd__img{border-radius:var(--r-lg);overflow:hidden}   /* фото скруглено со всех сторон — блок стоит на белом без карточки */
+.kd__img img{object-position:50% 88%}   /* меньше потолка, больше остров и стулья */
+.kd h2{margin:0 0 clamp(24px,2.6vw,38px);max-width:none;line-height:1.1}
+.kd__t1{display:block;font-family:var(--sans);font-weight:300;font-size:clamp(20px,2.45vw,33px);letter-spacing:.02em;white-space:nowrap}   /* в одну строку; на телефоне — в две */
+@media (max-width:980px){.kd__t1{font-size:clamp(24px,4.4vw,35px)}}
+@media (max-width:640px){.kd__t1{white-space:normal}}
+/* «Наша специализация» — графитовая плашка над заголовком */
+.kd__tag{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;margin-bottom:clamp(18px,1.8vw,26px);padding:12px 22px 12px 18px;border-radius:999px;
+  background:var(--ink);color:var(--white);font-family:var(--display);font-weight:500;font-size:clamp(12px,.95vw,14px);letter-spacing:.2em;text-transform:uppercase;line-height:1}
+.kd__tag i{width:9px;height:9px;border-radius:50%;background:var(--sand);flex:none}
+/* две крупные плитки-заявки: графитовая — кухня, бежевая — гардероб */
+.kd__cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:540px;margin-top:clamp(26px,2.8vw,36px)}
+.kd__go{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:clamp(18px,1.7vw,24px) clamp(18px,1.8vw,26px);border-radius:var(--r-lg);background:var(--ink);color:var(--white);cursor:pointer;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.kd__go small{font-family:var(--display);font-weight:500;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand)}
+.kd__go b{font-family:var(--display);font-weight:500;font-size:clamp(20px,1.8vw,26px);letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.kd__go i{position:absolute;right:clamp(18px,1.8vw,26px);bottom:clamp(18px,1.7vw,24px);font-style:normal;font-size:20px;line-height:1;transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.kd__go:hover{transform:translateY(-2px);box-shadow:0 14px 28px -16px rgba(33,33,33,.55)}
+.kd__go:hover i{transform:translateX(4px)}
+.kd__go:active{transform:scale(.98)}
+.kd__go--sand{background:var(--sand);color:var(--ink)}
+.kd__go--sand small{color:var(--ink)}
+/* объёмная графитовая плитка, как кнопки финала ролика, но непрозрачная — на белом фоне: сверху светлее, снизу темнее, блик по верхней кромке, тень вниз */
+.kd__go--3d{border:1.5px solid rgba(255,255,255,.85);background:linear-gradient(180deg,#4a4a4a 0%,#262626 55%,#141414 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 12px 18px -10px rgba(255,255,255,.22),inset 0 -10px 16px -8px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.2),0 14px 30px -8px rgba(0,0,0,.4)}
+.kd__go--3d:hover{background:linear-gradient(180deg,#555 0%,#2c2c2c 55%,#171717 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 12px 18px -10px rgba(255,255,255,.22),inset 0 -10px 16px -8px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.2),0 18px 34px -8px rgba(0,0,0,.45)}
+@media (max-width:420px){.kd__cta{grid-template-columns:1fr}}
+.kd__more{align-self:flex-start;margin-top:clamp(24px,2.6vw,34px);color:var(--ink)}
+.kd__more:hover{color:var(--graphite)}
+.kd__more span{transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.kd__more:hover span{transform:translateX(4px)}
+
+/* ── HOMEART Academy: графитовая панель на светлом фоне — фраза, крупная кнопка на страницу Академии и лента фото со встреч ── */
+.ac{padding:clamp(80px,10vw,152px) 0 0}
+.ac__in{background:var(--ink);color:var(--white);border-radius:var(--r-lg);padding:clamp(24px,3vw,44px) 0;overflow:hidden}
+.ac__head{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;padding:0 clamp(24px,3.4vw,56px)}
+.ac__head>div{flex:1 1 280px;min-width:0}   /* фраза переносится, кнопка остаётся справа */
+.ac .eyebrow{color:var(--sand)}
+.ac__t{margin-top:10px;font-weight:300;font-size:clamp(20px,2vw,30px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--white)}
+.ac__t span{display:block}   /* «Профессиональное сообщество» / «для дизайнеров и архитекторов» — две строки */
+.ac__go{flex:none;min-width:min(100%,250px)}
+/* белая объёмная плитка (на графите): сверху чисто белая, книзу светло-серая, блик по верхней кромке, тень вниз */
+.kd__go--3dw{color:var(--ink);background:linear-gradient(180deg,#fff 0%,#f4f3f3 50%,var(--mist) 100%);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -10px 16px -8px rgba(0,0,0,.14),0 2px 4px rgba(0,0,0,.3),0 14px 30px -6px rgba(0,0,0,.55)}
+.kd__go--3dw small{color:var(--graphite)}
+.kd__go--3dw:hover{background:linear-gradient(180deg,#fff 0%,#fafafa 50%,#efeeee 100%);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -10px 16px -8px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.3),0 18px 34px -6px rgba(0,0,0,.6)}
+/* лента течёт сама (home.js): кадры 4:5, края растворяются в панели */
+.ac-river{margin-top:clamp(24px,2.8vw,40px);overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.ac-river.is-drag{cursor:grabbing}
+.ac-river__track{display:flex;gap:12px;width:max-content;will-change:transform}
+.ac-river img{flex:none;height:clamp(180px,16vw,240px);width:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg);background:var(--mist);pointer-events:none;-webkit-user-drag:none}
+@media (max-width:640px){.ac-river{-webkit-mask-image:none;mask-image:none}.ac-river img{height:200px}}
+
+/* ── Обязательства: светлый блок в конце — заголовок и семь графитовых карточек 4 + 3.
+   Спереди номер и короткое название; по нажатию карточка переворачивается — на обороте расшифровка (home.js) ── */
+.ob{padding:clamp(128px,16vw,240px) 0 0}   /* больше воздуха между панелью Academy и обязательствами */
+.ob__head{margin-bottom:clamp(28px,3vw,44px)}
+.ob__head .eyebrow{color:var(--graphite)}
+.ob__head h2{margin:12px 0 10px;font-size:clamp(28px,3vw,44px)}
+.ob__head p{color:var(--graphite);max-width:52ch}
+.ob__grid{list-style:none;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+.ob__grid>li{grid-column:span 2;min-width:0}
+.ob__grid>li:nth-child(5){grid-column:2 / span 2}   /* нижний ряд из трёх — по центру */
+.ob__t{display:block;width:100%;height:clamp(210px,17vw,250px);padding:0;border:0;background:none;text-align:left;cursor:pointer;perspective:1200px;
+  transition:transform .2s var(--ease)}
+.ob__t:hover{transform:translateY(-3px)}
+.ob__t:active{transform:scale(.98)}
+.ob__in{position:relative;display:block;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.65,0,.35,1)}
+.ob__t[aria-pressed="true"] .ob__in{transform:rotateY(180deg)}
+.ob__f,.ob__b{position:absolute;inset:0;display:flex;flex-direction:column;padding:clamp(18px,1.6vw,26px);border-radius:var(--r-lg);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.ob__f{background:var(--ink);color:var(--white)}
+.ob__b{background:var(--white);color:var(--ink);transform:rotateY(180deg);box-shadow:0 20px 40px -28px rgba(33,33,33,.35)}
+.ob__no{font-size:12px;font-variant-numeric:tabular-nums}
+.ob__f .ob__no{color:var(--sand)}
+.ob__b .ob__no{color:var(--graphite-2)}
+.ob__f b{margin-top:auto;font-family:var(--display);font-weight:500;font-size:clamp(16px,1.35vw,20px);letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+.ob__more{margin-top:14px;font-family:var(--display);font-weight:500;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);transition:color .2s}
+.ob__t:hover .ob__more{color:var(--white)}
+.ob__b b{margin-top:auto;font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;line-height:1.35}
+.ob__d{display:block;margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--graphite)}
+.ob__t:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:var(--r-lg)}
+/* появление: карточки въезжают поочерёдно слева и справа */
+.ob.is-reveal{overflow-x:clip}
+.ob.is-reveal .ob__grid>li{opacity:0;transform:translateX(-36px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.ob.is-reveal .ob__grid>li:nth-child(even){transform:translateX(36px)}
+.ob.is-reveal .ob__grid>li.in{opacity:1;transform:none}
+@media (max-width:1023px){.ob__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ob__grid>li,.ob__grid>li:nth-child(5){grid-column:auto}}
+@media (max-width:640px){.ob__grid{grid-template-columns:1fr}.ob__t{height:200px}}
+@media (prefers-reduced-motion:reduce){.ob__in{transition:none}}
+
+/* ── визит в шоурум — под карточками обязательств ── */
+.obv{padding:clamp(32px,4vw,56px) 0 clamp(80px,10vw,152px)}
+.obv__in{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;padding-top:clamp(28px,3vw,40px);border-top:.5px solid rgba(33,33,33,.2)}
+.obv__in>div{flex:1 1 280px;min-width:0}
+.obv .eyebrow{color:var(--graphite)}
+.obv__t{margin-top:10px;font-weight:300;font-size:clamp(20px,2vw,30px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase}
+.obv__h{margin-top:6px;font-size:14px;color:var(--graphite)}
+/* крупная овальная графитовая кнопка — главный призыв внизу страницы */
+.obv__go{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:clamp(20px,1.9vw,26px) clamp(32px,3.2vw,48px);border-radius:999px;
+  background:var(--ink);color:var(--white);font-family:var(--display);font-weight:500;font-size:clamp(13px,1vw,15px);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.obv__go span{font-size:1.25em;letter-spacing:0;transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.obv__go:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(33,33,33,.6)}
+.obv__go:hover span{transform:translateX(4px)}
+.obv__go:active{transform:scale(.98)}
+
+/* ── «Залипание» на блоках при прокрутке (только компьютер): быстрый жест останавливается в начале каждого блока
+   и не проскакивает дальше (scroll-snap-stop). Внутри длинной сцены «Нам доверяют» прокрутка свободная — блок выше экрана.
+   Подвал — последняя точка (конец страницы), иначе до него нельзя было бы докрутить. */
+@media (min-width:861px){
+  html{scroll-snap-type:y mandatory}
+  .hx,.tm,.kdsec,.trust,.ac,.ob{scroll-snap-align:start;scroll-snap-stop:always}
+  .foot{scroll-snap-align:end}
+}

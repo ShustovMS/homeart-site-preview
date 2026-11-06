@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
+<title>Genius — размеры экземпляра из EXPO, см</title>
+<defs><marker id="a" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M6 0 0 3 6 6" fill="none" stroke="#212121" stroke-width="1"/></marker></defs>
+<g fill="none" stroke="#212121" stroke-width="2.3" stroke-linejoin="round">
+<path d="M150 185H630V195H150ZM383 195V651Q383 675 361 685L215 735L220 744L390 691L560 744L565 735L419 685Q397 675 397 651V195"/>
+<circle cx="390" cy="450" r="130" transform="translate(0 0)" visibility="hidden"/>
+<g stroke-width="1"><path d="M150 175V90M630 175V90M645 185H750M580 744H750"/>
+<path d="M150 115H630M725 185V744" marker-start="url(#a)" marker-end="url(#a)"/></g></g>
+<g fill="#212121" font-family="Arial,sans-serif" font-size="35" text-anchor="middle"><text x="390" y="90">Ø 48</text><text x="775" y="480">60</text></g>
+</svg>

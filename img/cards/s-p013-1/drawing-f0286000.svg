@@ -1,0 +1,33 @@
+<svg id="_2_high_small_base" data-name="2 high small base" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10.58cm" height="9.28cm" viewBox="0 0 300 263">
+  <defs>
+    <clipPath id="clip-path">
+      <rect x="137.15" y="136.73" width="28.74" height="79.9" fill="none"/>
+    </clipPath>
+  </defs>
+  <title>noctambule-floor-2high-cylinder-small-base-grcic-flos-F0286000-spech-tech-02-300x263</title>
+  <text transform="translate(122.05 211.84) rotate(-90)" font-size="16" font-family="Avenir-Book, Avenir" style="isolation: isolate">1110mm</text>
+  <g>
+    <line x1="127.15" y1="134.04" x2="127.15" y2="216.95" fill="none" stroke="#000" stroke-width="0.5"/>
+    <g>
+      <line x1="127.48" y1="134.04" x2="126.46" y2="134.04" fill="none" stroke="#000" stroke-width="0.5"/>
+      <line x1="127.68" y1="216.95" x2="126.37" y2="216.95" fill="none" stroke="#000" stroke-width="0.5"/>
+    </g>
+  </g>
+  <g>
+    <line x1="136.54" y1="223.52" x2="170.76" y2="223.52" fill="none" stroke="#000" stroke-width="0.5"/>
+    <line x1="136.52" y1="223.32" x2="136.52" y2="223.72" fill="none" stroke="#000" stroke-width="0.5"/>
+    <line x1="170.76" y1="223.32" x2="170.76" y2="223.72" fill="none" stroke="#000" stroke-width="0.5"/>
+  </g>
+  <text transform="translate(113.83 247.49)" font-size="16" font-family="Avenir-Book, Avenir" style="isolation: isolate">ø 390 mm</text>
+  <g clip-path="url(#clip-path)">
+    <rect x="144.03" y="136.93" width="14.75" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <rect x="144.03" y="175.12" width="14.75" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <rect x="142.39" y="138.47" width="18.16" height="36.65" rx="2.07" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <path d="M154.81,175.12V174c0-1,.17-1.55.36-1.65.42-.22.77-.51.77-1.77V143c0-1.26-.35-1.55-.77-1.77-.19-.1-.36-.19-.36-1.16v-1.56h1.13v1c0,1,.16,1.06.36,1.16.42.22.76.51.76,1.77V171c0,1.25-.34,1.54-.76,1.76-.2.11-.36.2-.36,1.17v1.17Z"/>
+    <rect x="142.39" y="176.66" width="18.16" height="36.65" rx="2.07" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <path d="M154.81,213.3v-1.17c0-1,.17-1.54.36-1.64.42-.23.77-.51.77-1.77V181.15c0-1.26-.35-1.55-.77-1.77-.19-.11-.36-.2-.36-1.16v-1.56h1.13v1c0,1,.16,1.05.36,1.16.42.22.76.51.76,1.77V209.2c0,1.26-.34,1.55-.76,1.77-.2.1-.36.19-.36,1.16v1.17Z"/>
+    <rect x="137.15" y="215.98" width="28.74" height="0.65"/>
+    <polygon points="144.96 214.84 145.05 216.3 157.99 216.3 158.08 214.84 144.96 214.84"/>
+    <rect x="144.03" y="213.3" width="14.75" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+  </g>
+</svg>
