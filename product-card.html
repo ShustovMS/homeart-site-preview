@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мебель и свет — HOMEART</title>
+<!-- og: описание и превью для мессенджеров — _build/og_meta.py -->
+<meta name="description" content="Мебель, свет и декор из наличия в шоуруме HOMEART и под заказ у фабрик.">
+<meta property="og:site_name" content="HOMEART">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Мебель и свет — HOMEART">
+<meta property="og:description" content="Мебель, свет и декор из наличия в шоуруме HOMEART и под заказ у фабрик.">
+<meta property="og:image" content="https://homeart.pro/img/og/catalog.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /og -->
+<link rel="stylesheet" href="assets/fonts.css?v=1794590659">
+<link rel="stylesheet" href="assets/site.css?v=1794590659">
+<style>
+/* Служебная страница: тестовая карточка товара v5 — главы по экрану (подача) + закреплённое описание (как у Casa Ricca).
+   Фото, видео и тексты фабрик — с официальных сайтов, только для теста. На боевой сайт не выкладывается. */
+:root{--paper:#fff;--out:cubic-bezier(.23,1,.32,1);--r2:3px;--stick:28px}
+.ico{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.t{display:inline-block;vertical-align:middle;margin-left:8px;font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:999px;padding:3px 6px}
+
+.vbar{background:var(--ink);color:#f3eee6;font-size:13px}
+.vbar__in{max-width:var(--maxw);margin:0 auto;padding:10px var(--gutter);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.vbar__t{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.vbar__tabs{display:flex;gap:4px;flex-wrap:wrap}
+.vbar__tabs a{padding:6px 13px;border-radius:999px;border:.5px solid rgba(243,238,230,.32)}
+.vbar__tabs a:hover{border-color:#f3eee6}
+.vbar__tabs a.on{background:#f3eee6;color:var(--ink)}
+.vbar__note{flex-basis:100%;color:#bdb6aa;font-size:12.5px;line-height:1.5}
+.vbar__note a{border-bottom:1px solid rgba(243,238,230,.4)}
+
+.split{display:grid;grid-template-columns:clamp(150px,12.5vw,220px) minmax(0,1.25fr) minmax(0,.8fr);gap:clamp(22px,3vw,60px);margin-top:26px;align-items:start}
+.split--novid{grid-template-columns:minmax(0,1.25fr) minmax(0,.8fr)}
+.split--novid .rib__nav ol{left:12px;transform:none}
+
+/* видео — слева, стоит */
+.vid{position:sticky;top:var(--stick);cursor:pointer;outline-offset:4px}
+.vid__h{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);margin-bottom:12px}
+.vid__h i{width:6px;height:6px;border-radius:50%;background:var(--ink);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.vid__f{position:relative;aspect-ratio:9/16;border-radius:var(--r2);overflow:hidden;background:#1d1b18}
+.vid__f video,.vid__f img{width:100%;height:100%;object-fit:cover}
+.vid__f img{animation:kb 16s ease-in-out infinite alternate;filter:saturate(.85)}
+@keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.22) translate(-6%,-4%)}}
+.vid__play{position:absolute;left:50%;top:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;display:grid;place-items:center;background:rgba(250,250,248,.9);color:var(--ink);opacity:0;transition:opacity .3s}
+.vid:hover .vid__play,.vid:focus-visible .vid__play{opacity:1}
+.vid__soon{position:absolute;left:12px;right:12px;bottom:12px;font-size:12.5px;line-height:1.4;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55)}
+.vid__c{font-size:12.5px;color:var(--graphite-2);margin-top:10px;line-height:1.45}
+
+/* ── главы: движется только эта колонка ── */
+.rib{position:relative}
+.rib__nav{position:sticky;top:var(--stick);height:0;z-index:4}
+.rib__nav ol{position:absolute;left:calc(-1 * clamp(11px,1.5vw,30px));transform:translateX(-50%);list-style:none;display:flex;flex-direction:column;gap:2px;padding-top:6px}
+.rib__nav button{display:grid;place-items:center;width:22px;height:16px;color:var(--sand);transition:color .25s}
+.rib__nav button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.rib__nav button i{width:10px;height:1.5px;background:currentColor;transition:width .35s var(--out)}
+.rib__nav button:hover{color:var(--graphite)}
+.rib__nav button.on{color:var(--ink)}
+.rib__nav button.on i{width:20px}
+.sc{position:relative;min-height:calc(100vh - 2 * var(--stick));display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,56px) 0}
+.sc:first-child{min-height:0;padding-top:0}
+.big{font-family:var(--sans);font-weight:300;font-size:clamp(22px,1.9vw,32px);line-height:1.2;letter-spacing:0;text-transform:uppercase;text-wrap:balance}
+.lede{font-size:15.5px;line-height:1.65;color:var(--graphite);max-width:40ch}
+.pic{margin:0;position:relative;overflow:hidden;border-radius:var(--r2);background:var(--paper);cursor:zoom-in}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+.pic--cut img{object-fit:contain;mix-blend-mode:multiply;padding:8%}
+.pic--fit{background:#fff}.pic--fit img{object-fit:contain!important;transform:none!important}   /* фото не на белом — целиком, без обрезки */
+.chipx{position:absolute;right:12px;bottom:12px;font-size:11px;padding:5px 10px;border-radius:999px;background:rgba(250,250,248,.9);color:var(--graphite)}
+/* появление: слово выезжает снизу, один раз */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--out),transform 1.2s var(--out)}
+.in .rv{opacity:1;transform:none}
+.in .rv:nth-child(2){transition-delay:.08s}.in .rv:nth-child(3){transition-delay:.16s}
+
+/* 1 — герой: крупное слово наезжает на фото */
+/* 1 — первый кадр: только фото, предмет крупно и целиком, сразу сверху */
+.sc.sc--hero{min-height:0;padding-top:0;justify-content:flex-start}
+.sc--hero .pic{aspect-ratio:4/5;max-height:calc(100vh - 140px)}
+.sc--hero .pic img{transition:none}
+/* 2 — макро на весь блок, слово поверх */
+.sc--macro .pic{position:absolute;inset:clamp(28px,4vw,56px) 0;border-radius:var(--r2)}
+.sc--macro .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,15,0) 40%,rgba(20,18,15,.62) 100%);pointer-events:none}
+.sc--macro .ov{position:relative;z-index:2;margin-top:auto;padding:0 clamp(20px,3vw,44px) clamp(24px,3vw,40px);color:#fff;pointer-events:none}
+.sc--macro .lede{color:rgba(255,255,255,.86);margin-top:14px}
+/* 3 — чертёж как графика: размеры крупными цифрами */
+.sc--draw{background-image:linear-gradient(rgba(26,26,26,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,26,26,.05) 1px,transparent 1px);background-size:32px 32px}
+.sc--draw .dw{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(16px,2vw,32px);align-items:center}
+.sc--draw .pic--draw{background:transparent;aspect-ratio:1/1}
+.sc--draw .pic--draw img{mix-blend-mode:multiply;object-fit:contain;transform:none}
+.pic.pic--ours{aspect-ratio:auto;height:auto;background:#fff;margin-bottom:12px}
+.pic.pic--ours img{position:static!important;display:block;margin:0 auto;width:auto!important;max-width:100%!important;height:auto!important;object-fit:contain!important;transform:none!important}
+.sc--draw .num2{font-weight:200;font-size:clamp(28px,2.6vw,46px);letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums;text-wrap:balance}
+.sc--draw small{display:block;margin-top:10px;font-size:12.5px;color:var(--graphite-2)}
+/* формат карточки (ТЗ_карточка_товара.md): размеры по строкам, детали, образцы */
+.sc--draw .dw--r>.pic{order:-1}
+.sc--draw .pic--draw{aspect-ratio:auto}.sc--draw .pic--draw img{height:auto;max-height:70vh}   /* чертёж обрезан по содержимому — во всю ширину колонки */
+.dl2{display:grid;gap:22px}
+.dl2 .g{display:grid;gap:6px}
+.dl2 .gl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:2px}
+.dl2 .r{display:grid;grid-template-columns:5.6em minmax(0,1fr);align-items:baseline;gap:10px}
+.dl2 .r span{font-size:12.5px;color:var(--graphite-2)}
+.dl2 .r b{font-weight:200;font-size:clamp(26px,2.3vw,40px);letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dl2--many .r b{font-size:clamp(19px,1.5vw,24px)}
+.dl2raw{font-weight:300;font-size:clamp(15px,1.2vw,18px);line-height:1.6}
+.sc--draw .dnote{margin-top:22px;font-size:13px;line-height:1.55;color:var(--graphite);max-width:36ch}
+.sc--draw .dnote small{margin-top:6px}
+.sc--duo .duo--bare{margin-bottom:clamp(40px,9%,96px)}
+.sc--duo .duo--rev .a{grid-column:4/13}.sc--duo .duo--rev .b{grid-column:1/6}   /* детали: внахлёст в другую сторону */
+/* компьютер: курсор над парой фото — оба уменьшаются к своим краям и встают рядом целиком (вариант 1, 12.11.2026) */
+.duo__dots{display:none}
+@media (hover:hover) and (pointer:fine) and (min-width:981px){
+  .sc--duo .a,.sc--duo .b{transition:transform 560ms cubic-bezier(.77,0,.175,1),box-shadow 560ms cubic-bezier(.77,0,.175,1)}
+  .sc--duo .a{transform-origin:0 50%}.sc--duo .b{transform-origin:100% 100%}
+  .sc--duo .duo--rev .a{transform-origin:100% 50%}.sc--duo .duo--rev .b{transform-origin:0 100%}
+  .sc--duo .duo:hover .a,.sc--duo .duo:hover .b{transform:scale(.83)}
+  .sc--duo .duo:hover .b{box-shadow:0 10px 24px rgba(26,26,26,.12)}
+}
+.sc--ours .hcap{margin-top:0}
+.sc--macro--bare .pic::after{display:none}
+.sc--det .det{display:grid;gap:clamp(12px,1.4vw,20px)}
+.sc--det .det--2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.sc--det .pic{aspect-ratio:4/3}.sc--det .det--2 .pic{aspect-ratio:3/4}
+.sc--smp .smp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(14px,1.6vw,24px)}
+.sc--smp .smp--1{max-width:620px}
+.sc--smp .pic{aspect-ratio:1/1}
+.sc--smp .pic img{object-fit:cover}
+.smp__k,.hcap{font-size:13px;color:var(--graphite)}
+.smp__k{margin-top:10px}.hcap{margin-top:12px}
+/* 4 — пара: большое и малое фото, текст между */
+.sc--duo .duo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:end}
+.sc--duo .a{grid-column:1/10;grid-row:1;aspect-ratio:4/3}
+.sc--duo .b{grid-column:8/13;grid-row:1;align-self:end;aspect-ratio:3/4;margin-bottom:-14%;z-index:2;box-shadow:0 26px 54px rgba(26,26,26,.2)}
+.sc--duo .tx{margin-top:clamp(56px,7vw,110px);max-width:30rem}
+.sc--duo .lede{margin-top:14px}
+/* 5 — автор: портрет и цитата крупно */
+.sc--who .who{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(20px,3vw,48px);align-items:end}
+.sc--who .pic{aspect-ratio:3/4;align-self:end}
+.sc--who .pic img{object-position:50% 18%}
+.sc--who blockquote{font-weight:200;font-size:clamp(24px,2.3vw,38px);line-height:1.22;letter-spacing:-.015em}
+.sc--who blockquote small{display:block;margin-top:16px;font-style:italic;font-weight:300;font-size:13px;line-height:1.55;color:var(--graphite-2);letter-spacing:0}
+.sc--who .n{margin-top:22px;font-size:14px}
+.sc--who .n span{color:var(--graphite-2)}
+.sc--who .who:has(.who__n){align-items:start}
+.sc--who .who--text{grid-template-columns:minmax(0,1fr)}
+.who__k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite-2)}
+.who__n{margin-top:8px;font-family:var(--display);font-weight:500;font-size:clamp(22px,2vw,30px);text-transform:uppercase;line-height:1.15}
+.who__r{margin-top:6px;font-size:14px;color:var(--graphite)}
+.who__b{margin-top:16px;font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:60ch}
+.who__m{margin-top:10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.who__m a{display:flex;flex-direction:column;gap:6px;font-size:12px;line-height:1.3}
+.who__mi{aspect-ratio:1/1;background:#fff;display:grid;place-items:center;overflow:hidden}
+.who__mi img{width:100%;height:100%;object-fit:contain;padding:8%}
+.who__m a:hover span:last-child{text-decoration:underline}
+
+.loupe{position:absolute;width:clamp(96px,9.5vw,148px);aspect-ratio:1;border-radius:50%;pointer-events:none;z-index:3;border:3px solid rgba(255,255,255,.96);
+  box-shadow:0 20px 44px rgba(26,26,26,.26);background-size:cover;background-position:center;background-color:var(--paper);transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .5s var(--out),transform .7s var(--out)}
+.loupe.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.loupe span{position:absolute;left:50%;top:100%;transform:translate(-50%,10px);white-space:nowrap;font-size:11px;letter-spacing:.06em;background:rgba(26,26,26,.86);color:#fff;padding:6px 11px;border-radius:999px}
+
+/* ── описание — справа, стоит ── */
+.info{position:sticky;top:var(--stick);padding:4px 2px 24px}
+.fac{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.fac a:hover{color:var(--amber)}
+.fac .c{color:var(--graphite-2)}
+.lvl2{display:inline-flex;align-items:center;gap:7px;letter-spacing:.02em;text-transform:none;font-weight:400;font-size:12.5px;color:var(--graphite-2)}
+.lvl2 i{display:inline-flex;gap:3px}
+.lvl2 i b{width:5px;height:5px;border-radius:50%;background:var(--sand)}
+.lvl2 i b.on{background:var(--brass)}
+.info h1{font-size:clamp(30px,2.8vw,46px);font-weight:200;letter-spacing:-.025em;margin:16px 0 8px;text-wrap:balance}
+.author{font-size:14px;color:var(--graphite-2)}
+.author b{font-weight:400;color:var(--ink)}
+.tagline{margin-top:22px;font-weight:300;font-size:clamp(16.5px,1.3vw,19px);line-height:1.5;color:var(--ink-soft);max-width:40ch;text-wrap:pretty}
+.origbtn{margin-left:4px;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--graphite-2);border-bottom:1px dotted currentColor;vertical-align:2px}
+.orig{margin-top:10px;font-style:italic;font-weight:300;font-size:13.5px;line-height:1.55;color:var(--graphite-2);max-width:48ch;display:none}
+.orig.on{display:block;animation:fade .4s var(--out)}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}}
+.avail{margin-top:26px;display:flex;gap:12px;align-items:baseline;font-size:14.5px;line-height:1.5}
+.avail small{display:block;color:var(--graphite-2);font-size:13px}
+.avail button{color:var(--ink);border-bottom:1px solid var(--line)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 4px var(--emerald-wash);flex:none;transform:translateY(-1px)}
+.price{margin-top:22px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.price .now{font-size:clamp(28px,2.2vw,34px);font-weight:200;letter-spacing:-.01em}
+.price s{font-size:16px;color:var(--graphite-2)}
+.off{font-size:11.5px;font-weight:500;color:var(--ink);border:1px solid var(--ink);border-radius:999px;padding:2px 8px;align-self:center}
+.promo{font-size:13px;color:var(--ink);margin-top:2px}
+/* фото с подписями на кадре — целиком, в своих пропорциях */
+.sc--whole{min-height:0}
+.sc--whole .pic{position:relative;inset:auto}.sc--whole .pic::after{display:none}
+.pic--whole{background:transparent}.pic--whole img{height:auto!important;object-fit:contain!important;transform:none!important}
+/* размеры: нет нигде — только фото и мелкая подпись; есть в описании — списком рядом с фото */
+.sc--draw .dw--solo{grid-template-columns:minmax(0,1fr)}
+.szl{display:grid;gap:6px;font-size:15px;line-height:1.5;font-weight:300}
+.szl .gl{margin-top:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite-2);font-weight:400}.szl .gl:first-child{margin-top:0}
+.dot--order{background:var(--sand);box-shadow:none}
+.acc .desc p{margin-top:8px}.acc .desc p:first-child{margin-top:0}
+.acc .desc .dh{margin-top:14px;color:var(--ink);font-weight:500}
+.acc .desc ul{margin:6px 0 0;padding-left:18px;color:var(--graphite)}.acc .desc li{margin-top:3px}
+.pnote{font-size:12.5px;color:var(--graphite-2);margin-top:6px;max-width:44ch}
+.buy{margin-top:20px}
+.buy .btn{width:100%;padding:17px 24px}
+.acts{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:18px;font-size:13.5px}
+.acts button{display:inline-flex;align-items:center;gap:8px;color:var(--ink-soft);transition:color .2s}
+.acts button:hover{color:var(--amber)}
+.acc{margin-top:26px;border-top:.5px solid var(--line)}
+.acc details{border-bottom:.5px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:15px 0;font-size:14.5px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary i{width:11px;height:11px;position:relative;flex:none}
+.acc summary i::before,.acc summary i::after{content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:currentColor;transition:transform .35s var(--out)}
+.acc summary i::after{transform:rotate(90deg)}
+.acc details[open] summary i::after{transform:rotate(0)}
+.acc .in{padding:0 0 18px;font-size:14px;line-height:1.6;animation:fade .35s var(--out)}
+.acc dl{display:grid;grid-template-columns:auto 1fr;gap:8px 20px}
+.acc dt{color:var(--graphite-2)}
+.acc dd a,.acc .links a,.acc .links button{border-bottom:1px solid var(--line)}
+.acc .links{display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin-top:12px}
+.acc p{color:var(--graphite)}
+
+.more{margin-top:clamp(70px,8vw,120px)}
+.more__h{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.more__h h2{font-weight:200}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3*20px)/4);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 0 14px;scrollbar-width:thin}
+.rail>a{scroll-snap-align:start;display:flex;flex-direction:column;gap:4px}
+.rail figure{margin:0 0 10px;aspect-ratio:4/5;border-radius:var(--r2);overflow:hidden;background:var(--paper)}
+.rail img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;padding:9%;transition:transform .9s var(--out)}
+.rail img.cv{object-fit:cover;padding:0;mix-blend-mode:normal}
+.rail>a:hover img{transform:scale(1.04)}
+.rail small{font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--graphite-2)}
+.rail .p{font-size:14px;color:var(--graphite)}
+.invite{margin:clamp(56px,6vw,96px) 0;font-weight:200;font-size:clamp(20px,1.8vw,26px);line-height:1.45;max-width:46rem}
+.invite a{border-bottom:1px solid var(--line);white-space:nowrap}
+
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(250,250,248,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:.5px solid var(--line);transform:translateY(110%);transition:transform .45s var(--out)}
+.buybar.on{transform:none}
+.buybar__i{min-width:0;flex:1}
+.buybar__n{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.buybar__p{font-size:16px}
+.lb{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;border:0;padding:0;background:#f4f1ec}
+.lb::backdrop{background:rgba(20,18,15,.6)}
+.lb__track{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.lb__track::-webkit-scrollbar{display:none}
+.lb__track figure{flex:0 0 100%;height:100%;scroll-snap-align:center;margin:0;display:grid;place-items:center;padding:64px clamp(16px,6vw,96px)}
+.lb__track img,.lb__track video{max-width:100%;max-height:100%;object-fit:contain}
+.lb__x,.lb__nav{position:absolute;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(250,250,248,.94)}
+.lb__x{top:14px;right:14px}.lb__nav{top:50%;transform:translateY(-50%)}.lb__nav--p{left:14px}.lb__nav--n{right:14px}
+.lb__c{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-size:12px;letter-spacing:.1em}
+
+@media(max-width:1240px){
+  .split{grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr)}
+  .vid{grid-column:1;grid-row:1;position:static;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0 20px;align-items:end;margin-bottom:36px}
+  .vid__h{grid-column:1/-1}
+  .vid__f{aspect-ratio:16/10}
+  .rib{grid-column:1;grid-row:2}
+  .info{grid-column:2;grid-row:1/span 2}
+  .split--novid .rib,.split--novid .info{grid-row:1}
+  .rib__nav{display:none}
+}
+/* телефон: первая глава, затем описание, затем остальные главы и видео */
+@media(max-width:980px){
+  .split{display:flex;flex-direction:column;gap:0}
+  .rib{display:contents}
+  .sc{order:3;min-height:0;padding:clamp(40px,10vw,64px) 0 0}
+  .sc:first-of-type{order:1;padding-top:0}
+  .info{order:2;position:static;max-height:none;overflow:visible;margin-top:26px}
+  .vid{order:4;margin:48px 0 0;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+  .vid__f{aspect-ratio:4/5}
+  .sc--hero .pic{max-height:none}
+  .sc--macro{min-height:72vh}
+  .sc--macro .pic{inset:clamp(40px,10vw,64px) 0 0}
+  .sc--whole{min-height:0}.sc--whole .pic{inset:auto}
+  .sc--draw .dw,.sc--who .who{grid-template-columns:minmax(0,1fr)}
+  .sc--draw .dw[style]{grid-template-columns:minmax(0,1fr)!important}   /* фото рядом с размерами: колонки задаёт атрибут style — на телефоне одна колонка, иначе цифры уходят под фото (13.11) */
+  /* телефон: пара фото — лента во всю ширину экрана, листается пальцем, следующее выглядывает (вариант 5) */
+  .sc--duo .duo{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);scroll-padding:0 var(--gutter)}
+  .sc--duo .duo::-webkit-scrollbar{display:none}
+  .sc--duo .duo .a,.sc--duo .duo .b{flex:0 0 84%;margin:0;aspect-ratio:4/5;box-shadow:none;scroll-snap-align:center}
+  .sc--duo .duo--bare{margin-bottom:0}
+  .duo__dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+  .duo__dots i{width:6px;height:6px;border-radius:50%;background:var(--sand);transition:background .2s}
+  .duo__dots i.on{background:var(--ink)}
+  .sc--ours .hcap{margin-top:12px}
+  .loupe{width:82px}
+  .loupe span{font-size:10px;padding:4px 8px}
+  .rail{grid-auto-columns:70%}
+  .buybar{display:flex}
+  body{padding-bottom:76px}
+}
+.gal{display:none}
+@media(max-width:980px){
+  /* телефон: все фото одной лентой сверху (вариант А, Михаил 13.11) — одна высота, каждое фото целиком, следующее выглядывает справа */
+  .gal{display:block;order:1;position:relative;margin:0 calc(-1 * var(--gutter));width:calc(100% + 2 * var(--gutter));min-width:0;--gh:min(110vw,66vh)}
+  .gal__t{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 var(--gutter);scroll-padding:0 var(--gutter)}
+  .gal__t::-webkit-scrollbar{display:none}
+  .gal__t figure{flex:0 0 auto;height:var(--gh);margin:0;scroll-snap-align:start;border-radius:3px;overflow:hidden;cursor:zoom-in;aspect-ratio:var(--r,.8)}
+  .gal__t figure img{width:100%;height:100%;object-fit:contain;display:block}
+  .gal__t figure.fit{width:86vw;aspect-ratio:auto;background:#fff}.gal__t figure.fit img{padding:4% 2%}   /* фото на белом уже обрезаны по предмету — без лишних полей, крупнее (Brera, 13.11) */
+  .gal__hint{position:absolute;left:calc(var(--gutter) + 10px);top:calc(var(--gh) - 40px);z-index:2;font-size:12px;background:var(--ink);color:#fff;border-radius:99px;padding:5px 12px;pointer-events:none}
+  .gal__hint b{font-weight:500}.gal__hint i{display:inline-block;font-style:normal;animation:galNudge 1.4s ease-in-out infinite}
+  @keyframes galNudge{0%,100%{transform:none}50%{transform:translateX(4px)}}
+  /* подсказка «листается»: один раз кадры чуть уходят влево и возвращаются — без прокрутки ленты */
+  .gal__t--peek figure{animation:galPeek 1.1s cubic-bezier(.45,0,.25,1) 1.3s 1}
+  @keyframes galPeek{0%,100%{transform:none}45%{transform:translateX(-46px)}}
+  .gal__bar{height:2px;background:var(--sand);margin:12px var(--gutter) 0;position:relative;overflow:hidden;border-radius:2px}
+  .gal__bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);transition:left .25s}
+  .gal__cap{margin:10px var(--gutter) 0;font-size:13px;color:var(--graphite);min-height:1em}.gal__cap:empty{display:none}
+  /* подсказка, что ниже есть размеры, отделки и характеристики (Михаил, 13.11) — мелко, не спорит с фото */
+  .gal__more{margin:10px var(--gutter) 0;font-size:12.5px;line-height:1.6;color:var(--graphite)}
+  .gal__more button{font:inherit;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;border-bottom:1px dotted var(--sand)}
+  .gal__more i{font-style:normal;display:inline-block;margin-left:4px;animation:galDown 1.8s ease-in-out infinite}
+  @keyframes galDown{0%,100%{transform:none}50%{transform:translateY(3px)}}
+  .split.has-gal .sc--ingal,.split.has-gal .loupe{display:none}
+}
+@media(prefers-reduced-motion:reduce){.gal__hint i,.gal__more i,.gal__t--peek figure{animation:none}.sc--duo .a,.sc--duo .b{transition:none}.vid__f img,.vid__h i{animation:none}.rv{opacity:1;transform:none;transition:none}.pic img{transform:none!important}}
+</style>
+</head>
+<body data-page="catalog" data-root="">
+<div id="hdr"></div>
+<main class="wrap" id="main"></main>
+<div id="ftr"></div>
+<div class="buybar" id="buybar" aria-hidden="true"></div>
+<dialog class="lb" id="lb" aria-label="Просмотр">
+  <div class="lb__track" id="lbTrack"></div>
+  <button type="button" class="lb__x" id="lbX" aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="lb__nav lb__nav--p" id="lbP" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="lb__nav lb__nav--n" id="lbN" aria-label="Вперёд"><svg class="ico" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb__c" id="lbC"></div>
+</dialog>
+<script src="data/data.js?v=1794590659"></script>
+<script src="data/stock.js?v=1794590659"></script>
+<script src="data/cards.js?v=1794590659"></script>
+<script src="data/card-format.js?v=1794590659"></script>
+<script src="data/catalog.js?v=1794590659"></script>
+<script src="data/catalog-base.js?v=1794590659"></script>
+<script src="assets/dims.js?v=1794590659"></script>
+<script src="assets/site.js?v=1794590659"></script>
+<script>
+(function () {
+  const { fmt, esc, qs, brandFactory, toast } = HA;
+  const D = 'img/cards/pdp/';   // фото карточек с ручной вёрсткой (Cleo, Paula, Loic); раньше лежали в _variants/pdp-test
+  const VVD = {
+    who: 'Vincent Van Duysen', role: 'бельгийский архитектор, с 2016 года — креативный директор Molteni&C', img: 'vvd.jpg',
+    ru: 'Чувство защищённости очень важно — оно нужно всем нам. Его я и хочу передать в архитектуре и дизайне.',
+    orig: 'Sentirsi protetti è qualcosa di molto importante, di cui tutti abbiamo bisogno, è qualcosa che vorrei tradurre nei miei progetti di architettura e design.',
+  };
+  /* Главы: hero · macro · draw · duo · who. Тексты — из официальных источников фабрик; переводы и заголовки — черновик. */
+  const C = 'cleo/0000_PH_Col_Set_Cleo_Sofas_Indoor_', P = 'paula/2023_PH_Col_Set_Paula_Armchair', L = 'loic/';
+  const X = {
+    'm-p003': {
+      designer: 'Vincent Van Duysen', src: 'https://www.molteni.it/it/eu/product/cleo',
+      tag: 'Плавная изогнутая оболочка обнимает сиденье и спинку — и диван становится укромным местом, где тепло и спокойно.',
+      orig: ['IT', 'La sua scocca fluida e curvilinea avvolge seduta e schienale creando un luogo raccolto, in equilibrio tra eleganza e sensazione di calore e relax.'],
+      loupe: { x: 84, y: 24, img: C + '10.jpg', label: 'Обивка крупно' },
+      sc: [
+        { k: 'hero', nav: 'Предмет', h: 'Укромное место', img: 'img/cards/m-p003/product-white-v2.png', cut: true, ratio: '4/3', t: 'Цельная изогнутая оболочка охватывает сиденье и спинку. Её обтягивают тканью или кожей — в тон или контрастно.' },
+        { k: 'macro', nav: 'Фактура', h: 'Подушки как удобно', img: C + '10.jpg', t: 'Прямоугольные подушки спинки переставляются свободно: для чтения, разговора или отдыха.' },
+        { k: 'draw', nav: 'Размеры', img: 'cleo/td.jpg', side: 'img/stock/m-p003.jpg' },
+        { k: 'duo', nav: 'Интерьер', h: 'Будто парит', a: 'cleo/x_12.jpg', b: C + '08.jpg', t: 'Каркас стоит на тонких ножках из окрашенной стали — диван выглядит лёгким и у стены, и в центре гостиной.' },
+        { k: 'who', nav: 'Автор', q: VVD },
+      ],
+      note: '',
+    },
+    'm-p045': {
+      designer: 'Vincent Van Duysen', src: 'https://www.molteni.it/en/eu/product/paula',
+      tag: 'Форму кресла задают кожаные ремни-петли: на них держатся сиденье и спинка, перекинутые через металлическую раму.',
+      orig: ['EN', 'Paula’s shape is defined by an innovative system of looping leather straps that attach the seat and backrest to the metal frame.'],
+      loupe: { corner: 'left', img: P + 's_Indoor_Web_02.jpg', size: '520%', pos: '41% 47%', label: 'Кожа крупно' },
+      video: 'paula/video.mp4', vposter: P + 's_Indoor_Web_02.jpg',
+      sc: [
+        { k: 'hero', nav: 'Предмет', h: 'Мягкое на строгом', img: P + '_Indoor_Web_07.jpg', t: 'Консольная металлическая рама и «подвешенные» подушки: мягкое сиденье на прочном и лёгком каркасе.' },
+        { k: 'macro', nav: 'Ремни', h: 'Держится на ремнях', img: P + 's_Indoor_Web_02.jpg', t: 'Кожаные ремни-петли крепят сиденье, спинку и подушки к раме. Конструкция открыта — и становится украшением.' },
+        { k: 'draw', nav: 'Размеры', img: 'paula/td.jpg', side: P + 's_Indoor_03.jpg' },
+        { k: 'duo', nav: 'Интерьер', h: 'Наследник модернизма', a: P + 's_Indoor_Web_04.jpg', b: P + 's_Indoor_03.jpg', t: 'Автор вдохновлялся мебелью модернистов — в том числе креслом Barcelona Миса ван дер Роэ. К креслу есть пуф в пару.' },
+        { k: 'who', nav: 'Автор', q: VVD },
+      ],
+      note: 'Фото фабрики: кожа и металл могут отличаться от экземпляра в шоуруме на 3-й Фрунзенской.',
+    },
+    'm-p019': {
+      designer: 'Boatto Martino Studio', year: 2022, src: 'https://www.capitalcollection.it/en/products/loic',
+      tag: null,
+      loupe: { x: 80, y: 19, img: L + 'CAPITAL-Loic-tondo-v10.jpg', label: 'Дерево и мрамор' },
+      sc: [
+        { k: 'hero', nav: 'Предмет', h: 'Дерево и мрамор', img: L + 'CAPITAL-Loic-tondo-v1.jpg', cut: true, t: 'Круглый обеденный стол. На фото — отделка экземпляра из шоурума: тёмное дерево, мрамор Sahara Noir, бронза.' },
+        { k: 'macro', nav: 'Фактура', h: 'Два материала в одной ножке', img: L + 'CAPITAL-Loic-tondo-v10.jpg', t: 'Сверху — дерево, снизу — мрамор. Стык становится рисунком.' },
+        { k: 'draw', nav: 'Размеры', img: null, side: L + 'CAPITAL-Loic-tondo-v11.jpg' },
+        { k: 'duo', nav: 'Интерьер', h: 'За большим столом', a: L + 'LOIC-round-table-ambient-1.jpg', b: L + 'loic-hoover-1.jpg', chip: 'Другая отделка', t: 'Круглый стол собирает компанию в центре комнаты.' },
+      ],
+      note: '',
+    },
+  };
+  /* Остальные позиции EXPO — карточка собирается из data/cards.js (материалы фабрик, выбраны скриптом по правилам) */
+  const CARDS = window.CARDS || {};
+  const R = u => u;
+  function build(p) {
+    const c = CARDS[p.id] || {}, own = (c.ours || p.imgs).map(R), ints = (c.ints || []).map(R);
+    // первое фото = фото плитки в каталоге (Павел 27.10: «фото на карточке и в карточке — одно»); фото фабрики — дальше, в интерьеры
+    const heroImg = c.tile ? R(c.tile) : (c.hero ? R(c.hero) : own[0]), heroCut = c.tile ? !!c.tileCut : (c.hero ? c.heroCut : true);
+    if (c.tile && c.hero && !c.heroCut && !ints.includes(R(c.hero))) ints.unshift(R(c.hero));   // в «Интерьер» — только интерьерное фото фабрики, не предмет на белом
+    // порядок глав по ТЗ: предмет → размеры → экземпляр → интерьер → автор; заголовок «В интерьере» не ставим (пустой)
+    const duoH = /^в интерьере$/i.test(c.duoH || '') ? '' : (c.duoH || '');
+    const sc = [{ k: 'hero', nav: 'Предмет', img: heroImg, cut: heroCut }];
+    sc.push({ k: 'draw', nav: 'Размеры', img: c.draw ? R(c.draw) : null, side: c.draw ? null : (ints[0] || null) });
+    if (own.length) sc.push({ k: 'ours', nav: 'Экземпляр', imgs: own });
+    if (ints.length > 1) sc.push({ k: 'duo', nav: 'Интерьер', h: duoH, a: ints[0], b: ints[1], fit: !!c.interiorContain, t: c.duoT || '' });
+    else if (ints.length === 1 && (c.draw || c.showInterior)) sc.push({ k: 'macro', nav: 'Интерьер', h: duoH, img: ints[0], fit: !!c.interiorContain, t: c.duoT || '' });
+    // автор: портрет (если есть), кто он, коротко о нём и другие его работы в наличии
+    const mates = c.designer ? STOCK.filter(s => s.id !== p.id && (CARDS[s.id] || {}).designer === c.designer && !(CARDS[s.id] || {}).hide) : [];
+    if (c.designer && (c.who || c.bio)) sc.push({ k: 'who', nav: 'Автор', q: { who: c.designer, role: c.role || 'автор модели', img: c.who ? R(c.who) : null, bio: c.bio || '', mates } });
+    return { designer: c.designer || '', src: c.src || p.url || '', tag: c.tag || null, orig: c.orig, auto: true,
+      // лупа: на белом — центр предмета; на интерьерном кадре — участок с самой выразительной фактурой (считает prep_cards.py)
+      // если первое фото — плитка с предметом на белом, лупа увеличивает его же (центр предмета), а не другое фото фабрики
+      loupe: c.tile && c.tileCut ? { img: R(c.tile), size: '320%', pos: '50% 55%', label: 'Крупно' }
+        : c.loupe && !c.tile ? { img: R(c.loupe.img), size: c.loupe.size, pos: c.loupe.pos, label: 'Крупно' } : null, sc,
+      note: c.note ?? (c.hero ? 'Фото фабрики: отделка может отличаться от экземпляра в наличии.' : '') };
+  }
+  /* карточка по формату (data/card-format.js): у каждого фото своя роль, порядок глав один для всех */
+  const FMT = window.CARD_FMT || {};
+  function buildFmt(p, F, own) {
+    const c = own || CARDS[p.id] || {};
+    const sc = [{ k: 'hero', nav: 'Предмет', img: F.white, cut: F.whiteCut !== false, cap: F.whiteOwn ? `Экземпляр в наличии${p.finish ? ' · ' + esc(p.finish) : ''}` : '' }];
+    // без чертежа рядом с размерами встаёт первый интерьер, в главу «Интерьер» — следующие два
+    // фото с подписями на кадре (whole) — целиком, отдельным кадром, без наложения и не рядом с размерами
+    const W = new Set(F.whole || []);
+    const all = (F.ints || []).filter(s => !W.has(s)), wInts = (F.ints || []).filter(s => W.has(s));
+    const side = F.draw ? null : (F.side || all.shift() || null);
+    sc.push({ k: 'draw', nav: 'Размеры', img: F.draw || null, side, alt: (F.alt || [])[0] || F.white, face: F.face });
+    if (F.own && F.own.length) sc.push({ k: 'ours', nav: 'Экземпляр', imgs: F.own });
+    // две фотографии в главе — внахлёст (одна заходит на другую); третий интерьер — отдельным кадром во всю ширину
+    const ints = all.slice(0, 3);
+    if (ints.length >= 2) sc.push({ k: 'duo', nav: 'Интерьер', h: '', a: ints[0], b: ints[1] });
+    if (ints.length !== 2 && ints.length) sc.push({ k: 'macro', nav: 'Интерьер', h: '', img: ints[ints.length - 1] });
+    wInts.forEach(img => sc.push({ k: 'macro', nav: 'Интерьер', h: '', img, whole: true }));
+    // детали крупно + тот же предмет на белом с другого ракурса (целиком, без обрезки)
+    const det = [...(F.details || []), ...(F.alt || [])].filter(s => !W.has(s)).slice(0, 3), fit = new Set(F.alt || []);
+    const wDet = (F.details || []).filter(s => W.has(s));
+    if (det.length >= 2) sc.push({ k: 'det', nav: 'Детали', imgs: det.slice(0, 2), fit });
+    if (det.length !== 2 && det.length) sc.push({ k: 'macro', nav: 'Детали', h: '', img: det[det.length - 1], fit: fit.has(det[det.length - 1]) });
+    wDet.forEach(img => sc.push({ k: 'macro', nav: 'Детали', h: '', img, whole: true }));
+    if (F.samples && F.samples.length) sc.push({ k: 'smp', nav: 'Образцы', items: F.samples });
+    const mates = c.designer ? STOCK.filter(s => s.id !== p.id && (CARDS[s.id] || {}).designer === c.designer && !(CARDS[s.id] || {}).hide) : [];
+    const who = c.who && !F.noWho;
+    if (c.designer && (who || c.bio)) sc.push({ k: 'who', nav: 'Автор', q: { who: c.designer, role: c.role || 'автор модели', img: who ? R(c.who) : null, bio: c.bio || '', mates } });
+    return { designer: c.designer || '', src: c.src || p.url || '', tag: c.tag || null, orig: c.orig, auto: true,
+      loupe: F.whiteCut === false ? null : { img: F.white, size: '320%', pos: '50% 55%', label: 'Крупно' }, sc, note: 'Фото фабрики: отделка может отличаться от экземпляра в наличии.' };
+  }
+  /* карточки «под заказ» с прежнего сайта (data/catalog.js, id «t-…»): без цены и наличия, описание фабрики — в блоке «Описание» */
+  const CAT = window.CATALOG || [], T = CAT.find(t => t.id === qs.get('id'));
+  const id = T ? T.id : STOCK.some(s => s.id === qs.get('id')) ? qs.get('id') : 'm-p045';
+  const p = T ? { id: T.id, brand: T.brand, name: T.h, dims: T.dims, type: T.kind, group: T.group, url: T.src || '', imgs: [T.fmt.white], order: true }
+    : STOCK.find(s => s.id === id);
+  const x = T ? buildFmt(p, T.fmt, { designer: T.designer }) : X[id] || (FMT[id] && FMT[id].white ? buildFmt(p, FMT[id]) : build(p)), f = brandFactory(p.brand);
+  if (T) x.note = 'Фото фабрики: отделка и комплектация могут отличаться.';
+  // размеры из описания и характеристик прежнего сайта («Возможные варианты размеров:» + пункты; «Высота сиденья: …»)
+  const sizeLines = !T ? [] : (() => { const o = []; let on = false;
+    T.text.forEach(t => { if (/:$/.test(t)) { on = /размер|габарит/i.test(t); if (on) o.push(t); return }
+      if (on && (t.startsWith('•') || /\d/.test(t) && t.length <= 90)) o.push(t); else on = false });   // только пункты списка размеров
+    T.specs.filter(([k]) => /высот|ширин|глубин|длин|диаметр|размер/i.test(k)).forEach(([k, v]) => o.push(`${k}: ${v}`));
+    return o })();
+  const WHOLE = new Set(((T ? T.fmt : FMT[id]) || {}).whole || []);   // фото с подписями — целиком
+  // размеров нет нигде, а рядом можно поставить только то же главное фото — главы «Размеры» нет, подпись идёт под главным фото
+  { const ds = x.sc.find(c => c.k === 'draw');
+    if (ds && !ds.img && !DIMS.parse((FMT[id] || {}).dims || p.dims, p.type) && !sizeLines.length && (ds.side || ds.alt || x.sc[0].img) === x.sc[0].img) {
+      x.sc.splice(x.sc.indexOf(ds), 1);
+      x.sc[0].cap = [x.sc[0].cap, p.order ? 'Точные размеры и варианты — по запросу, их подтвердит менеджер.' : 'Точные размеры — по запросу.'].filter(Boolean).join(' · ');
+    } }
+  // короткая подводка — первый обычный абзац описания (до 240 знаков); в «Описании» он не повторяется
+  const lead = T ? T.text.find(t => !/:$/.test(t) && !t.startsWith('•') && t.length <= 240) : null;
+  // карточки, свёрстанные вручную (X), — в том же порядке глав: фактура крупно идёт после интерьера
+  const RANK = c => ({ hero: 0, draw: 1, ours: 2, duo: 3, det: 4, smp: 5, who: 6 })[c.k] ?? (c.nav === 'Интерьер' ? 3 : 4);
+  if (X[id]) x.sc.sort((a, b) => RANK(a) - RANK(b));
+  /* размеры: каждое измерение с новой строки, по-русски, в сантиметрах (assets/dims.js) */
+  const DM = (T ? T.fmt : FMT[id]) || {}, dd = DIMS.parse(DM.dims || p.dims, p.type);
+  const dimsList = !dd ? ''
+    : !dd.groups ? `<p class="dl2raw">${dd.raw.split(/\s*[\/;]\s*/).filter(Boolean).map(esc).join('<br>')}</p>`
+    : `<div class="dl2${dd.groups.length > 1 ? ' dl2--many' : ''}">${dd.groups.map(g => `<div class="g">${g.label ? `<p class="gl">${esc(g.label)}</p>` : ''}${g.rows.map(r => `<div class="r"><span>${r.name}</span><b>${DIMS.val(r)}</b></div>`).join('')}</div>`).join('')}</div>`;
+  const dimsNote = draw => `<p class="dnote rv">${[...(dd && dd.notes || []), DM.dimsNote].filter(Boolean).map(esc).join('<br>')}<small>${p.order ? 'Точные размеры и варианты подтвердит менеджер.' : 'Размеры экземпляра — как в каталоге наличия.'}${draw ? ' На чертеже — модель фабрики.' : ''}</small></p>`;
+  const sizeHtml = sizeLines.length ? `<div class="szl">${sizeLines.map(t => /:$/.test(t) ? `<p class="gl">${esc(t.slice(0, -1))}</p>` : `<p>${esc(t.replace(/^•\s*/, ''))}</p>`).join('')}</div>` : '';
+  const dimsRow = !dd ? '' : !dd.groups ? esc(dd.raw) : dd.groups.map(g => (g.label ? `${esc(g.label)}:<br>` : '') + g.rows.map(r => `${r.name} ${DIMS.val(r)}`).join('<br>')).join('<br>');
+  const ix = STOCK.indexOf(p), prevP = STOCK[(ix - 1 + STOCK.length) % STOCK.length], nextP = STOCK[(ix + 1) % STOCK.length];
+  const what = `${p.brand} — ${p.name}`;
+  const I = {
+    cube: '<svg class="ico" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>',
+    share: '<svg class="ico" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M5 13v6h14v-6"/></svg>',
+    chat: '<svg class="ico" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+  };
+  const src = s => s.startsWith('img/') ? s : D + s;
+  const LV = ['Средний', 'Выше среднего', 'Высокий', 'Люкс'];
+  const lvl = f && f.level ? `<span class="lvl2" title="Ценовой уровень фабрики"><i>${[1, 2, 3, 4].map(i => `<b class="${i <= LV.indexOf(f.level) + 1 ? 'on' : ''}"></b>`).join('')}</i>${esc(f.level)}${f.levelSrc === 'предварительно' ? '<span class="t">предв.</span>' : ''}</span>` : '';
+  const qty = p.order ? '' : `${p.qty} ${p.unit === 'компл.' ? 'компл.' : 'шт.'}`;
+
+
+  /* ── видео ── */
+  const play = '<span class="vid__play"><svg class="ico" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M8 5v14l11-7z"/></svg></span>';
+  const SHOW_VIDEO = false;   // видео пока не отсняты (29.10) — вернуть: true
+  const vid = !SHOW_VIDEO ? '' : x.video
+    ?`<aside class="vid" id="vid" role="button" tabindex="0" aria-label="Открыть видео крупно"><div class="vid__h"><i></i>Видео</div>
+        <div class="vid__f"><video src="${D + x.video}" muted autoplay loop playsinline poster="${D + x.vposter}"></video>${play}</div>
+        <p class="vid__c">${esc(p.name)} в движении. Видео фабрики.</p></aside>`
+    : `<aside class="vid" id="vid" role="button" tabindex="0" aria-label="Видео появится позже"><div class="vid__h"><i></i>Видео</div>
+        <div class="vid__f"><img src="${src((x.sc.find(c => c.k === 'duo') || {}).a || x.sc[0].img)}" alt=""><span class="vid__soon">Здесь будет видео из шоурума</span></div>
+        <p class="vid__c">Короткий ролик: как ${p.type === 'Стол' ? 'за столом сидят' : 'на нём сидят и как ложится материал'}.</p></aside>`;
+
+  /* ── главы ── */
+  const allImgs = [];
+  const POS = ((T ? T.fmt : FMT[id]) || {}).pos || {};   // точка кадрирования отдельных фото (чтобы предмет не срезался)
+  const ph = (s, cls = '', extra = '', cut = false) => { allImgs.push(src(s)); if (WHOLE.has(s)) cls += ' pic--whole'; return `<figure class="pic ${cls} ${cut ? 'pic--cut' : ''}" data-src="${src(s)}"><img loading="lazy" src="${src(s)}" alt=""${POS[s] ? ` style="object-position:${POS[s]}"` : ''}>${extra}</figure>` };
+  const scene = c => {
+    // первый кадр — только фото; zoom приближает предмет внутри снимка высокого разрешения (без потери качества)
+    if (c.k === 'hero') return `<section class="sc sc--hero" data-nav="${c.nav}">${ph(c.img, c.cut ? '' : 'pic--fit', '', c.cut).replace('loading="lazy"', '')
+      .replace('class="pic', `style="${c.ratio ? `aspect-ratio:${c.ratio}` : ''}" class="pic`)
+      .replace('alt=""', `alt="${esc(p.brand)} ${esc(p.name)}" style="${c.pos ? `object-position:${c.pos};` : ''}${c.zoom ? `transform:scale(${c.zoom});transform-origin:${c.pos}` : ''}"`)}${c.cap ? `<p class="hcap">${c.cap}</p>` : ''}</section>`;
+    if (c.k === 'macro' && c.whole) return `<section class="sc sc--macro sc--whole" data-nav="${c.nav}">${ph(c.img)}</section>`;
+    if (c.k === 'macro') return `<section class="sc sc--macro${c.h || c.t ? '' : ' sc--macro--bare'}" data-nav="${c.nav}">${ph(c.img, c.fit ? 'pic--fit' : '')}${c.h || c.t ? `<div class="ov">${c.h ? `<h2 class="big rv">${c.h}</h2>` : ''}${c.t ? `<p class="lede rv">${c.t}</p>` : ''}</div>` : ''}</section>`;
+    // экземпляр из наличия — наши снимки (настоящий предмет, который можно забрать)
+    // наши снимки — целиком, без обрезки и увеличения (Павел 27.10: Wireline, Bilboquet)
+    if (c.k === 'ours' && c.imgs.length > 1) return `<section class="sc sc--duo sc--ours" data-nav="${c.nav}"><div class="duo duo--bare">${ph(c.imgs[0], 'a pic--fit')}${ph(c.imgs[1], 'b pic--fit')}</div>
+        <p class="hcap">Экземпляр в наличии${p.finish ? ' · ' + esc(p.finish) : ''}</p></section>`;
+    if (c.k === 'ours') return `<section class="sc sc--ours" data-nav="${c.nav}">
+        ${c.imgs.slice(0, 2).map(s => ph(s, 'pic--ours')).join('')}
+        <p style="margin-top:12px;font-size:13px;color:var(--graphite)">Экземпляр в наличии${p.finish ? ' · ' + esc(p.finish) : ''}</p></section>`;
+    // размеры: чертёж на прозрачной подложке + те же размеры текстом по строкам + комментарий
+    if (c.k === 'draw') return c.img
+      ? `<section class="sc sc--draw" data-nav="${c.nav}"><div class="dw">${ph(c.img, 'pic--draw')}
+          <div class="rv">${dd ? dimsList : sizeHtml}${dimsNote(true)}</div></div></section>`
+      // без чертежа — фото рядом; предмет смотрит вправо (face: 'r') → фото слева, текст справа
+      // размеров нет нигде — фото предмета и мелкая подпись под ним, без отдельной крупной фразы
+      : !dd && !sizeLines.length ? `<section class="sc sc--draw sc--nosize" data-nav="${c.nav}"><div class="dw dw--solo">${ph(c.side || c.alt || x.sc[0].img)}
+          <p class="hcap">${p.order ? 'Точные размеры и варианты — по запросу, их подтвердит менеджер.' : 'Точные размеры — по запросу.'}</p></div></section>`
+      : `<section class="sc sc--draw" data-nav="${c.nav}"><div class="dw${c.face === 'r' ? ' dw--r' : ''}" style="grid-template-columns:${c.face === 'r' ? 'minmax(0,1.2fr) minmax(0,.8fr)' : 'minmax(0,.8fr) minmax(0,1.2fr)'}">
+          <div class="rv">${dd ? dimsList : sizeHtml}${dimsNote(false)}</div>${ph(c.side || c.alt || x.sc[0].img)}</div></section>`;
+    if (c.k === 'det' && c.imgs.length > 1) return `<section class="sc sc--duo" data-nav="${c.nav}"><div class="duo duo--bare duo--rev">${ph(c.imgs[0], 'a' + (c.fit && c.fit.has(c.imgs[0]) ? ' pic--fit' : ''))}${ph(c.imgs[1], 'b' + (c.fit && c.fit.has(c.imgs[1]) ? ' pic--fit' : ''))}</div></section>`;
+    if (c.k === 'det') return `<section class="sc sc--det" data-nav="${c.nav}"><div class="det${c.imgs.length > 1 ? ' det--2' : ''}">${c.imgs.map(s => ph(s)).join('')}</div></section>`;
+    if (c.k === 'smp') return `<section class="sc sc--smp" data-nav="${c.nav}"><div class="smp${c.items.length > 1 ? '' : ' smp--1'}">${c.items.map(o => `<div>${ph(o.img, 'pic--fit')}<p class="smp__k">${esc(o.name || '')}</p></div>`).join('')}</div></section>`;
+    if (c.k === 'duo') return `<section class="sc sc--duo" data-nav="${c.nav}"><div class="duo${c.h || c.t ? '' : ' duo--bare'}">${ph(c.a, 'a' + (c.fit ? ' pic--fit' : ''), c.chip ? `<span class="chipx">${c.chip}</span>` : '')}${ph(c.b, 'b' + (c.fit ? ' pic--fit' : ''))}</div>
+        ${c.h || c.t ? `<div class="tx">${c.h ? `<h2 class="big rv">${c.h}</h2>` : ''}${c.t ? `<p class="lede rv">${c.t}</p>` : ''}</div>` : ''}</section>`;
+    if (c.k === 'who' && c.q.bio !== undefined) {
+      const m = c.q.mates || [];
+      return `<section class="sc sc--who" data-nav="${c.nav}"><div class="who ${c.q.img ? '' : 'who--text'}">${c.q.img ? ph(c.q.img) : ''}<div>
+        <p class="who__k rv">Автор</p><p class="who__n rv">${esc(c.q.who)}</p>${c.q.bio ? "" : `<p class="who__r rv">${esc(c.q.role)}</p>`}
+        ${c.q.bio ? `<p class="who__b rv">${esc(c.q.bio)}</p>` : ''}
+        ${m.length ? `<p class="who__k rv" style="margin-top:22px">Ещё работы автора в наличии</p><div class="who__m">${m.slice(0, 6).map(s => {
+          const t = (FMT[s.id] || {}).white || (CARDS[s.id] || {}).tile; return `<a href="?id=${encodeURIComponent(s.id)}"><span class="who__mi">${t ? `<img loading="lazy" src="${R(t)}" alt="">` : ''}</span><span>${esc(s.name)}</span></a>` }).join('')}</div>` : ''}
+      </div></div></section>`;
+    }
+    if (c.k === 'who') return `<section class="sc sc--who" data-nav="${c.nav}"><div class="who">${ph(c.q.img)}<div>${c.q.ru ? `<blockquote class="rv">«${esc(c.q.ru)}»<small>${esc(c.q.orig)}</small></blockquote>` : ''}
+        <p class="n rv">${esc(c.q.who)} <span>— ${esc(c.q.role)}</span>${c.q.ru ? '<span class="t">тест</span>' : ''}</p></div></div></section>`;
+    return '';
+  };
+  const navs = x.sc.map(c => c.nav);
+  const rib = `<div class="rib" id="rib">
+      <nav class="rib__nav" aria-label="Главы"><ol>${navs.map((n, i) => i && navs[i - 1] === n ? '' : `<li><button type="button" class="${i ? '' : 'on'}" data-go="${i}" title="${n}"><i></i><span>${n}</span></button></li>`).join('')}</ol></nav>
+      ${x.sc.map(scene).join('')}
+      <div class="loupe" id="loupe"><span>${x.loupe ? x.loupe.label : ''}</span></div>
+    </div>`;
+
+  /* ── описание ── */
+  const desc = !T ? '' : (() => {   // описание с прежнего сайта: «Заголовок:» — подзаголовок, «• …» — список
+    let h = '', ul = false;
+    T.text.filter(t => t !== lead && !sizeLines.includes(t)).forEach(t => {
+      if (t.startsWith('•')) { if (!ul) { h += '<ul>'; ul = true } h += `<li>${esc(t.slice(1).trim())}</li>`; return }
+      if (ul) { h += '</ul>'; ul = false }
+      h += /:$/.test(t) ? `<p class="dh">${esc(t.slice(0, -1))}</p>` : `<p>${esc(t)}</p>`;
+    });
+    return h + (ul ? '</ul>' : '');
+  })();
+  const where = p.order ? `<span class="dot dot--order"></span><span>Под заказ у фабрики.<small>Отделку, срок и цену подберёт менеджер под ваш проект.</small></span>` : `<span class="dot"></span><span>В шоуруме на 3-й Фрунзенской — можно посмотреть и потрогать.<small>${qty} · <button type="button" data-call="Посмотреть в шоуруме: ${esc(what)}">договориться о просмотре</button></small></span>`;
+  const rows = [['Фабрика', f ? `${esc(f.name)} · ${esc(f.country)}` : esc(p.brand)], x.designer && ['Дизайн', esc(x.designer)],
+    p.order && p.type && ['Тип', esc(p.type)], ...(T ? T.specs.map(([k, v]) => [esc(k), esc(v)]) : []),
+    dd && ['Размеры', `<span class="num">${dimsRow}</span>`], p.finish && ['Отделка', esc(p.finish)],
+    !p.order && ['Где', 'Шоурум, Москва, 3-я Фрунзенская, 1'], !p.order && ['Количество', qty],
+    p.url && ['О модели', `<a href="${esc(p.url)}" target="_blank" rel="noopener">Сайт фабрики ↗</a>`]].filter(Boolean);
+  const info = `<div class="info" id="info">
+      <div class="fac">${f ? `<span>${esc(f.name)}</span><span class="c">${esc(f.country)}</span>` : esc(p.brand)}${lvl}</div>
+      <h1>${esc((CARDS[p.id] || {}).title || p.name)}</h1>
+      ${x.designer ? `<div class="author">Дизайн — <b>${esc(x.designer)}</b>${x.year && p.discount ? ` · коллекция ${x.year}` : ''}</div>` : ''}
+      ${lead ? `<p class="tagline">${esc(lead)}${T.orig ? ` <button type="button" class="origbtn" id="origBtn" aria-expanded="false" title="Оригинал фабрики">${T.orig[0]}</button>` : ''}</p>${T.orig ? `<p class="orig" id="orig">${esc(T.orig[1])}</p>` : ''}` : ''}
+      ${x.tag ? `<p class="tagline">${x.tag} <button type="button" class="origbtn" id="origBtn" aria-expanded="false" title="Оригинал фабрики">${x.orig[0]}</button></p><p class="orig" id="orig">${esc(x.orig[1])}</p>` : ''}
+      <div class="avail">${where}</div>
+      ${p.order ? `<div class="price"><span class="now">Цена по запросу</span></div>
+      <p class="pnote">Посчитаем в нужной отделке и пришлём предложение.</p>
+      <div class="buy" id="mainCta"><button type="button" class="btn" data-call="Цена по запросу: ${esc(what)}">Запросить цену</button></div>` : `<div class="price"><span class="now num">${fmt.eur(p.price)}</span>${p.base ? `<s class="num">${fmt.eur(p.base)}</s>` : ''}</div>
+      ${p.discount && x.year ? `<p class="promo">Экспозиционный образец коллекции ${x.year} года.</p>` : ''}
+      <p class="pnote">${p.unit === 'компл.' ? 'За комплект. ' : ''}Цена в евро — как в каталоге наличия. Условия оплаты уточнит менеджер.</p>
+      <div class="buy" id="mainCta"><button type="button" class="btn" data-call="Бронь из наличия: ${esc(what)}">Забронировать</button></div>`}
+      <div class="acts">
+        <button type="button" data-call="Запрос 3D-модели и технички: ${esc(what)}">${I.cube} 3D и техничка</button>
+        <button type="button" id="share">${I.share} Переслать клиенту</button>
+        <button type="button" data-call="Вопрос менеджеру: ${esc(what)}">${I.chat} Вопрос менеджеру</button>
+      </div>
+      <div class="acc">
+        ${desc ? `<details open><summary>Описание<i></i></summary><div class="in desc">${desc}</div></details>` : ''}
+        <details><summary>Характеристики<i></i></summary><div class="in"><dl>${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>${x.note ? `<p style="margin-top:12px;font-size:12.5px;color:var(--graphite-2)">${x.note}</p>` : ''}</div></details>
+        ${p.order ? '' : `<details><summary>Под заказ у фабрики<i></i></summary><div class="in"><p>Нужен другой размер, ткань или кожа? ${esc(p.name.replace(/^\S+\s/, ''))} изготовит фабрика под ваш проект — менеджер посчитает срок и цену.</p>
+          <div class="links"><button type="button" data-call="Под заказ у фабрики: ${esc(what)}">Запросить расчёт</button>
+            <a href="catalog.html?cat=${encodeURIComponent(p.group)}">${esc(p.group)} в наличии</a></div></div></details>`}
+      </div>
+    </div>`;
+
+  const same = STOCK.filter(s => s.id !== p.id && s.brand === p.brand).slice(0, 8);
+  const sameT = p.order ? CAT.filter(t => t.id !== p.id && t.brand === p.brand).slice(0, 8) : [];
+  const more = sameT.length ? `<section class="more"><div class="more__h"><h2>Ещё ${esc(f ? f.name : p.brand)} под заказ</h2></div>
+    <div class="rail">${sameT.map(t => `<a href="product-card.html?id=${encodeURIComponent(t.id)}"><figure><img loading="lazy" class="${t.fmt.whiteCut === false ? 'cv' : ''}" src="${t.fmt.white}" alt=""></figure>
+      <small>${esc(t.brand)}</small><span>${esc(t.h)}</span><span class="p">Цена по запросу</span></a>`).join('')}</div></section>` : same.length ? `<section class="more"><div class="more__h"><h2>Ещё ${esc(f ? f.name : p.brand)} в наличии</h2><a class="link" href="catalog.html?brand=${encodeURIComponent(p.brand)}">Все →</a></div>
+    <div class="rail">${same.map(s => `<a href="product.html?id=${encodeURIComponent(s.id)}"><figure><img loading="lazy" class="${s.pack ? '' : 'cv'}" src="${s.imgs[0]}" alt=""></figure>
+      <small>${esc(s.brand)}</small><span>${esc(s.name)}</span><span class="p num">${fmt.eur(s.price)}</span></a>`).join('')}</div></section>` : '';
+  const invite = `<p class="invite">Хотите увидеть вживую и встретиться с коллегами — приходите на встречу HOMEART Academy в шоуруме. <a href="${HA.BOT}" target="_blank" rel="noopener">Анонсы встреч →</a></p>`;
+
+  document.title = `${(CARDS[p.id] || {}).title || p.name} · ${p.brand} — HOMEART`;
+  document.getElementById('main').innerHTML = `<div class="crumbs"><a href="index.html">Главная</a><span>/</span><a href="catalog.html">${p.order ? 'Каталог' : 'Наличие'}</a><span>/</span><span>${esc(p.name)}</span></div>
+    <div class="split${vid ? '' : ' split--novid'}">${vid}${rib}${info}</div>${more}${invite}`;
+
+  /* ── телефон: все фото одной лентой сверху (вариант А, Михаил 13.11). Главы, где только фото, на телефоне прячутся;
+     главы с текстом, размеры, образцы и автор остаются. Подпись кадра («Экземпляр в наличии · …») — под лентой ── */
+  (() => {
+    const split = document.querySelector('.split'), list = [], seen = new Set();
+    [...split.querySelectorAll('.sc')].filter(s => !s.matches('.sc--draw,.sc--smp,.sc--who') && !s.querySelector('.ov,.tx')).forEach(s => {
+      const cap = (s.querySelector(':scope > .hcap, :scope > p') || {}).textContent || '';
+      s.classList.add('sc--ingal');
+      s.querySelectorAll('figure[data-src]').forEach(f => { if (!seen.has(f.dataset.src)) { seen.add(f.dataset.src); list.push({ src: f.dataset.src, fit: s.classList.contains('sc--hero'), cap }) } });
+    });
+    if (list.length < 2) { split.querySelectorAll('.sc--ingal').forEach(s => s.classList.remove('sc--ingal')); return }
+    const g = document.createElement('div'); g.className = 'gal';
+    g.innerHTML = `<div class="gal__t" tabindex="0" aria-label="Фото: ${list.length}, листаются в сторону">${list.map((it, i) =>
+      `<figure data-src="${it.src}" class="${it.fit ? 'fit' : ''}"><img src="${it.src}" alt="${i ? '' : esc(p.brand + ' ' + p.name)}"${i > 1 ? ' loading="lazy"' : ''}></figure>`).join('')}</div>
+      <span class="gal__hint" aria-hidden="true"><b>1 / ${list.length}</b> · Листайте <i>→</i></span><div class="gal__bar"><i style="width:${100 / list.length}%"></i></div><p class="gal__cap">${esc(list[0].cap)}</p>`;
+    // что есть ниже ленты — строка со ссылками: размеры, отделки, характеристики, автор
+    const fin = split.querySelector('.sc--smp') || [...document.querySelectorAll('.info .desc .dh')].find(e => /отделк/i.test(e.textContent));
+    const spec = [...document.querySelectorAll('.info details')].find(d => /Характеристики/.test(d.querySelector('summary').textContent));
+    const jump = [['Размеры', split.querySelector('.sc--draw:not(.sc--nosize)')], [fin && fin.matches('.sc--smp') ? 'Образцы отделок' : 'Отделки', fin],
+      ['Характеристики', spec], ['Автор', split.querySelector('.sc--who')]].filter(j => j[1]);
+    if (jump.length) {
+      const m = document.createElement('p'); m.className = 'gal__more';
+      m.innerHTML = 'Ниже: ' + jump.map((j, i) => `<button type="button" data-j="${i}">${j[0]}</button>`).join(' · ') + '<i aria-hidden="true">↓</i>';
+      m.onclick = e => { const b = e.target.closest('button'); if (!b) return; const el = jump[+b.dataset.j][1];
+        if (el.tagName === 'DETAILS') el.open = true;
+        const hdr = document.querySelector('.hdr, header'); scrollTo({ top: el.getBoundingClientRect().top + scrollY - (hdr ? hdr.offsetHeight : 64) - 14, behavior: 'smooth' }) };
+      g.appendChild(m);
+    }
+    split.prepend(g); split.classList.add('has-gal');
+    const t = g.firstElementChild, figs = [...t.children], hint = g.querySelector('.gal__hint'), bar = g.querySelector('.gal__bar i'), cap = g.querySelector('.gal__cap');
+    // ширина кадра — по пропорции фото (интерьер целиком), не шире двух высот
+    figs.forEach(f => { if (f.classList.contains('fit')) return; const im = f.firstElementChild;
+      const set = () => f.style.setProperty('--r', Math.min(im.naturalWidth / im.naturalHeight, 2).toFixed(3)); im.complete && im.naturalWidth ? set() : im.addEventListener('load', set) });
+    let last = 0;
+    t.addEventListener('scroll', () => {
+      const x = t.scrollLeft + 4; let i = 0; figs.forEach((f, j) => { if (f.offsetLeft - figs[0].offsetLeft <= x) i = j });
+      if (t.scrollLeft + t.clientWidth >= t.scrollWidth - 4) i = figs.length - 1;
+      if (i === last) return; last = i;
+      hint.innerHTML = `<b>${i + 1} / ${list.length}</b>` + (i ? '' : ' · Листайте <i>→</i>');
+      bar.style.left = (i * 100 / list.length) + '%'; cap.textContent = list[i].cap;
+    }, { passive: true });
+    // лента всегда открывается с первого фото (Михаил, 13.11: на iPhone открывалась с середины или с последнего).
+    // Safari при программной прокрутке ленты с примагничиванием уезжал к следующему кадру, а при подгрузке фото (меняется
+    // ширина кадров) перепрыгивал — поэтому подсказка теперь без прокрутки (кадры чуть сдвигаются анимацией и возвращаются),
+    // а пока человек сам не тронул ленту, она держится на первом кадре
+    let touched = false;
+    ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(ev => t.addEventListener(ev, () => { touched = true; t.classList.remove('gal__t--peek') }, { passive: true }));
+    const home = () => { if (!touched && t.scrollLeft) t.scrollLeft = 0 };
+    figs.forEach(f => f.firstElementChild.addEventListener('load', home));
+    addEventListener('load', home); addEventListener('pageshow', home);
+    if (matchMedia('(max-width:980px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) t.classList.add('gal__t--peek');
+  })();
+
+  const ob = document.getElementById('origBtn');
+  if (ob) ob.onclick = () => { const o = document.getElementById('orig'); const on = !o.classList.contains('on'); o.classList.toggle('on', on); ob.setAttribute('aria-expanded', on) };
+
+  /* ── пара фото на телефоне — лента: точки показывают, какое фото на экране ── */
+  document.querySelectorAll('.sc--duo .duo').forEach(d => {
+    const dots = document.createElement('div'); dots.className = 'duo__dots'; dots.innerHTML = '<i class="on"></i><i></i>'; d.after(dots);
+    d.addEventListener('scroll', () => { const i = Math.round(d.scrollLeft / Math.max(1, d.scrollWidth - d.clientWidth)); [...dots.children].forEach((x, k) => x.classList.toggle('on', k === i)) }, { passive: true });
+  });
+
+  /* ── лупа на первой главе: настоящий макро-снимок ── */
+  const scs = [...document.querySelectorAll('.sc')], loupe = document.getElementById('loupe'), ribEl = document.getElementById('rib');
+  const heroPh = scs[0].querySelector('.pic'), heroImg = heroPh.querySelector('img');
+  let loupeOn = false;
+  const placeLoupe = () => {
+    const r = heroPh.getBoundingClientRect(), s = (getComputedStyle(ribEl).display === 'contents' ? document.querySelector('.split') : ribEl).getBoundingClientRect();
+    // лупа — в верхнем углу фото, на пустом месте, чтобы не закрывать предмет
+    const half = loupe.offsetWidth / 2, gap = 18, right = x.loupe.corner !== 'left';
+    loupe.style.left = (r.left - s.left + (right ? r.width - half - gap : half + gap)) + 'px';
+    loupe.style.top = (r.top - s.top + half + gap) + 'px';
+  };
+  // в лупе — обивка: целый макро-кадр или увеличенный участок настоящего снимка высокого разрешения
+  const showLoupe = () => {
+    if (!x.loupe) return;
+    placeLoupe(); loupe.style.backgroundImage = `url("${src(x.loupe.img)}")`;
+    loupe.style.backgroundSize = x.loupe.size || 'cover'; loupe.style.backgroundPosition = x.loupe.pos || 'center';
+    loupe.classList.add('on'); loupeOn = true;
+  };
+  if (getComputedStyle(ribEl).display === 'contents') document.querySelector('.split').style.position = 'relative', document.querySelector('.split').appendChild(loupe);
+  const start = () => setTimeout(() => { if (scrollY < innerHeight * .5) showLoupe() }, 1300);
+  heroImg.complete ? start() : heroImg.addEventListener('load', start);
+
+  /* образцы и детали: маленькое фото не растягиваем — показываем не крупнее его разрешения (ТЗ, раздел 2) */
+  document.querySelectorAll('.sc--smp .pic img, .sc--det .pic img').forEach(im => {
+    const fit = () => { const fg = im.closest('.pic'); if (im.naturalWidth && im.naturalWidth / 1.25 < fg.clientWidth) fg.style.maxWidth = Math.round(im.naturalWidth / 1.25) + 'px' };
+    im.complete ? fit() : im.addEventListener('load', fit);
+  });
+
+  /* ── прокрутка: появление, лёгкое движение фото, активная глава, панель на телефоне ── */
+  const navBtns = [...document.querySelectorAll('[data-go]')];
+  navBtns.forEach(b => b.onclick = () => scrollTo({ top: scs[+b.dataset.go].getBoundingClientRect().top + scrollY - 20, behavior: 'smooth' }));
+  const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const bar = document.getElementById('buybar'), cta = document.getElementById('mainCta'), narrow = matchMedia('(max-width:980px)');
+  bar.innerHTML = `<div class="buybar__i"><div class="buybar__n">${esc(p.brand)} · ${esc(p.name)}</div><div class="buybar__p num">${p.order ? 'Цена по запросу' : fmt.eur(p.price)}</div></div>
+    <button type="button" class="btn" data-call="${p.order ? 'Цена по запросу' : 'Бронь из наличия'}: ${esc(what)}">${p.order ? 'Запросить' : 'Забронировать'}</button>`;
+  let tick = false;
+  const sync = () => {
+    tick = false; const vh = innerHeight; let act = 0;
+    scs.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      if (r.top < vh * .85) s.classList.add('in');
+      if (r.top < vh * .45) act = i;
+      if (!still && !s.classList.contains('sc--who')) { const k = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh)); s.querySelectorAll('.pic:not(.pic--cut):not(.pic--draw):not(.pic--ours):not(.pic--fit):not(.pic--whole) img:not([style*="object-position"])').forEach(im => im.style.transform = `translateY(${(k * 5).toFixed(2)}%) scale(1.1)`) }
+    });
+    const cur = navBtns.map(b => +b.dataset.go).filter(g => g <= act).pop();   // у двух кадров «Интерьера» одна кнопка
+    navBtns.forEach(b => b.classList.toggle('on', +b.dataset.go === cur));
+    if (loupeOn && scrollY > vh * .6) { loupe.classList.remove('on'); loupeOn = false }
+    const on = narrow.matches && cta.getBoundingClientRect().bottom < 0; bar.classList.toggle('on', on); bar.setAttribute('aria-hidden', String(!on));
+  };
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(sync) } }, { passive: true });
+  /* ── закреплённые колонки встают под шапкой сайта (если она закреплена);
+        высокая колонка описания сначала прокручивается до конца и только потом закрепляется — ничего не обрезается ── */
+  const infoEl = document.getElementById('info'), hdrEl = document.querySelector('.hdr');
+  const layoutSticky = () => {
+    const hp = hdrEl ? getComputedStyle(hdrEl).position : '';
+    const stick = (hdrEl && (hp === 'sticky' || hp === 'fixed') ? hdrEl.offsetHeight : 0) + 24;
+    document.documentElement.style.setProperty('--stick', stick + 'px');
+    if (narrow.matches) { infoEl.style.top = ''; return }
+    const room = innerHeight - stick - 24;
+    infoEl.style.top = (infoEl.offsetHeight > room ? innerHeight - infoEl.offsetHeight - 24 : stick) + 'px';
+  };
+  document.querySelectorAll('.acc details').forEach(d => d.addEventListener('toggle', layoutSticky));
+  addEventListener('resize', () => { layoutSticky(); sync(); if (loupeOn) placeLoupe() });
+  addEventListener('load', layoutSticky);
+  layoutSticky();
+  sync();
+
+  /* ── видео ── */
+  const vd = document.getElementById('vid');
+  const openVid = () => x.video ? openLb(0, ['video:' + D + x.video]) : toast('Видео из шоурума появится позже.');
+  if (vd) vd.onclick = openVid, vd.onkeydown = e => { if (e.key === 'Enter') openVid() };
+
+  document.getElementById('share').onclick = async () => {
+    try {
+      if (navigator.share) { await navigator.share({ title: `${p.name} · ${p.brand}`, url: location.href }); return }
+      await navigator.clipboard.writeText(location.href); toast('Ссылка скопирована — отправьте её клиенту.');
+    } catch (e) { if (e && e.name !== 'AbortError') toast('Скопируйте адрес страницы из строки браузера.') }
+  };
+
+  /* ── просмотр во весь экран ── */
+  const lb = document.getElementById('lb'), lbT = document.getElementById('lbTrack'), lbC = document.getElementById('lbC');
+  let set = [];
+  const lbI = () => Math.round(lbT.scrollLeft / (lbT.clientWidth || 1));
+  const lbGo = i => { lbT.scrollTo({ left: i * lbT.clientWidth }); lbC.textContent = set.length > 1 ? `${i + 1} / ${set.length}` : '' };
+  lbT.addEventListener('scroll', () => { if (set.length > 1) lbC.textContent = `${lbI() + 1} / ${set.length}` }, { passive: true });
+  function openLb(i, list) {
+    set = list;
+    lbT.innerHTML = set.map(s => s.startsWith('video:') ? `<figure><video src="${s.slice(6)}" controls autoplay loop playsinline></video></figure>` : `<figure><img src="${s}" alt=""></figure>`).join('');
+    ['lbP', 'lbN'].forEach(k => document.getElementById(k).hidden = set.length < 2);
+    if (typeof lb.showModal === 'function') { lb.showModal(); document.body.style.overflow = 'hidden'; lbGo(Math.max(0, i)) }
+  }
+  lb.addEventListener('close', () => { document.body.style.overflow = ''; lbT.innerHTML = '' });
+  document.getElementById('lbX').onclick = () => lb.close();
+  document.getElementById('lbP').onclick = () => lbGo(Math.max(0, lbI() - 1));
+  document.getElementById('lbN').onclick = () => lbGo(Math.min(set.length - 1, lbI() + 1));
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') lbGo(Math.max(0, lbI() - 1)); if (e.key === 'ArrowRight') lbGo(Math.min(set.length - 1, lbI() + 1)) });
+  const uniq = [...new Set(allImgs)];
+  document.getElementById('main').addEventListener('click', e => { const f2 = e.target.closest('figure[data-src]'); if (f2 && f2.closest('.split')) openLb(uniq.indexOf(f2.dataset.src), uniq) });
+
+  const SKIP = 3.2;
+  const skipIntro = v => { if (v.dataset.skip) return; v.dataset.skip = 1; v.addEventListener('timeupdate', () => { if (v.currentTime < SKIP && v.duration > SKIP + 2) v.currentTime = SKIP }) };
+  document.querySelectorAll('video').forEach(skipIntro);
+  new MutationObserver(() => lbT.querySelectorAll('video').forEach(skipIntro)).observe(lbT, { childList: true });
+})();
+</script>
+</body>
+</html>

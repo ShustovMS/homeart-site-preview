@@ -1,0 +1,240 @@
+{
+ "user": {
+  "name": "Анна Соколова",
+  "role": "Дизайнер",
+  "studio": "Studio Form",
+  "city": "Москва",
+  "phone": "+7 900 000-11-22",
+  "tg": "@anna_studioform",
+  "email": "anna@studioform.example",
+  "interests": [
+   "Мебель",
+   "Свет",
+   "Кухни"
+  ],
+  "partnerSince": "2026-03-14",
+  "lastOrder": "2026-08-02",
+  "manager": "m1"
+ },
+ "quotes": [
+  {
+   "id": "Q-1042",
+   "project": "Квартира на Остоженке",
+   "factories": [
+    "molteni-c",
+    "rimadesio",
+    "flos"
+   ],
+   "stage": 2,
+   "kpDate": "2026-09-26",
+   "manager": "m1",
+   "files": [
+    {
+     "v": 2,
+     "date": "2026-09-26",
+     "file": "files/KP-Q-1042-v2.pdf",
+     "note": "обновлены отделки дивана"
+    },
+    {
+     "v": 1,
+     "date": "2026-09-19",
+     "file": "files/KP-Q-1042-v1.pdf",
+     "note": "первая версия"
+    }
+   ]
+  },
+  {
+   "id": "Q-1051",
+   "project": "Загородный дом, Новорижское ш.",
+   "factories": [
+    "modulnova",
+    "gaggenau",
+    "poliform"
+   ],
+   "stage": 1,
+   "kpDate": "2026-10-07",
+   "manager": "m2",
+   "files": []
+  }
+ ],
+ "quoteStages": [
+  "Запрос принят",
+  "В работе",
+  "КП готово",
+  "Согласование"
+ ],
+ "orderStages": [
+  "Оплачен",
+  "Производство",
+  "Готов на фабрике",
+  "В пути",
+  "Прибыл в РФ",
+  "Склад HOMEART",
+  "Отгрузка"
+ ],
+ "orders": [
+  {
+   "id": "SP-2026-0318",
+   "project": "Квартира на Пресне",
+   "sum": 4865000,
+   "paid": "2026-05-12",
+   "factories": [
+    "molteni-c",
+    "poliform"
+   ],
+   "stage": 3,
+   "dates": [
+    "2026-05-12",
+    "2026-05-20",
+    "2026-08-28",
+    "2026-09-04",
+    null,
+    null,
+    null
+   ],
+   "proformas": [
+    "PF-8841",
+    "PF-8842"
+   ],
+   "manager": "m1"
+  },
+  {
+   "id": "SP-2026-0402",
+   "project": "Квартира на Пресне — свет",
+   "sum": 612000,
+   "paid": "2026-06-30",
+   "factories": [
+    "flos"
+   ],
+   "stage": 5,
+   "dates": [
+    "2026-06-30",
+    "2026-07-06",
+    "2026-08-01",
+    "2026-08-05",
+    "2026-09-15",
+    "2026-09-19",
+    null
+   ],
+   "proformas": [
+    "PF-9012"
+   ],
+   "manager": "m3"
+  },
+  {
+   "id": "SP-2026-0455",
+   "project": "Апартаменты, Хамовники",
+   "sum": 1290000,
+   "paid": "2026-08-02",
+   "factories": [
+    "calligaris"
+   ],
+   "stage": 1,
+   "dates": [
+    "2026-08-02",
+    "2026-08-10",
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "proformas": [
+    "PF-9230"
+   ],
+   "manager": "m4"
+  }
+ ],
+ "requests": [
+  {
+   "id": "R-311",
+   "type": "3D-модель",
+   "what": "Molteni&C — гардеробная Gliss Master",
+   "format": "3ds Max",
+   "date": "2026-09-22",
+   "status": 2,
+   "file": "files/3D-Gliss-Master.zip",
+   "manager": "m1"
+  },
+  {
+   "id": "R-318",
+   "type": "Техничка",
+   "what": "FLOS — IC Lights S",
+   "format": "PDF",
+   "date": "2026-09-25",
+   "status": 1,
+   "file": null,
+   "manager": "m3"
+  },
+  {
+   "id": "R-320",
+   "type": "Образцы",
+   "what": "Rimadesio — стекло и профиль, к встрече 03.10",
+   "format": null,
+   "date": "2026-09-27",
+   "status": 0,
+   "file": null,
+   "manager": "m2"
+  },
+  {
+   "id": "R-322",
+   "type": "Просчёт",
+   "what": "Загородный дом — кухня и техника",
+   "format": null,
+   "date": "2026-09-28",
+   "status": 1,
+   "file": null,
+   "manager": "m2"
+  }
+ ],
+ "requestStages": [
+  "Отправлен",
+  "В работе",
+  "Готово"
+ ],
+ "myEvents": [
+  "efir-svet",
+  "club-molteni"
+ ],
+ "watched": [
+  "arh-2"
+ ],
+ "saved": {
+  "factories": [
+   "molteni-c",
+   "rimadesio",
+   "davide-groppi",
+   "calligaris"
+  ],
+  "articles": [
+   "svet-v-proekte",
+   "pochemu-stolko-stoit"
+  ]
+ },
+ "attention": [
+  {
+   "kind": "kp",
+   "text": "Готово КП по проекту «Квартира на Остоженке», версия 2",
+   "href": "quotes.html",
+   "date": "2026-09-26"
+  },
+  {
+   "kind": "3d",
+   "text": "Готова 3D-модель: Molteni&C Gliss Master",
+   "href": "requests.html",
+   "date": "2026-09-24"
+  },
+  {
+   "kind": "order",
+   "text": "SP-2026-0402 прибыл на склад HOMEART",
+   "href": "orders.html",
+   "date": "2026-09-19"
+  },
+  {
+   "kind": "event",
+   "text": "Запись подтверждена: закрытый показ Molteni&C, 22 октября",
+   "href": "events.html",
+   "date": "2026-09-18"
+  }
+ ]
+}
