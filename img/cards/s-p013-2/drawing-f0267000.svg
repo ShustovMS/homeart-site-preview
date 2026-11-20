@@ -1,0 +1,39 @@
+<svg id="_3_high_bigbase_cono" data-name="3 high bigbase cono" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10.58cm" height="9.28cm" viewBox="0 0 300 263">
+  <defs>
+    <clipPath id="clip-path">
+      <rect x="131.52" y="75.32" width="39.79" height="141.63" fill="none"/>
+    </clipPath>
+  </defs>
+  <title>noctambule-floor-3high-cylinder-cone-grcic-flos-F0267000-spech-tech-02-300x263</title>
+  <text transform="translate(122.05 179.85) rotate(-90)" font-size="16" font-family="Avenir-Book, Avenir" style="isolation: isolate">1970 mm</text>
+  <g>
+    <line x1="129.6" y1="75.32" x2="129.6" y2="216.95" fill="none" stroke="#000" stroke-width="0.5"/>
+    <g>
+      <line x1="129.75" y1="75.32" x2="129.28" y2="75.32" fill="none" stroke="#000" stroke-width="0.5"/>
+      <line x1="129.84" y1="216.95" x2="129.24" y2="216.95" fill="none" stroke="#000" stroke-width="0.5"/>
+    </g>
+  </g>
+  <g>
+    <line x1="136.54" y1="223.52" x2="170.76" y2="223.52" fill="none" stroke="#000" stroke-width="0.5"/>
+    <line x1="136.52" y1="223.32" x2="136.52" y2="223.72" fill="none" stroke="#000" stroke-width="0.5"/>
+    <line x1="170.76" y1="223.32" x2="170.76" y2="223.72" fill="none" stroke="#000" stroke-width="0.5"/>
+  </g>
+  <text transform="translate(113.83 247.49)" font-size="16" font-family="Avenir-Book, Avenir" style="isolation: isolate">ø 550 mm</text>
+  <g clip-path="url(#clip-path)">
+    <rect x="143.99" y="99.28" width="14.72" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <rect x="143.99" y="137.4" width="14.72" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <rect x="142.35" y="100.82" width="18.12" height="36.58" rx="2.07" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <path d="M154.74,137.4v-1.17c0-1,.17-1.54.36-1.65.42-.22.76-.5.76-1.76V105.3c0-1.26-.34-1.54-.76-1.77-.19-.1-.36-.19-.36-1.15v-1.56h1.12v1c0,1,.17,1.05.36,1.15.42.23.77.51.77,1.77V133.3c0,1.26-.35,1.55-.77,1.77-.19.1-.36.19-.36,1.16v1.17Z"/>
+    <rect x="143.99" y="175.51" width="14.72" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <rect x="142.35" y="138.93" width="18.12" height="36.58" rx="2.07" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <path d="M154.74,175.51v-1.17c0-1,.17-1.54.36-1.64.42-.22.76-.51.76-1.77V143.42c0-1.26-.34-1.55-.76-1.77-.19-.1-.36-.19-.36-1.16v-1.56h1.12v1c0,1,.17,1.06.36,1.16.42.22.77.51.77,1.77v28.56c0,1.26-.35,1.54-.77,1.76-.19.11-.36.2-.36,1.16v1.17Z"/>
+    <rect x="143.99" y="213.63" width="14.72" height="1.54" rx="0.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <rect x="142.35" y="177.05" width="18.12" height="36.58" rx="2.07" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <path d="M154.74,213.63v-1.17c0-1,.17-1.54.36-1.64.42-.23.76-.51.76-1.77V181.53c0-1.25-.34-1.54-.76-1.76-.19-.11-.36-.19-.36-1.16v-1.56h1.12v1c0,1,.17,1,.36,1.16.42.22.77.51.77,1.76v28.56c0,1.26-.35,1.55-.77,1.77-.19.1-.36.19-.36,1.16v1.17Z"/>
+    <rect x="131.52" y="216.3" width="39.79" height="0.65"/>
+    <polygon points="144.84 215.16 144.94 216.63 157.85 216.63 157.94 215.16 144.84 215.16"/>
+    <line x1="144.57" y1="99.28" x2="158.25" y2="99.28" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <path d="M144.83,99.28a2.51,2.51,0,0,1-2.45-2h0l-4.27-21.76h26.48l-4.27,21.76h0a2.5,2.5,0,0,1-2.44,2Z" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.3"/>
+    <polygon points="155.8 99.28 155.03 97.78 153.79 97.78 148.91 97.78 147.67 97.78 146.89 99.28 155.8 99.28"/>
+  </g>
+</svg>

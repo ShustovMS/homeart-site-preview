@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Контакты — HOMEART</title>
+<!-- og: описание и превью для мессенджеров — _build/og_meta.py -->
+<meta name="description" content="Шоурум HOMEART: Москва, 3-я Фрунзенская, 1. +7 925 602-14-43, mos@homeart.pro. Пн–Пт 10:00–19:00, Сб 12:00–18:00.">
+<meta property="og:site_name" content="HOMEART">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Контакты — HOMEART">
+<meta property="og:description" content="Шоурум HOMEART: Москва, 3-я Фрунзенская, 1. +7 925 602-14-43, mos@homeart.pro. Пн–Пт 10:00–19:00, Сб 12:00–18:00.">
+<meta property="og:image" content="https://homeart.pro/img/og/contacts.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://homeart.pro/contacts.html">
+<!-- /og -->
+<link rel="stylesheet" href="assets/fonts.css?v=1794590659">
+<link rel="stylesheet" href="assets/site.css?v=1794590659">
+<style>
+/* карта шоурума (тёмная, с прежнего сайта) — справа от контактов; на телефоне — сразу под ними */
+.cside .lockcard{margin-top:clamp(16px,2vw,24px)}
+.cmap{position:relative;display:block;aspect-ratio:1;border-radius:var(--r-lg);overflow:hidden;background:#2b2b2b}
+.cmap img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.cmap:hover img{transform:scale(1.02)}
+.cmap .btn{position:absolute;left:16px;bottom:16px}
+@media(max-width:640px){.cside{display:contents}.cmap{order:1}.cside .lockcard{order:2;margin-top:0}}
+</style>
+</head>
+<body data-page="contacts" data-root="">
+<div id="hdr"></div>
+<main class="wrap" style="padding-bottom:80px">
+  <div class="crumbs"><a href="index.html">Главная</a><span>/</span><span>Контакты</span></div>
+  <div class="pagehead"><div class="eyebrow">Контакты</div><h1>Как с нами связаться</h1></div>
+  <div class="grid2" style="align-items:start">
+    <div class="cside">
+    <div class="facts" style="margin-top:0">
+      <div><span class="k">Шоурум</span><span><a href="https://yandex.ru/maps/-/CXGvYC1b" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">Москва, 3-я Фрунзенская, 1</a></span></div>
+      <div><span class="k">Телефон</span><span><a href="tel:+79256021443">+7 925 602-14-43</a></span></div>
+      <div><span class="k">Почта</span><span><a href="mailto:mos@homeart.pro">mos@homeart.pro</a></span></div>
+      <div><span class="k">Часы</span><span>Пн–Пт&nbsp;10:00–&#8288;19:00, Сб&nbsp;12:00–&#8288;18:00</span></div>
+      <div><span class="k">Telegram</span><span><a href="https://t.me/homeart_interior" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">Канал HOMEART</a></span></div>
+      <div><span class="k">HOMEART Academy</span><span><a href="https://t.me/homeart_interior_bot" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">Бот в Telegram — анкета и доступ в группу</a></span></div>
+    </div>
+    <div class="lockcard" style="border-style:solid;border-color:var(--line)">
+      <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>
+      <div><b>Проще всего — заявка на звонок</b><p>Перезвоним в рабочее время и направим к нужному эксперту: мебель, свет или кухни.</p>
+      <button type="button" class="btn btn--sm" data-call="Контакты">Связаться с HOMEART</button></div></div>
+    </div>
+    <a class="cmap" href="https://yandex.ru/maps/-/CXGvYC1b" target="_blank" rel="noopener" aria-label="Открыть шоурум HOMEART на Яндекс Картах">
+      <img src="img/contacts/map.jpg" width="896" height="896" alt="Карта: шоурум HOMEART, Москва, 3-я Фрунзенская, 1" loading="lazy">
+      <span class="btn btn--light btn--sm">Открыть в Яндекс Картах ↗</span>
+    </a>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1794590659"></script>
+<script src="assets/site.js?v=1794590659"></script>
+</body>
+</html>

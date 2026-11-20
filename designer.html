@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дизайнер — HOMEART</title>
+<!-- og: описание и превью для мессенджеров — _build/og_meta.py -->
+<meta name="description" content="Дизайнеры и бюро, с которыми HOMEART реализует проекты.">
+<meta property="og:site_name" content="HOMEART">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Дизайнер — HOMEART">
+<meta property="og:description" content="Дизайнеры и бюро, с которыми HOMEART реализует проекты.">
+<meta property="og:image" content="https://homeart.pro/img/og/projects.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /og -->
+<link rel="stylesheet" href="assets/fonts.css?v=1794590659">
+<link rel="stylesheet" href="assets/site.css?v=1794590659">
+<link rel="stylesheet" href="assets/projects.css?v=1794590659">
+</head>
+<body data-page="projects" data-root="">
+<div id="hdr"></div>
+<main class="wrap" id="main"></main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1794590659"></script>
+<script src="data/projects.js?v=1794590659"></script>
+<script src="assets/site.js?v=1794590659"></script>
+<script src="assets/projects.js?v=1794590659"></script>
+<script>
+(function () {
+  const { esc, qs } = HA;
+  const d = DESIGNERS.find(x => x.id === qs.get('id')) || DESIGNERS[0];
+  const list = d.projects.map(id => PROJECTS.find(x => x.id === id)).filter(Boolean);
+  PJ.meta(d.meta.title, d.meta.description, d.portrait || (list[0] && list[0].photos[0]));
+  document.getElementById('main').innerHTML = `
+    <div class="crumbs"><a href="index.html">Главная</a><span>/</span><a href="projects.html?tab=designers">Дизайнеры</a><span>/</span><span>${esc(d.name)}</span></div>
+    <div class="dhead">
+      ${d.portrait ? `<div class="dhead__p"><img src="${d.portrait}" alt="${esc(d.name)}"></div>` : '<div></div>'}
+      <div><div class="eyebrow">${list.length > 1 ? 'Дизайнеры и архитекторы' : 'Дизайнер'}</div><h1>${esc(d.name)}</h1>
+        ${d.role ? `<p class="lead">${esc(d.role)}</p>` : ''}
+        <p class="small muted" style="margin-top:14px">${HA.fmt.plural(list.length, 'проект', 'проекта', 'проектов')} с HOMEART</p></div>
+    </div>
+    <section class="pmore" style="padding-bottom:clamp(64px,7vw,110px)"><div class="sec__h"><h2>Проекты</h2><a class="link" href="projects.html">Все проекты →</a></div>
+      <div class="ptiles">${PJ.tiles(list)}</div></section>`;
+})();
+</script>
+</body>
+</html>

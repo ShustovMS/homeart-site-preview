@@ -1,0 +1,13 @@
+/* Montserrat как замена Museo Sans Cyrl (ДС HOMEART v2). Шрифт только наш, с нашего сервера — без Google Fonts:
+   страница не ждёт чужой сервер. WOFF2 — тот же файл fonts/montserrat/*.ttf целиком, только сжат (~80 КБ вместо 260 КБ):
+   все 969 знаков, контуры, кернинг и лигатуры без изменений. Лицензия OFL — fonts/Montserrat-OFL.txt. */
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-ExtraLight.woff2") format("woff2");font-weight:200;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-Light.woff2") format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-Medium.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"HA Sans";src:url("fonts/Montserrat-LightItalic.woff2") format("woff2");font-weight:300;font-style:italic;font-display:swap}
+
+/* Museo Sans Cyrl — основной шрифт бренда (бренд-платформа, стр. 14): заголовки, подписи, кнопки.
+   Своё имя «HA Display», чтобы не путаться с установленным на компьютере Museo. Пока есть только начертание 500. */
+@font-face{font-family:"HA Display";src:url("fonts/MuseoSansCyrl.woff2") format("woff2");font-weight:500;font-display:swap}   /* тот же OTF, сжат без потерь (104 → 40 КБ); OTF лежит рядом как исходник */
