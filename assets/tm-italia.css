@@ -1,0 +1,25 @@
+/* Раскладки для исходных разделов TM Italia. Общие компоненты — HOMEART и Molteni. */
+.tm-main .tm-index-grid,.tm-main .tm-joined{padding-top:0}
+.tm-main .tm-cover{aspect-ratio:4/5}
+.tm-badge{position:absolute;top:16px;left:16px;background:var(--ink);color:var(--white)}
+.tm-main .link{align-self:flex-start;white-space:normal}
+.tm-main .tm-space,.tm-feature-image{margin-top:32px}
+.tm-feature-image img,.tm-video video{display:block;width:100%;height:auto;border-radius:var(--r-lg)}
+.tm-main .tm-diagram img{display:block;width:100%;height:auto}
+.tm-main .tm-portrait{max-width:440px}
+.tm-main .tm-materials{align-items:start}
+.tm-main .tm-award{display:flex;gap:16px;align-items:center;margin-top:16px}
+.tm-award-logo{width:min(30%,96px);height:auto}
+.tm-main .mk-specs dd{margin-inline-start:0}
+.tm-main .mk-related img{aspect-ratio:4/3}
+.tm-main .mk-collections,.tm-main .grid3,.tm-main .grid2{align-items:start}
+.tm-main .tm-portrait img,.tm-main .mk-gallery img{height:auto}
+.tm-main .mk-consult .btn{white-space:normal}
+.tm-main .mk-gallery+*,.tm-main .mk-prose .link{margin-top:16px}
+.tm-main .hero:has(.hero__cta) .hero__cta{margin-top:24px}
+@media (max-width:640px){
+  .tm-main .mk-split{gap:24px}
+  .tm-main .tm-space,.tm-feature-image{margin-top:24px}
+  .tm-main .tm-cover{aspect-ratio:4/3}
+  .tm-main .btn{white-space:normal}
+}

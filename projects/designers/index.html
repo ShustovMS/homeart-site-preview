@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="../../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дизайнеры и архитекторы — проекты с HOMEART</title>
+<!-- og: описание и превью для мессенджеров — _build/og_meta.py -->
+<meta name="description" content="Дизайнеры и архитектурные бюро, с которыми HOMEART реализует интерьеры.">
+<meta property="og:site_name" content="HOMEART">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Дизайнеры и архитекторы — проекты с HOMEART">
+<meta property="og:description" content="Дизайнеры и архитектурные бюро, с которыми HOMEART реализует интерьеры.">
+<meta property="og:image" content="https://homeart.pro/img/og/projects.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://homeart.pro/projects/designers/">
+<!-- /og -->
+<link rel="stylesheet" href="assets/fonts.css?v=1794590659">
+<link rel="stylesheet" href="assets/site.css?v=1794590659">
+<link rel="stylesheet" href="assets/projects.css?v=1794590659">
+<link rel="canonical" href="https://homeart.pro/projects/designers/">
+</head>
+<body data-project-tab="designers" data-source="projects.html" data-page="projects" data-root="">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><a href="./">Главная</a><span>/</span><span>Проекты</span></div>
+  <div class="pagehead">
+    <div class="eyebrow">Проекты</div>
+    <h1>Проекты</h1>
+    <p class="lead">HOMEART — надёжный партнёр в реализации дизайн-проекта любой сложности. Интерьеры дизайнеров и архитекторов, в которых работают мебель, свет и кухни из нашего шоурума.</p>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div id="list" style="padding-bottom:clamp(64px,7vw,110px)"></div>
+</main>
+<div id="ftr"></div>
+<script src="data/data.js?v=1794590659"></script>
+<script src="data/projects.js?v=1794590659"></script>
+<script src="data/page-urls.js"></script>
+<script src="assets/site.js?v=1794590659"></script>
+<script>
+(function () {
+  const { esc, qs } = HA;
+  const tab = document.body.dataset.projectTab === 'designers' || qs.get('tab') === 'designers' ? 'designers' : 'projects';
+  const byId = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
+  document.getElementById('tabs').innerHTML =
+    `<a href="./projects/" class="${tab === 'projects' ? 'on' : ''}">Проекты<span>${PROJECTS.length}</span></a>` +
+    `<a href="./projects/designers/" class="${tab === 'designers' ? 'on' : ''}">Дизайнеры<span>${DESIGNERS.length}</span></a>`;
+  const list = document.getElementById('list');
+  if (tab === 'projects') {
+    list.innerHTML = `<div class="ptiles">${PROJECTS.map(p => `<a class="ptile" href="${HA.entryURL('project', p.id)}">
+      <div class="ptile__p">${p.photos[0] ? `<img loading="lazy" src="${p.photos[0]}" alt="${esc(p.title)}">` : ''}</div>
+      <div class="ptile__b"><span class="ptile__t">${esc(p.title)}</span>${p.author ? `<span class="ptile__a">${esc(p.author)}</span>` : ''}</div></a>`).join('')}</div>`;
+  } else {
+    document.title = 'Дизайнеры и архитекторы — проекты с HOMEART';
+    list.innerHTML = `<div class="dtiles">${DESIGNERS.map(d => {
+      const n = d.projects.filter(id => byId[id]).length;
+      return `<a class="dtile" href="${HA.entryURL('designer', d.id)}">
+        <div class="dtile__p">${d.portrait ? `<img loading="lazy" src="${d.portrait}" alt="${esc(d.name)}">` : ''}</div>
+        <span class="dtile__t">${esc(d.name)}</span>${d.role ? `<span class="dtile__r">${esc(d.role)}</span>` : ''}
+        <span class="dtile__n">${HA.fmt.plural(n, 'проект', 'проекта', 'проектов')}</span></a>`;
+    }).join('')}</div>`;
+  }
+})();
+</script>
+</body>
+</html>

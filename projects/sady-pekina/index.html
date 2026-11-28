@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="../../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ЖК САДЫ ПЕКИНА — Студия ARTIMITRO | дизайнер Артур Митрошкин · HOMEART</title>
+<!-- og: описание и превью для мессенджеров — _build/og_meta.py -->
+<meta name="description" content="Личные апартаменты для отдыха. Общая площадь проекта — 120 м².">
+<meta property="og:site_name" content="HOMEART">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ЖК САДЫ ПЕКИНА — Студия ARTIMITRO | дизайнер Артур Митрошкин · HOMEART">
+<meta property="og:description" content="Личные апартаменты для отдыха. Общая площадь проекта — 120 м².">
+<meta property="og:image" content="https://homeart.pro/img/projects/sady_pekina/s1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /og -->
+<link rel="stylesheet" href="assets/fonts.css?v=1794590659">
+<link rel="stylesheet" href="assets/site.css?v=1794590659">
+<link rel="stylesheet" href="assets/projects.css?v=1794590659">
+<link rel="canonical" href="https://homeart.pro/projects/sady-pekina/">
+<meta property="og:url" content="https://homeart.pro/projects/sady-pekina/">
+</head>
+<body data-source="project.html" data-record-id="sady_pekina" data-canonical="https://homeart.pro/projects/sady-pekina/" data-page="projects" data-root="">
+<div id="hdr"></div>
+<main id="main"><noscript><div class="wrap"><h1>ЖК САДЫ ПЕКИНА</h1><p>Личные апартаменты для отдыха. Общая площадь проекта — 120 м².</p><p>Личные апартаменты для отдыха.</p><p>Общая площадь проекта — 120 м².</p><p>«Для Садов Пекина вдохновением стал монументальный образ Сталинской архитектуры и азиатский мотив в названии ЖК, который подкрепился личными предпочтениями заказчицы. Поэтому в материалах и геометрии проекта мы видим аскетизм, натуральность, медитативность, как в саду камней. Это пространство, созданное для того, чтобы красиво замедлиться», — Артур Митрошкин.</p><p>Планировка: гостиная с небольшой зоной кухни, мастер-спальня, кабинет, 2 гардероба, 2 санузла и единый проход-галерея вдоль окон между всеми жилыми зонами.</p><p>Создание единого пространства без глухих перегородок и баланс цвета с преобладанием темным оттенков позволили добиться необходимого обволакивающего эффекта и ощущения полной безмятежности со вкусом благородной Азии.</p><p>Кухня: остров по индивидуальному чертежу Woak Design, светильник Baxter.</p><p>Гостиная: диван и столик Baxter, кресло и столик Henge, торшер LucePlan, дверь Rimadesio, непальский ковер с шелком Jerome Botanic, картина Ли Шевалье (Франция) Booroom Gallery, барельеф с сюжетом Китайских гравюр (5,5 м) от студии Леонида Кима.</p><p>Мастер-спальня: кровать Minotti, столик Baxter, композиция с закрытой тумбой и фарфоровыми подвесными светильниками Bocci.</p><p>Мастер-санузел: смесители Dornbracht, аксессуары и унитаз Antonio Lupi, полотенцесушители Cea.</p><p>Гостевой санузел: дверь Rimadesio, смесители Dornbracht, аксессуары и унитаз Antonio Lupi.</p><p>Кабинет: диван Living Divani, столик Cattelan Italia, пуф Henge, торшер Artemide, ковер JeromeBotanic.</p><p>Гардероб: реечная перегородка со стеклом Rimadesio.</p></div></noscript></main>
+<div id="ftr"></div>
+<dialog class="plb" id="lb" aria-label="Фото проекта"><div class="plb__t" id="lbT"></div>
+  <button type="button" class="x" id="lbX" aria-label="Закрыть">×</button><button type="button" class="pv" id="lbP" aria-label="Назад">‹</button>
+  <button type="button" class="nx" id="lbN" aria-label="Вперёд">›</button><div class="c" id="lbC"></div></dialog>
+<script src="data/data.js?v=1794590659"></script>
+<script src="data/projects.js?v=1794590659"></script>
+<script src="data/page-urls.js"></script>
+<script src="assets/site.js?v=1794590659"></script>
+<script src="assets/projects.js?v=1794590659"></script>
+<script>
+(function () {
+  const { esc, qs } = HA;
+  // формат страницы — как на старом homeart.pro: баннер-слайдер → название и автор → текст и портрет → логотипы фабрик → галерея
+  const p = PROJECTS.find(x => x.id === (document.body.dataset.recordId || qs.get('id'))) || PROJECTS[0];
+  const d = DESIGNERS.find(x => x.projects.includes(p.id));
+  const slides = p.slides.length ? p.slides : p.photos.slice(0, 1);
+  const all = slides.concat(p.gallery);   // порядок для просмотра во весь экран
+  PJ.meta(p.meta.title, p.meta.description, slides[0]);
+  const author = d ? `<a href="${HA.entryURL('designer', d.id)}">${esc(p.author)}</a>` : esc(p.author);
+  const more = (d ? d.projects.filter(id => id !== p.id).map(id => PROJECTS.find(x => x.id === id)).filter(Boolean) : [])
+    .concat(PROJECTS.filter(x => x.id !== p.id && !(d && d.projects.includes(x.id)))).slice(0, 2);
+  document.getElementById('main').innerHTML = `
+    <section class="pban" data-hdr-over aria-label="Фото проекта">
+      ${slides.map((s, i) => `<figure class="${i ? '' : 'on'}" data-i="${i}"><img src="${s}" alt="${esc(p.title)}, фото ${i + 1}" ${i ? 'loading="lazy"' : ''}></figure>`).join('')}
+      ${slides.length > 1 ? `<div class="pban__dots">${slides.map((s, i) => `<button type="button" class="${i ? '' : 'on'}" data-s="${i}" aria-label="Фото ${i + 1}"></button>`).join('')}</div>` : ''}
+    </section>
+    <div class="wrap">
+      <div class="crumbs"><a href="./">Главная</a><span>/</span><a href="./projects/">Проекты</a><span>/</span><span>${esc(p.title)}</span></div>
+      <h1 class="ptitle">${esc(p.h1 || p.title)}</h1>
+      ${p.author ? `<p class="pby">${author}</p>` : ''}
+      <div class="pbody">
+        <div class="ptext">${p.text.map(t => t.startsWith('## ') ? `<h2>${esc(t.slice(3))}</h2>` : `<p>${esc(t)}</p>`).join('')}
+          <button type="button" class="btn" data-call="Проект: ${esc(p.title)}" style="margin-top:28px">Обсудить проект</button></div>
+        ${p.authorPhoto ? `<figure class="pportrait"><img src="${p.authorPhoto}" alt="${esc(p.author)}"></figure>` : ''}
+      </div>
+      ${p.logos.length ? `<div class="plogos" aria-label="Фабрики в проекте">${p.logos.map(l => `<span><img loading="lazy" src="${l}" alt=""></span>`).join('')}</div>` : ''}
+    </div>
+    ${p.gallery.length ? `<section class="pgal" aria-label="Галерея проекта"><div class="pgal__in">${p.gallery.map((s, i) =>
+      `<figure data-i="${slides.length + i}"><img loading="lazy" src="${s}" alt="${esc(p.title)}, фото ${slides.length + i + 1}"></figure>`).join('')}</div></section>` : ''}
+    ${more.length ? `<div class="wrap"><section class="pmore"><div class="sec__h"><h2>${d && d.projects.length > 1 ? 'Ещё проекты автора' : 'Другие проекты'}</h2><a class="link" href="./projects/">Все проекты →</a></div>
+      <div class="ptiles">${PJ.tiles(more)}</div></section></div>` : ''}`;
+  PJ.lightbox(all);
+  PJ.slider(document.querySelector('.pban'));
+})();
+</script>
+</body>
+</html>

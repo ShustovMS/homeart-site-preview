@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<base href="../../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>«РИВЬЕРА» ЕКАТЕРИНБУРГ — Денис Наумов · HOMEART</title>
+<!-- og: описание и превью для мессенджеров — _build/og_meta.py -->
+<meta name="description" content="Проект создан для многодетной супружеской пары, где каждый элемент интерьера подчеркивает статус и индивидуальность владельцев. Вся итальянская мебель, декоративный свет, смесители и плитка поставлены шоурумом HOMEART">
+<meta property="og:site_name" content="HOMEART">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="«РИВЬЕРА» ЕКАТЕРИНБУРГ — Денис Наумов · HOMEART">
+<meta property="og:description" content="Проект создан для многодетной супружеской пары, где каждый элемент интерьера подчеркивает статус и индивидуальность владельцев. Вся итальянская мебель, декоративный свет, смесители и плитка поставлены шоурумом HOMEART">
+<meta property="og:image" content="https://homeart.pro/img/projects/rivieraekb/s1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- /og -->
+<link rel="stylesheet" href="assets/fonts.css?v=1794590659">
+<link rel="stylesheet" href="assets/site.css?v=1794590659">
+<link rel="stylesheet" href="assets/projects.css?v=1794590659">
+<link rel="canonical" href="https://homeart.pro/projects/rivieraekb/">
+<meta property="og:url" content="https://homeart.pro/projects/rivieraekb/">
+</head>
+<body data-source="project.html" data-record-id="rivieraekb" data-canonical="https://homeart.pro/projects/rivieraekb/" data-page="projects" data-root="">
+<div id="hdr"></div>
+<main id="main"><noscript><div class="wrap"><h1>«РИВЬЕРА» ЕКАТЕРИНБУРГ</h1><p>Проект создан для многодетной супружеской пары, где каждый элемент интерьера подчеркивает статус и индивидуальность владельцев. Вся итальянская мебель, декоративный свет, смесители и плитка поставлены шоурумом HOMEART</p><p>Роскошь объединенного пространства для семьи с 4-мя детьми.</p><p>Общая площадь проекта — 254 м².</p><p>Проект создан для многодетной супружеской пары, где каждый элемент интерьера подчеркивает статус и индивидуальность владельцев без потери функциональности.</p><p>Демонтаж межквартирных перегородок позволил создать единое пространство гостиной, столовой и кухни. Кухонный гарнитур дополнен островом с барными стульями Molteni в алой обивке. Фартук из закаленного стекла скрывает зону с техникой.</p><p>В гостиной установлен удобный диван Albert от Molteni и два кресла от этого же бренда, которые гармонично сочетаются с мебелью Porada в матовом исполнении. В обеденной зоне — 8 стульев Devon от Molteni, напольные светильники Officina. Массивная люстра от Patrizia Garganti дополняет композицию мягким светом.</p><p>В мастер-спальне установлена кровать Ribbon от Molteni с интегрированным в стену изголовьем. Интерьер дополняют прикроватные замшевые тумбы Flou и настольные лампы Sigma elle due. На потолке роскошная люстра от Patrizia Garganti.</p><p>В детских использована мебель Twills, мягкая мебель Ditre и стеллаж Cattelan, а также письменный стол от Molteni. Светильники Artemide.</p><p>В трех санузлах использованы смесители и аксессуарами Gessi, лаконичные белые бра Pentalight.</p><p>Вся итальянская мебель, декоративный свет, смесители и плитка поставлены шоурумом HOMEART. Мы помогаем реализовывать проекты премиум-класса любой сложности. Для обсуждения деталей напишите нам на mos@homeart.pro, и наша команда бережно подберет лучшую мебель и декор из Европы и решит все вопросы с логистикой, хранением и сборкой.</p></div></noscript></main>
+<div id="ftr"></div>
+<dialog class="plb" id="lb" aria-label="Фото проекта"><div class="plb__t" id="lbT"></div>
+  <button type="button" class="x" id="lbX" aria-label="Закрыть">×</button><button type="button" class="pv" id="lbP" aria-label="Назад">‹</button>
+  <button type="button" class="nx" id="lbN" aria-label="Вперёд">›</button><div class="c" id="lbC"></div></dialog>
+<script src="data/data.js?v=1794590659"></script>
+<script src="data/projects.js?v=1794590659"></script>
+<script src="data/page-urls.js"></script>
+<script src="assets/site.js?v=1794590659"></script>
+<script src="assets/projects.js?v=1794590659"></script>
+<script>
+(function () {
+  const { esc, qs } = HA;
+  // формат страницы — как на старом homeart.pro: баннер-слайдер → название и автор → текст и портрет → логотипы фабрик → галерея
+  const p = PROJECTS.find(x => x.id === (document.body.dataset.recordId || qs.get('id'))) || PROJECTS[0];
+  const d = DESIGNERS.find(x => x.projects.includes(p.id));
+  const slides = p.slides.length ? p.slides : p.photos.slice(0, 1);
+  const all = slides.concat(p.gallery);   // порядок для просмотра во весь экран
+  PJ.meta(p.meta.title, p.meta.description, slides[0]);
+  const author = d ? `<a href="${HA.entryURL('designer', d.id)}">${esc(p.author)}</a>` : esc(p.author);
+  const more = (d ? d.projects.filter(id => id !== p.id).map(id => PROJECTS.find(x => x.id === id)).filter(Boolean) : [])
+    .concat(PROJECTS.filter(x => x.id !== p.id && !(d && d.projects.includes(x.id)))).slice(0, 2);
+  document.getElementById('main').innerHTML = `
+    <section class="pban" data-hdr-over aria-label="Фото проекта">
+      ${slides.map((s, i) => `<figure class="${i ? '' : 'on'}" data-i="${i}"><img src="${s}" alt="${esc(p.title)}, фото ${i + 1}" ${i ? 'loading="lazy"' : ''}></figure>`).join('')}
+      ${slides.length > 1 ? `<div class="pban__dots">${slides.map((s, i) => `<button type="button" class="${i ? '' : 'on'}" data-s="${i}" aria-label="Фото ${i + 1}"></button>`).join('')}</div>` : ''}
+    </section>
+    <div class="wrap">
+      <div class="crumbs"><a href="./">Главная</a><span>/</span><a href="./projects/">Проекты</a><span>/</span><span>${esc(p.title)}</span></div>
+      <h1 class="ptitle">${esc(p.h1 || p.title)}</h1>
+      ${p.author ? `<p class="pby">${author}</p>` : ''}
+      <div class="pbody">
+        <div class="ptext">${p.text.map(t => t.startsWith('## ') ? `<h2>${esc(t.slice(3))}</h2>` : `<p>${esc(t)}</p>`).join('')}
+          <button type="button" class="btn" data-call="Проект: ${esc(p.title)}" style="margin-top:28px">Обсудить проект</button></div>
+        ${p.authorPhoto ? `<figure class="pportrait"><img src="${p.authorPhoto}" alt="${esc(p.author)}"></figure>` : ''}
+      </div>
+      ${p.logos.length ? `<div class="plogos" aria-label="Фабрики в проекте">${p.logos.map(l => `<span><img loading="lazy" src="${l}" alt=""></span>`).join('')}</div>` : ''}
+    </div>
+    ${p.gallery.length ? `<section class="pgal" aria-label="Галерея проекта"><div class="pgal__in">${p.gallery.map((s, i) =>
+      `<figure data-i="${slides.length + i}"><img loading="lazy" src="${s}" alt="${esc(p.title)}, фото ${slides.length + i + 1}"></figure>`).join('')}</div></section>` : ''}
+    ${more.length ? `<div class="wrap"><section class="pmore"><div class="sec__h"><h2>${d && d.projects.length > 1 ? 'Ещё проекты автора' : 'Другие проекты'}</h2><a class="link" href="./projects/">Все проекты →</a></div>
+      <div class="ptiles">${PJ.tiles(more)}</div></section></div>` : ''}`;
+  PJ.lightbox(all);
+  PJ.slider(document.querySelector('.pban'));
+})();
+</script>
+</body>
+</html>
